@@ -1,0 +1,2859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>魔力回忆2 By 桔橙柚</title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" rel="stylesheet">
+		<style>
+			body{
+				background: #F1F1F1;
+			}
+			div {
+				margin-left: 0px auto;
+				margin-right: 0px auto;
+				text-align: left;
+			}
+			div.menu {
+				width: 200px;
+				font-size: 18pt;
+				overflow: hidden;
+				margin: 0px auto 0px auto;
+			}
+			div.menu a {
+				text-decoration: none;
+				color: #0000FF;
+				line-height: 18px;
+				border: 0px transparent none;
+			}
+			div.menu a:hover, div.menu a:focus {
+				border-bottom: 1px #663300 dashed;
+			}
+			
+			div.container{
+				width: 1280px;
+				height: 960px;
+			}
+			div.top{
+				width: 1280px;
+				height: 94px;
+			}
+			div.left{
+				width:300px;
+				height:100%;
+				float:left;
+			}
+			div.main{
+				width:1280px;
+				height:660px;
+				float:left;
+			}
+							
+							
+		</style>
+		<script>
+			
+			$(function(){
+				initDiv();
+			});
+		
+			var merchants = [
+				{island:'德威特岛',country:'摩顿村', location:'村长家', rate:0.8}
+			];
+			
+			var materials = [
+				{min:20, max:30, number:240},
+				{min:30, max:40, number:480},
+				{min:40, max:50, number:960},
+				{min:50, max:60, number:1680},
+				{min:60, max:70, number:2640},
+				{min:70, max:80, number:3840},
+				{min:80, max:90, number:5280},
+				{min:90, max:100, number:6960}
+			];
+		
+			var monsters = [
+				{
+					name: '哆啦姆糖(攻)',
+					race: '不死系',
+					vit: 40,
+					str: 46,
+					def: 18,
+					dex: 17,
+					int: 9,
+					earth: 20,
+					water: 0,
+					fire: 80,
+					wind: 0,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 12000,
+					vip: '支持',
+					
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1518533909013.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933001.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933002.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933003.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933004.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933005.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933007.gif' ]
+					
+				},
+				{
+					name: '哆啦姆糖(魔)',
+					race: '不死系',
+					vit: 24,
+					str: 8,
+					def: 25,
+					dex: 30,
+					int: 43,
+					earth: 20,
+					water: 0,
+					fire: 80,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 10,
+					r: 10,
+					skill: 10,
+					price: 12000,
+					vip: '支持',
+					
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1518533909013.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933001.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933002.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933003.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933004.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933005.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537593933007.gif' ]
+				},
+				{
+					name: '光明审判者',
+					race: '不死系',
+					vit: 37,
+					str: 47,
+					def: 16,
+					dex: 21,
+					int: 7,
+					earth: 0,
+					water: 20,
+					fire: 0,
+					wind: 80,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 10000,
+					vip: '支持',
+					
+					logo: ['https://cgsword.com/image/beast/others/107913400.gif']
+					
+				},
+				{
+					name: '黑暗审判者',
+					race: '不死系',
+					vit: 35,
+					str: 49,
+					def: 16,
+					dex: 21,
+					int: 7,
+					earth: 0,
+					water: 80,
+					fire: 0,
+					wind: 20,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 10000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572457009012.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572460507001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572460507002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572460507003.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572460507004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572460507005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572460507007.gif'],
+					
+				},
+
+				{
+					name: '雪齿巨象',
+					race: '不死系',
+					vit: 41,
+					str: 47,
+					def: 16,
+					dex: 14,
+					int: 10,
+					earth: 80,
+					water: 20,
+					fire: 0,
+					wind: 0,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['', '', '', '', '', '', ''],
+					
+				},
+				{
+					name: '万两招财猫',
+					race: '金属系',
+					vit: 39,
+					str: 47,
+					def: 17,
+					dex: 15,
+					int: 10,
+					earth: 80,
+					water: 0,
+					fire: 0,
+					wind: 20,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506280225005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568713896001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568713896002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568713896003.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568713896004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568713896005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568713896007.gif'],
+					
+				},
+				{
+					name: '大地牛头怪',
+					race: '人形系',
+					vit: 45,
+					str: 41,
+					def: 19,
+					dex: 13,
+					int: 10,
+					earth: 80,
+					water: 20,
+					fire: 0,
+					wind: 0,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1504875759001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733132001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733132002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733132003.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733132004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733132005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733132007.gif'],
+					
+				},
+				{
+					name: '寒冰牛头怪',
+					race: '人形系',
+					vit: 22,
+					str: 48,
+					def: 18,
+					dex: 32,
+					int: 8,
+					earth: 0,
+					water: 90,
+					fire: 10,
+					wind: 0,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568732028002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733159001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733159002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733159004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733159005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733159007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568733159003.gif'],
+					
+				},
+				{
+					name: '圣洁铠甲',
+					race: '金属系',
+					vit: 44,
+					str: 42,
+					def: 20,
+					dex: 12,
+					int: 10,
+					earth: 20,
+					water: 0,
+					fire: 0,
+					wind: 80,
+					bs: 0,
+					mz: 5,
+					fj: 0,
+					sd: 5,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1504886852003.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737117001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737117004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737117005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737117007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737117003.gif'],
+					
+				},
+				{
+					name: '烈焰铠甲',
+					race: '金属系',
+					vit: 35,
+					str: 48,
+					def: 17,
+					dex: 20,
+					int: 8,
+					earth: 0,
+					water: 20,
+					fire: 80,
+					wind: 0,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509078676010.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737145001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737145004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737145005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737145007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737145003.gif'],
+					
+				},
+				{
+					name: '圣龙',
+					race: '龙形系',
+					vit: 29,
+					str: 48,
+					def: 22,
+					dex: 19,
+					int: 10,
+					earth: 0,
+					water: 90,
+					fire: 10,
+					wind: 0,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1518533909001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536072416001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536072416002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536072416004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536072416005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536072416007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536072416003.gif'],
+					
+				},
+				{
+					name: '雪翼兽(攻)',
+					race: '飞行系',
+					vit: 35,
+					str: 48,
+					def: 15,
+					dex: 22,
+					int: 8,
+					earth: 0,
+					water: 20,
+					fire: 0,
+					wind: 80,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: '',
+					
+				},
+				{
+					name: '巴罗斯克隆体',
+					race: '人形系',
+					vit: 22,
+					str: 32,
+					def: 13,
+					dex: 50,
+					int: 11,
+					earth: 0,
+					water: 90,
+					fire: 0,
+					wind: 10,
+					bs: 5,
+					mz: 0,
+					fj: 0,
+					sd: 5,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1579795334019.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1588077098005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1588077098006.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1588077098004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1588077098002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1588077098001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1588077098003.gif'],
+					
+				},
+
+				{
+					name: '深蓝铠甲',
+					race: '金属系',
+					vit: 25,
+					str: 11,
+					def: 22,
+					dex: 23,
+					int: 47,
+					earth: 30,
+					water: 70,
+					fire: 0,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 10,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1504875869001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737128001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737128004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737128005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737128007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737128003.gif'],
+					
+				},
+				{
+					name: '狂风铠甲',
+					race: '金属系',
+					vit: 25,
+					str: 12,
+					def: 20,
+					dex: 24,
+					int: 47,
+					earth: 0,
+					water: 0,
+					fire: 20,
+					wind: 80,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 10,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1504886852002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737193001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737193004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737193005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737193007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568737193003.gif'],
+					
+				},
+				{
+					name: '雪翼兽(魔)',
+					race: '飞行系',
+					vit: 30,
+					str: 11,
+					def: 14,
+					dex: 27,
+					int: 46,
+					earth: 0,
+					water: 20,
+					fire: 0,
+					wind: 80,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 10,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['', '', '', '', '', '', ''],
+					
+				},
+
+				{
+					name: '大白兔',
+					race: '野兽系',
+					vit: 25,
+					str: 48,
+					def: 15,
+					dex: 24,
+					int: 16,
+					earth: 0,
+					water: 30,
+					fire: 70,
+					wind: 0,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 8000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1504891310001.gif', '', '', '', '', '', ''],
+					
+				},
+				{
+					name: '大黑兔',
+					race: '野兽系',
+					vit: 27,
+					str: 48,
+					def: 15,
+					dex: 22,
+					int: 16,
+					earth: 0,
+					water: 70,
+					fire: 30,
+					wind: 0,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 8000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505433152002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1538802694001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1538802694001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1538802694002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1538802694002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1538802694003.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1538802694005.gif'],
+					
+				},
+				{
+					name: '黄金狮身',
+					race: '金属系',
+					vit: 25,
+					str: 47,
+					def: 18,
+					dex: 27,
+					int: 11,
+					earth: 10,
+					water: 0,
+					fire: 0,
+					wind: 90,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 8000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508127506034.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569576694001.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569576694002.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569576694003.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569576694004.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569576694005.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569576694007.gif'],
+					
+				},
+
+				{
+					name: '小白兔',
+					race: '野兽系',
+					vit: 23,
+					str: 44,
+					def: 12,
+					dex: 26,
+					int: 20,
+					earth: 0,
+					water: 40,
+					fire: 60,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					price: 3000,
+					vip: '不支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505633764016.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532462200005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532462200005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532462200001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532462200002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532462200004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532462200001.gif'],
+					
+				},
+				{
+					name: '黄金迷你龙',
+					race: '飞行系',
+					vit: 35,
+					str: 10,
+					def: 14,
+					dex: 18,
+					int: 43,
+					earth: 0,
+					water: 0,
+					fire: 10,
+					wind: 90,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					price: 1500,
+					vip: '不支持',
+					logo: ['https://s3.bmp.ovh/imgs/2022/08/18/a3f7e39e3dcdab63.gif'],
+					
+				},
+				{
+					name: '献祭者',
+					race: '不死系',
+					vit: 36,
+					str: 38,
+					def: 33,
+					dex: 13,
+					int: 5,
+					earth: 0,
+					water: 70,
+					fire: 30,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					price: 1000,
+					vip: '不支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508127506005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740450001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740450002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740450003.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740450004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740450005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740450007.gif'],
+					
+				},
+				{
+					name: '迷你翼龙',
+					race: '飞行系',
+					vit: 33,
+					str: 42,
+					def: 22,
+					dex: 18,
+					int: 10,
+					earth: 30,
+					water: 0,
+					fire: 0,
+					wind: 70,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					price: 1000,
+					vip: '不支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1507856944001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568231007001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568231007002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568231007003.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568231007004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568231007005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568231007007.gif'],
+					
+				},
+				{
+					name: '试做液态态史莱姆',
+					race: '特殊系',
+					vit: 34,
+					str: 40,
+					def: 30,
+					dex: 13,
+					int: 8,
+					earth: 0,
+					water: 100,
+					fire: 0,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					price: 0,
+					vip: '不支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505433152009.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1562829479001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1562829479002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1562829479003.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1562829479004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1562829479005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1562829479007.gif'],
+					
+				},
+				{
+					name: '艾克尼奇美拉(攻)',
+					race: '不死系',
+					vit: 35,
+					str: 49,
+					def: 14,
+					dex: 23,
+					int: 7,
+					earth: 20,
+					water: 0,
+					fire: 0,
+					wind: 80,
+					bs: 5,
+					mz: 5,
+					fj: 0,
+					sd: 0,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498399001.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838001.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838002.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838004.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838005.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838007.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838003.gif'],
+					
+				},
+				{
+					name: '艾克尼奇美拉(魔)',
+					race: '不死系',
+					vit: 27,
+					str: 11,
+					def: 16,
+					dex: 27,
+					int: 47,
+					earth: 20,
+					water: 0,
+					fire: 0,
+					wind: 80,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 10,
+					r: 10,
+					skill: 10,
+					price: 9000,
+					vip: '支持',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498399001.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838001.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838002.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838004.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838005.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838007.gif','https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1618498838003.gif'],
+				}
+			];
+			
+			var monsters2 = [
+				{name: '幼生神龙',			race: '龙型系',	vit: 0,		str: 0,		def: 0,		dex: 0,		int: 0,		earth: 0,	water: 0,	fire: 0,	wind: 0,	bs: 0,	mz: 0,	fj: 0,	sd: 0,	r: 0,	skill: 0,	source:'<a href="#" onclick="dreamgate(this)" value="798">龙神之里</a>', logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1521019762001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1521019762001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884535002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884535004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884535005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884535007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884535003.gif' ]},
+				{name: '恶魔棺材', 			race: '金属系',	vit: 14,	str: 16,	def: 30, 	dex: 28,	int: 32, 	earth: 0,	water: 60,	fire: 40,	wind: 0,	bs: 0,	mz: 0,	fj: 0,	sd: 0,	r: 0,	skill: 7,	source:'', logo: [ 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508127506033.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572678267001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572678267002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572678267004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572678267005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572678267007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1572678267003.gif'] },
+				{name: '火柴小精灵',		race: '特殊系', vit: 15, 	str: 16,	def: 25,	dex: 32,	int: 35,	earth: 0,	water: 0,	fire: 100,	wind: 0,	bs: 0,	mz: 0,	fj: 0,	sd: 0,	r: 0,	skill: 9,	source:'', logo: [ 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505211388029.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537604233001.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537604233002.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537604233004.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537604233005.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537604233007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537604233003.gif'] },
+				{name: '旋律影子(魔法)',	race: '不死系',	vit: 22,	str: 15,	def: 21,	dex: 26,	int: 41,	earth: 0,	water: 100,	fire: 0,	wind: 0,	bs: 2,	mz: 2,	fj: 0,	sd: 2,	r: 0,	skill: 6,	source:'', logo: [ 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1504922812002.gif',  'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645001.gif',  'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645002.gif',  'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645004.gif',  'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645005.gif',  'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645007.gif', 'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645003.gif'] },
+				{
+					name: '旋律影子(力量)',
+					race: '特殊系',
+					vit: 20,
+					str: 45,
+					def: 22,
+					dex: 23,
+					int: 15,
+					earth: 0,
+					water: 100,
+					fire: 0,
+					wind: 0,
+					bs: 2,
+					mz: 2,
+					fj: 0,
+					sd: 2,
+					r: 0,
+					skill: 6,
+					source:'',
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1504922812002.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645001.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645002.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645004.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645005.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563426645003.gif']
+					
+				},
+				{
+					name: '迅猛龙',
+					race: '龙形系',
+					vit: 34,
+					str: 35,
+					def: 16,
+					dex: 38,
+					int: 7,
+					earth: 0,
+					water: 50,
+					fire: 50,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					source:'',
+					logo: ['https://s3.bmp.ovh/imgs/2022/08/18/523f287bfd23e83b.gif']
+					
+				},
+				{
+					name: '重生的年兽',
+					race: '龙形系',
+					vit: 34,
+					str: 43,
+					def: 18,
+					dex: 16,
+					int: 9,
+					earth: 0,
+					water: 80,
+					fire: 20,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					source:'',
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1579832833001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1580033549005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1580033549005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1580033549001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1580033549004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1580033549002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1580033549001.gif']
+					
+				},
+				{
+					name: '试做型骷髅(红)',
+					race: '不死系',
+					vit: 35,
+					str: 37,
+					def: 16,
+					dex: 15,
+					int: 17,
+					earth: 0,
+					water: 30,
+					fire: 70,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 7,
+					source:'',
+					
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555176163002.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555176524001.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555176524002.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555176524004.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555176524005.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555176524007.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555177692001.gif']
+					
+				},
+				{
+					name: '试做型骷髅(蓝)',
+					race: '不死系',
+					vit: 37,
+					str: 35,
+					def: 16,
+					dex: 15,
+					int: 17,
+					earth: 0,
+					water: 70,
+					fire: 30,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 7,
+					source:'',
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555176163003.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555177970001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555177970002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555177970004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555177970005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555177970007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1555177970003.gif']
+					
+				},
+				{
+					name: '冰晶蛇',
+					race: '不死系',
+					vit: 31,
+					str: 38,
+					def: 12,
+					dex: 27,
+					int: 12,
+					earth: 20,
+					water: 80,
+					fire: 0,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					source:'',
+					logo: ['https://s3.bmp.ovh/imgs/2022/08/18/e3978ef2c4c4dfab.gif']
+					
+				},
+				{
+					name: '魔法猫',
+					race: '特殊系',
+					vit: 13,
+					str: 18,
+					def: 12,
+					dex: 32,
+					int: 35,
+					earth: 0,
+					water: 70,
+					fire: 30,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					source:'',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505723840006.gif',
+					       'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884400001.gif',
+						   'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884400002.gif',
+						   'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884400004.gif',
+						   'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884400006.gif',
+						   'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884400007.gif',
+						   'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1532884400003.gif']
+					
+				},
+				{
+					name: '海盗莱姆',
+					race: '特殊系',
+					vit: 25,
+					str: 36,
+					def: 17,
+					dex: 20,
+					int: 21,
+					earth: 100,
+					water: 0,
+					fire: 0,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					source:'',
+					logo: [
+						'']
+					
+				},
+				{
+					name: '眼镜蛇',
+					race: '不死系',
+					vit: 30,
+					str: 38,
+					def: 15,
+					dex: 23,
+					int: 14,
+					earth: 80,
+					water: 0,
+					fire: 0,
+					wind: 20,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 7,
+					source:'<a href="#" onclick="dreamgate(this)" value="849">2022七夕节日活动</a>',
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506327814009.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568270747001.gif', 
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568270747002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568270747004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568270747005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568270747007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568270747003.gif']
+					
+				},
+				{
+					name: '火焰蝶',
+					race: '特殊系',
+					vit: 27,
+					str: 14,
+					def: 16,
+					dex: 25,
+					int: 38,
+					earth: 0,
+					water: 0,
+					fire: 80,
+					wind: 20,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					source:'<a href="#" onclick="dreamgate(this)" value="849">2022七夕节日活动</a>',
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1545767430012.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1545773625001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1545773625002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1545773625004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1545773625005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1545773625007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1545773625003.gif']
+					
+				},
+				{
+					name: '月刃',
+					race: '金属系',
+					vit: 32,
+					str: 37,
+					def: 17,
+					dex: 18,
+					int: 16,
+					earth: 20,
+					water: 80,
+					fire: 0,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 7,
+					source:'<a href="#" onclick="dreamgate(this)" value="849">2022七夕节日活动</a>',
+					logo: [
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505723861002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505723861002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568271519001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568271519003.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568271519004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568271519006.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568271519002.gif']
+					
+				},
+				{
+					name: '钢铁螳螂',
+					race: '昆虫系',
+					vit: 15,
+					str: 41,
+					def: 19,
+					dex: 25,
+					int: 15,
+					earth: 50,
+					water: 50,
+					fire: 0,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 7,
+					source:'',
+					logo: []
+					
+				},
+				{
+					name: '真·村雨丸',
+					race: '昆虫系',
+					vit: 10,
+					str: 42,
+					def: 35,
+					dex: 23,
+					int: 15,
+					earth: 90,
+					water: 10,
+					fire: 0,
+					wind: 0,
+					bs: 2,
+					mz: 2,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 6,
+					source:'',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1507652449007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569490754001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569490754002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569490754004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569490754005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569490754007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1569490754003.gif']
+					
+				},
+				{
+					name: '大黄鸭',
+					race: '飞行系',
+					vit: 33,
+					str: 37,
+					def: 16,
+					dex: 20,
+					int: 14,
+					earth: 0,
+					water: 0,
+					fire: 20,
+					wind: 80,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 6,
+					source:'',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505633764014.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1539417588001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1539417588002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1539417588004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1539417588005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1539417588007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1539417588003.gif']
+					
+				},
+				{
+					name: '芙蕾雅番茄妖精',
+					race: '特殊系',
+					vit: 25,
+					str: 37,
+					def: 10,
+					dex: 30,
+					int: 15,
+					earth: 0,
+					water: 20,
+					fire: 80,
+					wind: 0,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 7,
+					source:'',
+					logo: ['https://s3.bmp.ovh/imgs/2022/08/18/6fe23e06160b0d75.gif']
+					
+				},
+				{
+					name: '冥界死神',
+					race: '不死系',
+					vit: 24,
+					str: 38,
+					def: 12,
+					dex: 20,
+					int: 26,
+					earth: 0,
+					water: 0,
+					fire: 0,
+					wind: 100,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 6,
+					source:'<a href="#" onclick="dreamgate(this)" value="800">半山9 - 死与新生</a>',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505730348001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740456001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740456002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740456004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740456005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740456007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1568740456003.gif']
+					
+				},
+				{
+					name: '小山羊',
+					race: '野兽系',
+					vit: 30,
+					str: 30,
+					def: 22,
+					dex: 16,
+					int: 17,
+					earth: 10,
+					water: 0,
+					fire: 0,
+					wind: 90,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 7,
+					source:'',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506404290008.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536125549001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536125549002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536125549004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536125549005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536125549007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1536125549003.gif']
+					
+				},
+				{
+					name: '月兔',
+					race: '特殊系',
+					vit: 19,
+					str: 31,
+					def: 20,
+					dex: 25,
+					int: 25,
+					earth: 20,
+					water: 0,
+					fire: 0,
+					wind: 80,
+					bs: 0,
+					mz: 0,
+					fj: 0,
+					sd: 0,
+					r: 0,
+					skill: 8,
+					source:'',
+					logo: ['https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1505634594009.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537760515001.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537760515002.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537760515004.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537760515005.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537760515007.gif',
+						'https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1537760515003.gif']
+					
+				},
+				{name: '猩红之刃',	race: '金属系',	vit: 11,	str: 42,	def: 34,	dex: 24,	int: 14,	earth: 0,	water: 0,	fire: 100,	wind: 0,	bs: 0,	mz: 0,	fj: 0,	sd: 0,	r: 0,	skill: 7,	source:'<a href="#" onclick="dreamgate(this)" value="862">2022国庆节任务</a>', logo: [] },
+			];
+			
+			var bosss = [
+				{floor:41, boss:'v.35长老树精；Lv.24~26异形蜂、土蜘蛛*N', link:'战斗系晋级任务I', raider:'合击+AOE'},
+				{floor:42, boss:'Lv.50神兽史雷普尼尔', link:'战斗系晋级任务II', raider:'合击+AOE'},
+				{floor:43, boss:'Lv.40狂战将军', link:'沙庙野生Boss', raider:'合击'},
+				{floor:44, boss:'v.65犹大；Lv.50火焰之刃*2、武装骷髅*3、亡灵*2、冰怪*2', link:'开启者', raider:'合击+AOE'},
+				{floor:45, boss:'v.65纳帕', link:'战斗系晋级任务III_10F', raider:'合击+AOE'},
+				{floor:46, boss:'Lv.65德尔麦', link:'战斗系晋级任务III_20F', raider:'合击'},
+				{floor:47, boss:'Lv.65瑟贝塔', link:'战斗系晋级任务III_30F', raider:'合击'},
+				{floor:48, boss:'v.65亚尔法', link:'战斗系晋级任务III_40F', raider:'合击'},
+				{floor:49, boss:'Lv.65马帝亚', link:'战斗系晋级任务III_50F', raider:'合击'},
+				{floor:50, boss:'Lv.70凯法、帕布提斯马', link:'战斗系晋级任务III', raider:'黄王→红王'},
+				
+				{floor:51, boss:'Lv.50善（马斯少爷）', link:'沉睡的精灵(马斯的内心世界)', raider:'合击'},
+				{floor:52, boss:'Lv.50恶（马斯少爷）', link:'沉睡的精灵(马斯的内心世界)', raider:'合击'},
+				{floor:53, boss:'Lv.50古德奈司魔王', link:'消失的歌手', raider:'合击'},
+				{floor:54, boss:'Lv.49巴克达魔王（变身前）', link:'春风带来的希望', raider:'合击'},
+				{floor:55, boss:'Lv.50巴克达（变身后）', link:'春风带来的希望', raider:'合击'},
+				{floor:56, boss:'Lv.40奇奇；Lv.25山桃盗贼团*4', link:'盗贼就职任务', raider:'合击+AOE'},
+				{floor:57, boss:'Lv.80无限刀流的艾吉；召唤刃A、刃B', link:'再生花园', raider:'合击+AOE'},
+				{floor:58, boss:'Lv.70阿德基姆', link:'路霸', raider:'合击'},
+				{floor:59, boss:'Lv.50死亡狮鹫兽；Lv.45狮鹫兽*2', link:'狮鹫兽捕捉', raider:'合击'},
+				{floor:60, boss:'Lv.60头目', link:'海贼指挥部', raider:'合击+AOE'},
+				
+				{floor:61, boss:'Lv.40土之斗神；Lv.15地精*2', link:'土之洞窟', raider:'精→斗神'},
+				{floor:62, boss:'Lv.50风之斗神；Lv.30风精、Lv.35风精', link:'风之洞窟', raider:'精→斗神'},
+				{floor:63, boss:'Lv.55炎之斗神；Lv.48火精*2', link:'火之洞窟', raider:'精→斗神'},
+				{floor:64, boss:'Lv.80水之斗神；Lv.74~75液态史莱姆*2、Lv.71~72水精', link:'水之洞窟', raider:'精→斗神→史莱姆'},
+				{floor:65, boss:'Lv.70依代（大）', link:'冰雪的牢城', raider:'合击'},
+				{floor:66, boss:'Lv.70露比；召唤大地鼠、火焰鼠', link:'冰雪的牢城', raider:'合击+AOE'},
+				{floor:67, boss:'Lv.76杰特', link:'黑白龙城', raider:'合击'},
+				{floor:68, boss:'Lv.73龙的使者（火焰翼龙）', link:'黑白龙城', raider:'合击'},
+				{floor:69, boss:'Lv.80大地霸主', link:'', raider:'合击'},
+				{floor:70, boss:'Lv.99玄武', link:'', raider:'合击'},
+				
+				{floor:71, boss:'Lv.75伊瓦希米滋；召唤2个分身', link:'', raider:'合击'},
+				{floor:72, boss:'Lv.60海盗德奇', link:'', raider:'合击'},
+				{floor:73, boss:'Lv.70海贼头目', link:'', raider:'合击+AOE'},
+				{floor:74, boss:'Lv.81露比；Lv.67口袋龙*2、Lv.67雏龙*2、Lv.67穴龙*2、Lv.67迷你龙*2、Lv.71水果蝙蝠', link:'', raider:'合击+AOE'},
+				{floor:75, boss:'Lv.65山吹', link:'', raider:'合击'},
+				{floor:76, boss:'Lv.75喷火兽盖美拉；Lv.50改造僵尸*4', link:'', raider:'合击+AOE'},
+				{floor:77, boss:'Lv.78米特拉将军；Lv.65匍匐冒出的阴影*8', link:'', raider:'合击+AOE'},
+				{floor:78, boss:'Lv.68奇美拉', link:'', raider:'合击'},
+				{floor:79, boss:'Lv.70阿夏芙*4（布雷欧*2、变种狮鹫兽*2）', link:'', raider:'合击'},
+				{floor:80, boss:'Lv.83黑暗医生阿鲁巴斯；Lv.70黄奇美拉、Lv.70蓝奇美拉、Lv.65山吹、Lv.65小梅、Lv.65小豆+Lv.65小樱', link:'', raider:'小梅→黄奇美拉→蓝奇美拉...'},
+				
+				{floor:81, boss:'Lv.80艾尔卡丝（团长）；手下*8', link:'', raider:'合击+AOE'},
+				{floor:82, boss:'Lv.89白银之骑士豪尔；Lv.81猎人、剑士、熊美、魔术师、传教、小乌', link:'', raider:'法师→传教...'},
+				{floor:83, boss:'Lv.90受诅咒者（地）；Lv.75级山飞甲*4', link:'', raider:'杀小→合击'},
+				{floor:84, boss:'Lv.90受诅咒者（火）；Lv.75天马*4', link:'', raider:'杀小→合击'},
+				{floor:85, boss:'Lv.90受诅咒者（风）；Lv.75独角兽*4', link:'', raider:'杀小→合击'},
+				{floor:86, boss:'Lv.90红龙诺里；火焰翼龙*4', link:'', raider:'杀小→合击'},
+				{floor:87, boss:'Lv.95蓝龙艾汀；单眼巨人*4', link:'', raider:'杀小→合击'},
+				{floor:88, boss:'Lv.95绿龙杜瓦', link:'', raider:'合击'},
+				{floor:89, boss:'Lv.90冰骨龙', link:'', raider:'合击'},
+				{floor:90, boss:'Lv.95魔龙德拉贡（黑龙）', link:'', raider:'合击'},
+				
+				{floor:91, boss:'Lv.99四斗神', link:'', raider:'没奖励不打'},
+				{floor:92, boss:'Lv.99海神', link:'', raider:'没奖励不打'},
+				{floor:93, boss:'Lv.90帕鲁凯斯', link:'', raider:'没奖励不打'},
+				{floor:94, boss:'Lv.90李贝留斯、阿卡斯、佛利波罗、巴洛斯', link:'', raider:'没奖励不打'},
+				{floor:95, boss:'Lv.99里雍', link:'', raider:'没奖励不打'},
+				{floor:96, boss:'Lv.120人类？', link:'', raider:'没奖励不打'},
+				{floor:97, boss:'Lv.90牛鬼公主', link:'', raider:'没奖励不打'},
+				{floor:98, boss:'Lv.80地缚灵罗连斯', link:'', raider:'没奖励不打'},
+				{floor:99, boss:'Lv.90逆袭的牛鬼', link:'', raider:'没奖励不打'},
+				{floor:100, boss:'?', link:'?', raider:'?'}];
+			
+			var skills = [
+				{name:'怒气爆发', remark:'※ 空手/近身武器<br>※ 无视攻击反弹带来的反弹伤害', level:[
+				{lv:'	LV1	',exp:0, effect:'	同时攻击2-2个单位,伤害-25%,必杀+5	',spent:0		},
+				{lv:'	LV2	',exp:1800, effect:'	同时攻击2-2个单位,伤害-20%,必杀+5	',spent:0		},
+				{lv:'	LV3	',exp:7200, effect:'	同时攻击3-3个单位,伤害-40%,必杀+5	',spent:0		},
+				{lv:'	LV4	',exp:19800, effect:'	同时攻击3-3个单位,伤害-35%,必杀+6	',spent:0		},
+				{lv:'	LV5	',exp:45000, effect:'	同时攻击4-4个单位,伤害-50%,必杀+6	',spent:0		},
+				{lv:'	LV6	',exp:82800, effect:'	同时攻击4-4个单位,伤害-45%,必杀+6	',spent:0		},
+				{lv:'	LV7	',exp:133200, effect:'	同时攻击5-5个单位,伤害-55%,必杀+7	',spent:0		},
+				{lv:'	LV8	',exp:183600, effect:'	同时攻击5-5个单位,伤害-50%,必杀+8	',spent:0		},
+				{lv:'	LV9	',exp:244600, effect:'	同时攻击5-6个单位,伤害-60%,必杀+9	',spent:0		},
+				{lv:'	LV10	',exp:322200, effect:'	同时攻击6-7个单位,伤害-55%,必杀+10	',spent:0		}]},
+				
+				{name:'锋芒溅射', remark:'※ 可攻击前后排目标, 以T站位方式攻击 *(可参照强力魔法方式)', memo:'', level:[
+					{lv:'	锋芒溅射LV1	',exp:0, effect:'	 命中增加5%, 伤害降低70%	',spent:	10	},
+					{lv:'	锋芒溅射LV2	',exp:1800, effect:'	命中增加10%, 伤害降低65%	',spent:	15	},
+					{lv:'	锋芒溅射LV3 	',exp:7200, effect:'	命中增加15%, 伤害降低60%	',spent:	20	},
+					{lv:'	锋芒溅射LV4	',exp:19800, effect:'	命中增加20%, 伤害降低55%	',spent:	25	},
+					{lv:'	锋芒溅射LV5	',exp:45000, effect:'	命中增加25%, 伤害降低50%	',spent:	30	},
+					{lv:'	锋芒溅射LV6 	',exp:82800, effect:'	命中增加30%, 伤害降低45%	',spent:	35	},
+					{lv:'	锋芒溅射LV7	',exp:133200, effect:'	 命中增加35%, 伤害降低40%	',spent:	40	},
+					{lv:'	锋芒溅射LV8	',exp:183600, effect:'	 命中增加40%, 伤害降低30%	',spent:	45	},
+					{lv:'	锋芒溅射LV9 	',exp:244600, effect:'	命中增加45%, 伤害降低20%	',spent:	50	},
+					{lv:'	光芒四射	',exp:322200, effect:'	命中增加50%, 伤害降低10%	',spent:	55	}]},
+					
+				{name:'戒骄戒躁', remark:'※ 牺牲出手速度, 换取攻击力与必杀率。<br>※ 仅限持有近身武器及空手时使用。', memo:'',level:[
+				{lv:'	戒骄戒躁LV1 -	',exp:0, effect:'	 必杀+20 伤害*1.05倍	',spent:	10	},
+				{lv:'	戒骄戒躁LV2 -	',exp:1800, effect:'	 必杀+21 伤害*1.10倍	',spent:	18	},
+				{lv:'	戒骄戒躁LV3 - 	',exp:7200, effect:'	必杀+22 伤害*1.15倍	',spent:	26	},
+				{lv:'	戒骄戒躁LV4 - 	',exp:19800, effect:'	必杀+23 伤害*1.20倍	',spent:	34	},
+				{lv:'	戒骄戒躁LV5 - 	',exp:45000, effect:'	必杀+24 伤害*1.25倍	',spent:	42	},
+				{lv:'	戒骄戒躁LV6 - 	',exp:82800, effect:'	必杀+25 伤害*1.30倍	',spent:	50	},
+				{lv:'	戒骄戒躁LV7 -	',exp:133200, effect:'	 必杀+26 伤害*1.35倍	',spent:	58	},
+				{lv:'	戒骄戒躁LV8 - 	',exp:183600, effect:'	必杀+27 伤害*1.40倍	',spent:	66	},
+				{lv:'	戒骄戒躁LV9 - 	',exp:244600, effect:'	必杀+28 伤害*1.45倍	',spent:	74	},
+				{lv:'	真．戒骄戒躁 - 	',exp:322200, effect:'	必杀+30 伤害*1.50倍	',spent:	82	}]},
+				
+				{name:'骑士之誉', remark:'"※ 仅限持有近身武器及空手时使用。<br>※ 使用技能后当友方单位生命值比自身低时, 即可触发护卫<br>※ 战斗过程中若收到攻击使得生命值低于队友时, 护卫触发无效<br>※ 当保护者被一石二鸟攻击并自身位置在保护者的同一列时, 护卫触发无效 (比如宠物护卫自己)', memo:'',level:[
+				{lv:'	骑士之誉LV1 - 	',exp:0, effect:'	防御*1.1倍	',spent:	10	},
+				{lv:'	骑士之誉LV2 - 	',exp:1800, effect:'	防御*1.2倍	',spent:	14	},
+				{lv:'	骑士之誉LV3 -	',exp:7200, effect:'	 防御*1.3倍	',spent:	18	},
+				{lv:'	骑士之誉LV4 - 	',exp:19800, effect:'	防御*1.4倍	',spent:	22	},
+				{lv:'	骑士之誉LV5 - 	',exp:45000, effect:'	防御*1.5倍	',spent:	26	},
+				{lv:'	骑士之誉LV6 -	',exp:82800, effect:'	 防御*1.6倍 	',spent:	30	},
+				{lv:'	骑士之誉LV7 	',exp:133200, effect:'	骑士之誉LV7 - 防御*1.7倍 	',spent:	34	},
+				{lv:'	骑士之誉LV8 	',exp:183600, effect:'	骑士之誉LV8 - 防御*1.8倍	',spent:	38	},
+				{lv:'	骑士之誉LV9 - 	',exp:244600, effect:'	防御*1.9倍 	',spent:	42	},
+				{lv:'	真．骑士之道 - 	',exp:322200, effect:'	防御*2倍	',spent:	46	}]},
+				
+				{name:'一石二鸟', remark:'※ 能够打击前排目标并且对后排单位造成重创。<br>※ 仅限持有近身武器及空手时使用。<br>※ 攻击目标为后排时, 造成伤害为第一次的伤害比, 并第二次攻击不会触发<br>※ 对前排造成伤害时, 攻吸/攻反/攻无/反击均正常触发<br>※ 对后排造成伤害时, 功反和功无会被抵消, 攻吸则可正常吸收', memo:'',level:[
+				{lv:'	一石二鸟LV1 	',exp:0, effect:'	 给与前排目标45%伤害, 后排单位55%的伤害 	',spent:	10	},
+				{lv:'	一石二鸟LV2 	',exp:1800, effect:'	 给与前排目标45%伤害, 后排单位65%的伤害 	',spent:	18	},
+				{lv:'	一石二鸟LV3 	',exp:7200, effect:'	 给与前排目标45%伤害, 后排单位75%的伤害 	',spent:	26	},
+				{lv:'	一石二鸟LV4 	',exp:19800, effect:'	 给与前排目标45%伤害, 后排单位85%的伤害 	',spent:	34	},
+				{lv:'	一石二鸟LV5 	',exp:45000, effect:'	 给与前排目标45%伤害, 后排单位95%的伤害 	',spent:	42	},
+				{lv:'	一石二鸟LV6 	',exp:82800, effect:'	 给与前排目标45%伤害, 后排单位105%的伤害 	',spent:	50	},
+				{lv:'	一石二鸟LV7 	',exp:133200, effect:'	 给与前排目标45%伤害, 后排单位115%的伤害 	',spent:	58	},
+				{lv:'	一石二鸟LV8 	',exp:183600, effect:'	 给与前排目标45%伤害, 后排单位125%的伤害 	',spent:	66	},
+				{lv:'	一石二鸟LV9 	',exp:244600, effect:'	 给与前排目标45%伤害, 后排单位135%的伤害 	',spent:	72	},
+				{lv:'	真．一箭双雕 	',exp:322200, effect:'	 给与前排目标45%伤害, 后排单位145%的伤害 	',spent:	82	}]}];
+			
+			$(function() {
+				$("#menu").menu();
+				togo('homepage');
+			});
+			
+			var tabs = [
+				{id:"dreamgate", init:false},
+				{id:"mission", init:false},
+				{id:"homepage", init:false},
+				{id:"diff", init:false},
+				{id:"cal", init:false},
+				{id:"materials", init:false, method:initMaterials},
+				{id:"hundreds", init:false, method:initHundreds},
+				{id:"skill", init:false, method:initSkill},
+				{id:"monster", init:false, method:initMonster},
+				{id:"monster2", init:false, method:initMonster2},
+				{id:"mail", init:false},
+				{id:"map", init:false}
+			];
+			
+			function initDiv(){
+				for(var i in tabs){
+					var tab = tabs[i];
+					if(tab.method){
+						$(tab.method);
+					}
+				}
+			}
+			
+			function togo(id){
+				for(var i in tabs){
+					var tab = tabs[i];
+					if(id == tab.id){
+						$('#'+tab.id).show();
+					} else {
+						$('#'+tab.id).hide();
+					}
+				}
+			}
+			
+			function initHundreds(){
+				var html = new Array();
+				for(var i in bosss){
+					var boss = bosss[i];
+					if(boss.floor%10 == 1){
+						html.push("<br><table class='hundreds' align='center'><tbody><tr><th width='10%' align='center' vertical-align='center'>层数</th><th width='40%' align='center' vertical-align='center'>BOSS</th><th width='50%' align='center' vertical-align='center'>攻略</th></tr>");
+					}
+					html.push("<tr><td>");
+					html.push(boss.floor);
+					html.push("</td><td>");
+					html.push(boss.boss);
+					html.push("</td><td>");
+					html.push(boss.raider);
+					html.push("</td></tr>");
+					if(boss.floor%10 == 0){
+						html.push("</tbody></table>");
+						$('#hundreds').append(html.join(''));
+						html=[];
+					}
+					
+				}					
+			}
+			
+			function initMaterials(){
+				var html = new Array();
+				html.push("<br><table class='materials'>");
+				html.push("<thead>");
+				html.push("<th>等级</th>");
+				html.push("<th>经验</th>");
+				html.push("<th>物资</th>");
+				html.push("<th>经验/物资</th>");
+				html.push("</thead><tbody>");
+				for(var i in materials){
+					var obj = materials[i];
+					var exp = (obj.max*obj.max*obj.max*obj.max) - (obj.min*obj.min*obj.min*obj.min)
+					var avg = exp/obj.number;
+					
+					html.push("<tr><td>");
+					html.push(obj.min);
+					html.push("-");
+					html.push(obj.max);
+					html.push("</td><td>");
+					html.push(exp);
+					html.push("</td><td>");
+					html.push(obj.number);
+					html.push("</td><td>");
+					html.push(parseInt(avg));
+					html.push("/物资");
+					html.push("</td></tr>");
+				}
+				html.push("</tbody></table>");
+				$('#materials').append(html.join(''));
+			}
+			
+			
+			function initMonster(){
+				var html = new Array();
+				for(var i in monsters){
+					var monster = monsters[i];
+					html.push("<tr><td><a href='#' onclick='logo("+i+")'>");
+					html.push(monster.name);
+					html.push("</a></td><td>");
+					html.push(monster.race);
+					html.push("</td><td>");
+					html.push(monster.vit);
+					html.push("</td><td>");
+					html.push(monster.str);
+					html.push("</td><td>");
+					html.push(monster.def);
+					html.push("</td><td>");
+					html.push(monster.dex);
+					html.push("</td><td>");
+					html.push(monster.int);
+					html.push("</td><td>");
+					html.push(monster.vit + monster.str + monster.def + monster.dex + monster.int);
+					html.push("</td>");
+					
+					html.push(monster.earth ? "<td style='background-color:green'>" : "<td>");
+					html.push(monster.earth);
+					html.push("</td>");
+					html.push(monster.water ? "<td style='background-color:blue'>" : "<td>");
+					html.push(monster.water);
+					html.push("</td>");
+					html.push(monster.fire ? "<td style='background-color:red'>" : "<td>");
+					html.push(monster.fire);
+					html.push("</td>");
+					html.push(monster.wind ? "<td style='background-color:yellow'>" : "<td>");
+					html.push(monster.wind);
+					html.push("</td>");
+
+					html.push("<td>");
+					html.push(monster.bs);
+					html.push("</td><td>");
+					html.push(monster.mz);
+					html.push("</td><td>");
+					html.push(monster.fj);
+					html.push("</td><td>");
+					html.push(monster.sd);
+					html.push("</td><td>");
+					html.push(monster.r);
+					html.push("</td><td>");
+					html.push(monster.skill);
+					html.push("</td><td>");
+					html.push(monster.price);
+					html.push("</td><td>");
+					html.push(monster.vip);
+					html.push("</td></tr>");
+				}
+				$('#monster tbody').append(html.join(''));
+				logo(0);
+				
+				$("table.monster").on('click', 'th', function() {
+					var table = $(this).parents('table').eq(0);
+					var rows = table.find('tr:gt(1)').toArray().sort(comparer($(this).index()));
+					this.asc = !this.asc;
+					if (!this.asc) {
+						rows = rows.reverse();
+					}
+					table.children('tbody').empty().html(rows);
+				});
+			}
+			
+			function initMonster2(){
+				var html = new Array();
+				for(var i in monsters2){
+					var monster = monsters2[i];
+					html.push("<tr><td><a href='#' onclick='logo2("+i+")'>");
+					html.push(monster.name);
+					html.push("</a></td><td>");
+					html.push(monster.race);
+					html.push("</td><td>");
+					html.push(monster.vit);
+					html.push("</td><td>");
+					html.push(monster.str);
+					html.push("</td><td>");
+					html.push(monster.def);
+					html.push("</td><td>");
+					html.push(monster.dex);
+					html.push("</td><td>");
+					html.push(monster.int);
+					html.push("</td><td>");
+					html.push(monster.vit + monster.str + monster.def + monster.dex + monster.int);
+					html.push("</td>");
+					
+					html.push(monster.earth ? "<td style='background-color:green'>" : "<td>");
+					html.push(monster.earth);
+					html.push("</td>");
+					html.push(monster.water ? "<td style='background-color:blue'>" : "<td>");
+					html.push(monster.water);
+					html.push("</td>");
+					html.push(monster.fire ? "<td style='background-color:red'>" : "<td>");
+					html.push(monster.fire);
+					html.push("</td>");
+					html.push(monster.wind ? "<td style='background-color:yellow'>" : "<td>");
+					html.push(monster.wind);
+					html.push("</td>");
+
+					html.push("<td>");
+					html.push(monster.bs);
+					html.push("</td><td>");
+					html.push(monster.mz);
+					html.push("</td><td>");
+					html.push(monster.fj);
+					html.push("</td><td>");
+					html.push(monster.sd);
+					html.push("</td><td>");
+					html.push(monster.r);
+					html.push("</td><td>");
+					html.push(monster.skill);
+					html.push("</td><td>");
+					html.push(monster.source);
+					html.push("</td></tr>");
+				}
+				$('#monster2 tbody').append(html.join(''));
+				logo2(0);
+				
+				$("table.monster2").on('click', 'th', function() {
+					var table = $(this).parents('table').eq(0);
+					var rows = table.find('tr:gt(1)').toArray().sort(comparer($(this).index()));
+					this.asc = !this.asc;
+					if (!this.asc) {
+						rows = rows.reverse();
+					}
+					table.children('tbody').empty().html(rows);
+				});
+			}
+			
+			function logo(idx){
+				$("#dreamgate #monster img").remove();
+				var monster = monsters[idx];
+				if(monster.logo){
+					var logo = [];
+					for(var i in monster.logo){
+						logo.push("<img src='");
+						logo.push(monster.logo[i]);
+						logo.push("' />");
+					}
+					$("#dreamgate #monster").append(logo.join(''));
+				}
+			}
+			
+			function logo2(idx){
+				$("#dreamgate  #monster2 img").remove();
+				var monster = monsters2[idx];
+				if(monster.logo){
+					var logo = [];
+					for(var i in monster.logo){
+						logo.push("<img src='");
+						logo.push(monster.logo[i]);
+						logo.push("' />");
+					}
+					$("#dreamgate #monster2").append(logo.join(''));
+				}
+			}
+			
+			function comparer(index) {
+			  return function(a, b) {
+				var valA = getCellValue(a, index),
+				  valB = getCellValue(b, index);
+				return $.isNumeric(valA) && $.isNumeric(valB) ?
+				  valA - valB : valA.localeCompare(valB);
+			  };
+			}
+			
+			function getCellValue(row, index) {
+			  return $(row).children('td').eq(index).text();
+			}
+			
+			function initSkill(){
+				for(var i in skills){
+					var skill = skills[i];
+					var html = new Array();
+					html.push("<br><table class='skill' align='center'><tbody>");
+					html.push("<tr><th>技能名称</th><td colspan='3'>");
+					html.push(skill.name);
+					html.push("</td></tr>");
+					html.push("<tr><th>说明</th><td colspan='3'>");
+					html.push(skill.remark);
+					html.push("</td></tr>");
+					html.push("<tr><th width='10%'>等级</th><th width='15%'>所需经验</th><th width='10%'>耗魔</th><th width='65%'>详细分析</th></tr>");
+					for(var j in skill.level){
+						var lv = skill.level[j];
+						html.push("<tr><td>");
+						html.push(lv.lv);
+						html.push("</td><td>");
+						html.push(lv.exp);
+						html.push("</td><td>");
+						html.push(lv.spent);
+						html.push("</td><td>");
+						html.push(lv.effect);
+						html.push("</td></tr>");
+					}
+					html.push("</tbody></table>");
+					$('#skill').append(html.join(''));
+				}
+			}
+			
+			function dreamgate(type, value){
+				if('about' == type){
+					$('#dreamgate #win').attr('src', 'http://www.dreamgate.cc/about/?'+value+'.html');
+					$('#dreamgate #win').siblings().hide();
+					$('#dreamgate #win').show();
+				} else if('content' == type){
+					$('#dreamgate #win').attr('src', 'http://www.dreamgate.cc/content/?'+value+'.html');
+					$('#dreamgate #win').siblings().hide();
+					$('#dreamgate #win').show();
+				} else if('link' == type){
+					$('#dreamgate #win').attr('src', value);
+					$('#dreamgate #win').siblings().hide();
+					$('#dreamgate #win').show();
+				} else {
+					$('#dreamgate #'+value).siblings().hide();
+					$('#dreamgate #'+value).show();
+				}
+			}
+			
+			function homepage(type, value){
+				if('content' == type){
+					$('#homepage #win').attr('src', 'http://www.dreamgate.cc/content/?'+value+'.html');
+					$('#homepage #win').siblings().hide();
+					$('#homepage #win').show();
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div class="top">
+				<img src="http://www.dreamgate.cc/Templates/jlwj/images/logo.png" width="232" height="94">
+			</div>
+			<div class="medium">
+				<div class="left">
+					<div class="menu">
+						<ul id="menu">
+							<li>
+								<a href="#" onclick="togo('homepage')">首页</a>
+							</li>
+							<li>
+								<a href="#" onclick="togo('dreamgate')">魔力回忆</a>
+							</li>
+							<li>
+								<a href="#" onclick="togo('mission')">回忆任务</a>
+							</li>
+							<li>
+								<a href="#" onclick="togo('map')">地图坐标</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="main">
+					<!--主页-->
+					<div id="homepage" style="display:none;width:1080px;height:1080px">
+						<script>
+							
+							//{name:"神兽-贝兹雷姆的迷宫", type:"切线图",author:'桔橙柚' ,  data:['4', '1', '4', '3', '4', '7', '5', '1', '中', '3', '4', '5'], len:10},
+							
+							var maps = [];
+							
+							$(function(){
+								for(var i=0;i<maps.length;i++){
+									var map = maps[i];
+									
+									var table = new Array();
+									table.push('<br/><table class="homepage">');
+									table.push('<tr><th colspan="');
+									table.push(map.len);
+									table.push('">');
+									table.push(map.name);
+									table.push('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+									table.push(map.type);
+									table.push('&nbsp;&nbsp;&nbsp;&nbsp;By&nbsp;');
+									table.push(map.author);
+									table.push('</th></tr>');
+									
+									
+									var th = new Array();
+									var td = new Array();
+									for(var j=0;j<map.data.length;j++){
+										
+										if(j>0 && j%10==0){
+											th.push('</tr>');
+											td.push('</tr>');
+											table.push(th.join(''));
+											table.push(td.join(''));
+											th=[];
+											td=[];
+										}
+										
+										if(j%10==0){
+											th.push('<tr>');
+											td.push('<tr>');
+										}
+										
+										th.push('<th>');
+										if(map.title && map.title[j]){
+											th.push(map.title[j]);
+										} else {
+											th.push((j+1)+'楼');
+										}
+										th.push('</th>');
+										
+										td.push('<td>');
+										td.push(map.data[j]);
+										td.push('</td>');
+									}
+									if(map.data.length % map.len != 0){
+										th.push('</tr>');
+										td.push('</tr>');
+										table.push(th.join(''));
+										table.push(td.join(''));
+										th=[];
+										td=[];
+									}
+									table.push('</table>');
+									$("#homepage #maps").append(table.join(''));
+								}
+							});
+						</script>
+						<style>
+							table.homepage,table.homepage th,table.homepage td{border:1px solid #908860;text-align:center}table.homepage{width:100%;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.homepage th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.homepage th a{color:#fff}table.homepage td,table.homepage th.td{color:#000;background-color:#fef7e7;padding:5px}table.homepage tr.sub td,table.homepage td.sub{background-color:#f0eee7}table.homepage th.subhead,table.homepage tr.head th,table.homepage td.head,table.homepage tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.homepage th.left,table.homepage td.left,table.homepage td{text-align:left}table.homepage td{line-height:18px}table.homepagelist tr:hover td{background-color:#f1ede0}table.homepage ol{margin:0;padding:0 0 0 20px}table.homepage li{margin:10px auto}table.homepage ol ol{}table.homepage span.note{color:#f0f}table.homepage span.place{color:red}table.homepage span.npc{color:#00a;display:inline-block}table.homepage span.item{color:green;display:inline-block}table.homepage span.item:hover{background:#ff0;cursor:default}table.homepage span.pet{color:#ba00d8;display:inline-block}table.homepage span.dialog{color:#ba00d8;display:inline-block}table.homepage span.npc img{max-height:24px;margin-right:2px}table.homepage span.item img{max-height:14px;margin-right:2px}table.homepage span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.homepage.logspan span.log{display:block}table.homepage span.homepagehead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.homepage span.logspan{background-color:#ebebe0}table.homepage div.homepagehead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+						</style>
+						<table class="homepage">
+								<tr>
+									<th>
+										版本号
+									</th>
+									<td>
+										v5.3.1
+									</td>
+								</tr>
+								<tr>
+									<th>
+										更新时间
+									</th>
+									<td>
+										2022/10/5
+									</td>
+								</tr>
+								<tr>
+									<th>维护内容</th>
+									<td>
+										不明原因维护，邮件有礼包
+									</td>
+								</tr>
+								<tr>
+									<th>
+										热点
+									</th>
+									<td>
+										<p><a href="http://www.dreamgate.cc/content/?862.html" target="_blank">国庆限时任务流程</a></p>
+										<p><a href="http://www.dreamgate.cc/content/?859.html" target="_blank">独创分身契约新系统说明</a></p>
+										<p><a href="http://www.dreamgate.cc/content/?860.html" target="_blank">新区(2区)相关设定介绍</a></p>
+										<p><a href="http://www.dreamgate.cc/content/?861.html" target="_blank">新的PK系统介绍</a></p>
+									
+									</td>
+								</tr>
+						</table>
+								
+						<table class="homepage">
+							<tbody id="maps">
+									
+							<tbody>
+						</table>
+					</div>
+					
+					<!--魔力回忆-->
+					<div id="dreamgate" style="display:none;width:1080px;height:1080px">
+						<style>
+							table.dreamgate,table.dreamgate th,table.dreamgate td{border:1px solid #908860;text-align:center}table.dreamgate{width:100%;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.dreamgate th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.dreamgate th a{color:#fff}table.dreamgate td,table.dreamgate th.td{color:#000;background-color:#fef7e7;padding:5px}table.dreamgate tr.sub td,table.dreamgate td.sub{background-color:#f0eee7}table.dreamgate th.subhead,table.dreamgate tr.head th,table.dreamgate td.head,table.dreamgate tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.dreamgate th.left,table.dreamgate td.left,table.dreamgate td{text-align:left}table.dreamgate td{line-height:18px}table.dreamgatelist tr:hover td{background-color:#f1ede0}table.dreamgate ol{margin:0;padding:0 0 0 20px}table.dreamgate li{margin:10px auto}table.dreamgate ol ol{}table.dreamgate span.note{color:#f0f}table.dreamgate span.place{color:red}table.dreamgate span.npc{color:#00a;display:inline-block}table.dreamgate span.item{color:green;display:inline-block}table.dreamgate span.item:hover{background:#ff0;cursor:default}table.dreamgate span.pet{color:#ba00d8;display:inline-block}table.dreamgate span.dialog{color:#ba00d8;display:inline-block}table.dreamgate span.npc img{max-height:24px;margin-right:2px}table.dreamgate span.item img{max-height:14px;margin-right:2px}table.dreamgate span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.dreamgate.logspan span.log{display:block}table.dreamgate span.dreamgatehead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.dreamgate span.logspan{background-color:#ebebe0}table.dreamgate div.dreamgatehead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+						</style>
+						<table class="dreamgate">
+							<tbody>
+								<tr>
+									<td rowspan="4">
+										魔力回忆
+									</td>
+									<td>
+										新手入门
+									</td>
+									<td>
+										<span><a href="#" onclick="dreamgate('about', 191)">下载安装</a> </span>
+										<span><a href="#" onclick="dreamgate('div', 'download')">备用下载</a> </span>
+										<span><a href="#" onclick="dreamgate('content', 716)" >新手护航</a> </span>
+										<span><a href="#" onclick="dreamgate('content', 717)" >主从关联</a> </span>
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										采集制造
+									</td>
+									<td>
+										<span><a href="#" onclick="dreamgate('content', 725)">精灵采集</a></span>
+										<span><a href="#" onclick="dreamgate('content', 726)">超级银行</a></span>
+										<span><a href="#" onclick="dreamgate('content', 729)">万能制造</a></span>
+										<span><a href="#" onclick="dreamgate('content', 727)">个人店铺</a></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										特色内容
+									</td>
+									<td>
+										<a href="#" onclick="dreamgate('div', 'diff')">导读</a>
+										<a href="#" onclick="dreamgate('div', 'skill')" >商城技能</a>
+										<a href="#" onclick="dreamgate('div', 'monster')" >商城宠物</a>
+										<a href="#" onclick="dreamgate('div', 'monster2')" >特色宠物</a>
+										<a href="#" onclick="dreamgate('div', 'materials')" >物资缴纳</a>
+										<a href="#" onclick="dreamgate('div', 'hundreds')" >百人道场</a>
+									</td>
+									
+									
+								</tr>
+								<tr>
+									<td>
+										工具
+									</td>
+									<td>
+										<a href="#" onclick="dreamgate('div', 'cal')" >宠物模拟器</a>
+										<a href="#" onclick="dreamgate('link', 'https://www.ejiajz.com/js')">宠物模拟器2</a>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3">
+										<iframe id="win" style="width:1080px;height:1080px"></iframe>
+										
+										<!--版本差异-->
+										<div id="diff" style="width:1080px;height:1080px;display:none;overflow-y:auto">
+										
+											<style>
+												table.diff,table.diff th,table.diff td{border:1px solid #908860;text-align:center}table.diff{width:100%;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.diff th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.diff th a{color:#fff}table.diff td,table.diff th.td{color:#000;background-color:#fef7e7;padding:5px}table.diff tr.sub td,table.diff td.sub{background-color:#f0eee7}table.diff th.subhead,table.diff tr.head th,table.diff td.head,table.diff tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.diff th.left,table.diff td.left,table.mission td{text-align:left}table.mission td{line-height:18px}table.missionlist tr:hover td{background-color:#f1ede0}table.mission ol{margin:0;padding:0 0 0 20px}table.mission li{margin:10px auto}table.mission ol ol{}table.mission span.note{color:#f0f}table.mission span.place{color:red}table.mission span.npc{color:#00a;display:inline-block}table.mission span.item{color:green;display:inline-block}table.mission span.item:hover{background:#ff0;cursor:default}table.mission span.pet{color:#ba00d8;display:inline-block}table.mission span.dialog{color:#ba00d8;display:inline-block}table.mission span.npc img{max-height:24px;margin-right:2px}table.mission span.item img{max-height:14px;margin-right:2px}table.mission span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.mission.logspan span.log{display:block}table.mission span.missionhead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.mission span.logspan{background-color:#ebebe0}table.mission div.missionhead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+											</style>
+											<table class="diff" align="center"><tbody><tr><th>端手差异</th></tr	><tr><td>以下内容为本人经验,仅供参考</td></tr></tbody></table>
+
+											<p>移动端将安装包分成两份,一份是固定的素材数据,解压后APP可以直接卸载,另外一份则是游戏主体程序包;</p>
+											
+											<p>金币：分为绑定金币和普通金币，绑定金币只能对NPC使用（不限于补魔、传送、晋级、学习技能等等），普通金币才可以和玩家进行交易；普通金币仅能通过交易或售卖普通魔石得到;普通魔石只有订阅了VIP会员才能获得;非VIP角色打到的魔石也是绑定的,售卖后是绑定金币;绑定金币不可以存以上,随身携带上限50万;普通金币随身上限100万,普通银行存款上限100万;超级银行存款上限1000万;一块钱原则:绑定的材料金币,参与制造的装备道具也都是绑定的;</p>
+											
+											<p>VIP会员:特权详情见VIP会员系统,其中VIP会员每日可以从VIP会员界面领取一份VIP礼包,包含10000G绑定金币和绑定物资40个;VIP角色掉落的道具图鉴也是非绑定状态,可以交易;战斗结束后自动补魔(如果魔法值低于设定的阈值);VIP会员界面还可以查询“可获得声望值”每日增加1000，最多累计7000；“魔石掉落剩余额度”每日增加30000，最多累计300000（VIP会员角色最多累计180000，VIP过期后超过30000部分直接归零）;额度根据掉落的魔石(100%售价计算,而非取决于真正售卖的价格);ps即使只有1金币的额度,也可以掉落魔石(比如魔石1000G,那你就赚了999G的额度)</P>
+											
+											<p>宠物:宠物可以从面板中直接看档位,档位分为两种:我称之为"出生档"和"随机档";"出生档"最高等于该类宠物的保准档位,俗称满档,最低五维各掉4挡;"随机档"固定10点,随机分配在五维上,单维最高不超过9点,实际效果和"出生档"一致;等级不影响档位成长(1级或者100级档位变化后,属性直接变化);所有的宠物都可以洗随机档,每次10000G普通金币,没有次数限制;只有商城宠物才能洗出生档,每次消耗一枚四叶草道具,没有次数限制;宠物加点可以通过宠物重来药水洗点,重新加点;只能洗点1次(GM99偶尔会重置所有宠物的洗点次数);具体能不能洗点从宠物面板查看</p>
+											
+											<p>魔力回忆2以3.7版本为基础,具体开放了哪些任务以实际为准;未开放"阿凯鲁法"及"哥拉尔"定居任务;任务道具可以存银行,从而导致了一些以前不存在的Bug,请勿恶意利用防止封号;交易无需卖你对面,只需要在可视范围内即可,从而在"斋戒UD"任务中,男女双方无需走到交换蜡烛地点进行交易,可以在两条路线交叉处进行;</p>
+											
+											<p>商人回收魔石折扣以实际为准,目前只有"法兰"和"魔法大学"100%价格回收魔石;"阿凯鲁法","哥拉尔","坎那贝拉"都是50%价格回收;1-4线没有魔石掉落,方便做任务;5-10线有魔石掉落,参见线路选择界面;</P>
+											
+											<p>熊男殴兹那克旁边有个矿工NPC,可以交500G偷渡过去;海男欧兹尼克无论你是否有熊男戒指都会跑,看脸打</p>
+											
+											<p>料理:寿喜锅不使用"糖"而是同级的"米"</p>
+											
+											<p>切线:服务器只有一个分区10条线,从一条线"回到登录"在登录另外一条线,这种操作称为切线操作;回忆2所有随机迷宫都是十字形的(可能只有2,3个方向),当切线前角色处于随机迷宫时,切线后角色会出现在十字迷宫的中心位置;所以有些玩家会探索地图把各条线楼梯在十字迷宫位置的线路记录上,这样每次切线后,角色都处于中央即楼梯附近,快速无损的爬楼</p>
+											
+											<p>声望:增加声望的方法同端板(杀敌,使用得意技,提升技能角色等级等等),增加声望的上限不能超过VIP面板数字,掉落声望没有上限,理论上可以一天从10万声望掉到-10万声望,请珍惜你的声望;晋级正职/王宫/师范分别需要1万/5万/10万声望(还需要晋级任务和技能等级);逃跑不扣声望,单日内战斗中秒退20次无法抓宠,角色总声望为负数,无法抓宠</p>
+											
+											<p>切图Bug:从一张地图切图到另外一张地图需要走到特定坐标点;有的地图特定坐标点没能完整覆盖整个城门口,导致你走过去没有切图,你以为你已经(出城/进城)实际上你并没有,请注意切图后提示的线路和地图名称</p>
+											
+											<p>资深护士补魔花费同端板,可以优先使用绑定金币;鉴定费用每个等级1000G普通金币不缺分普卡银卡;修理费每个等级200G(视装备是否绑定,对应收绑定/普通金币);装备回收价格1G,所有最后装备没有修理出售的价值,直接丢弃即可</p>
+											
+											<p>目前游戏内,为开放受伤及掉魂,所以可以尽情的浪</p>
+											
+											<p>目前游戏内,魔力消耗变化的装备没有效果(无论是增加或者减少魔力消耗),例如8级原始石弓本来效果是2倍魔力消耗,装备增加15命中,因为魔力消耗变化无效,所以实际上还是正常的魔耗</P>
+											
+											<p>目前游戏内,开放了9级特殊材料,未开放9C级装备制造;开放了改造图纸,未开放宠物改造;未开放彩票;游戏内有抽奖每周末可以进行;未开放宠物邮件系统</p>
+											
+											<p>游戏内未开放采集/制造/服务器系职业,所以亚诺曼城内心练级点,没有对应职业任务,门口有NPC2000G直接进入;鲶鱼王任务无法进行</p>
+											
+											<p>充值比例1R:10钻,充值50R起;商城存在金币/道具/宠物出售(宠物目前是限时出售,不是什么时候都有)</p>
+											
+											<p>夜市:东门医院阿蒙旁边小女孩,说话可以进入夜市;夜市可以摆摊</p>
+											
+											<p>家族:已开放家族创建,无其他家族功能.......</p>
+											
+											<p>独特灵魂系统:详见半山洗礼任务</p>
+											
+											<p>打卡按钮可以随时(非战斗状态)开启或关闭打卡,500G每次;打卡状态下离线,保持打开状态,不消耗卡时</p>
+											
+											<p>设置中可以变更 简体/繁体中文,可以屏蔽店铺/玩家/宠物招牌</p>
+											
+											<p>人物技能可以通过,长按修改技能顺序;宠物技能顺序不能调整,只能删掉重新学(万恶的99坑钱货)</p>
+											
+											<p>图鉴:图鉴是有耐久度,使用1张图鉴增加20点耐久,耐久不能最高100点,每成功抓到一只该类宠物;图鉴耐久-1</p>
+											
+											<p>有开放番茄换番茄酱NPC,不要换!不要换!不要换!亏本,成本的问题自己慢慢学习</p>
+										</div>
+									
+										<!--宠物计算器-->
+										<div id="cal" style="width:1080px;height:1080px;display:none;overflow-y:auto">
+											<form id="form1" >
+												<table border="0" cellpadding="1" cellspacing="2">
+													<tr>
+														<td colspan="4"><b>针对本服做的宠物成长模拟器V3.0 原作：七叶 修改：小胖</b></td>
+														<td colspan="2"><span>注：下列数据野宠必填</span></td>
+													</tr>
+													<tr>
+														<td><span>成长档-体力：</span></td>
+														<td><input type="text" style="width:80px;" id="tili1"></td>
+														<td><span>随机档-体力：</span></td>
+														<td><input type="text" style="width:80px;" id="tili2"></td>
+														<td><span>野宠-初始体力bp：</span></td>
+														<td><input type="text" style="width:80px;" id="cstl"></td>
+													</tr>
+													<tr>
+														<td><span>成长档-力量：</span></td>
+														<td><input type="text" style="width:80px;" id="liliang1"></td>
+														<td><span>随机档-力量：</span></td>
+														<td><input type="text" style="width:80px;" id="liliang2"></td>
+														<td><span>野宠-初始力量bp：</span></td>
+														<td><input type="text" style="width:80px;" id="csll"></td>
+													</tr>
+													<tr>
+														<td><span>成长档-强度：</span></td>
+														<td><input type="text" style="width:80px;" id="qiangdu1"></td>
+														<td><span>随机档-强度：</span></td>
+														<td><input type="text" style="width:80px;" id="qiangdu2"></td>
+														<td><span>野宠-初始强度bp：</span></td>
+														<td><input type="text" style="width:80px;" id="csqd"></td>
+													</tr>
+													<tr>
+														<td><span>成长档-速度：</span></td>
+														<td><input type="text" style="width:80px;" id="sudu1"></td>
+														<td><span>随机档-速度：</span></td>
+														<td><input type="text" style="width:80px;" id="sudu2"></td>
+														<td><span>野宠-初始速度bp：</span></td>
+														<td><input type="text" style="width:80px;" id="cssd"></td>
+													</tr>
+													<tr>
+														<td><span>成长档-魔力：</span></td>
+														<td><input type="text" style="width:80px;" id="moli1"></td>
+														<td><span>随机档-魔力：</span></td>
+														<td><input type="text" style="width:80px;" id="moli2"></td>
+														<td><span>野宠-初始魔力bp：</span></td>
+														<td><input type="text" style="width:80px;" id="csml"></td>
+													</tr>
+													<tr>
+														<td><span>模拟等级：</span></td>
+														<td><input type="text" style="width:80px;" id="dengji"></td>
+														<td></td>
+														<td><input type="checkbox" name="iswild" id="checkwild" /><label>野宠</label></td>
+														<td><span>野宠-初始等级：</span></td>
+														<td><input type="text" style="width:80px;" id="csdj"></td>
+													</tr>
+													<tr>
+														<td colspan="6">
+															<input type="button" style="width:100px;height:20px" name="but1" id="but1" value="计算" onclick="cal_1()" />
+														</td>
+													</tr>
+													<tr>
+														<td>可用BP：</td>
+														<td>
+															<input type="text" style="width:80px;" id="AllBP" readonly>                    
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<span>生命值：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="shengming">
+														</td>
+														<td>
+															<span>魔法值：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="mofa">
+														</td>
+
+													</tr>
+													<tr>
+														<td>
+															<span>体力bp：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="tili3">
+														</td>
+														<td>
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+" onclick="addtl()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-" onclick="subtl()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+10" onclick="addtl_10()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-10" onclick="subtl_10()" />
+														</td>
+														<td>
+															<span>攻击：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="gongji">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<span>力量bp：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="liliang3">
+														</td>
+														<td>
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+" onclick="addll()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-" onclick="subll()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+10" onclick="addll_10()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-10" onclick="subll_10()" />
+														</td>
+														<td>
+															<span>防御：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="fangyu">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<span>强度bp：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="qiangdu3">
+														</td>
+														<td>
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+" onclick="addqd()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-" onclick="subqd()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+10" onclick="addqd_10()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-10" onclick="subqd_10()" />
+														</td>
+														<td>
+															<span>敏捷：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="minjie">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<span>速度bp：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="sudu3">
+														</td>
+														<td>
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+" onclick="addsd()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-" onclick="subsd()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+10" onclick="addsd_10()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-10" onclick="subsd_10()" />
+														</td>
+														<td>
+															<span>精神：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="jingshen">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<span>魔力bp：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="moli3">
+														</td>
+														<td>
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+" onclick="addml()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-" onclick="subml()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="+10" onclick="addml_10()" />
+															<input type="button" style="width:30px;height:20px" name="but1" id="but1" value="-10" onclick="subml_10()" />
+														</td>
+														<td>
+															<span>回复：</span>
+														</td>
+														<td>
+															<input type="text" style="width:80px;" id="huifu">
+														</td>
+													</tr>
+												 </table>
+											</form>
+											<script type="text/javascript" language="javascript">
+											
+												var monster = {vit:0, str:0, def:0, dex:0, int:0, lp:0, mp:0, adp:0, dep:0, agp:0, spp:0, rep:0};
+												
+												function reset(){
+													monster.vit = 0;
+													monster.str = 0;
+													monster.def = 0;
+													monster.dex = 0;
+													monster.int = 0;
+													
+													monster.lp = 0;
+													monster.mp = 0;
+													monster.adp = 0;
+													monster.dep = 0;
+													monster.agp = 0;
+													monster.spp = 0;
+													monster.rep = 0;
+												}
+												
+												var add_tl = 0;
+												var add_ll = 0;
+												var add_qd = 0;
+												var add_sd = 0;
+												var add_ml = 0;
+												var remain_bp = 0;
+												var level = 0;
+
+												function init()
+												{
+													add_tl = 0;
+													add_ll = 0;
+													add_qd = 0;
+													add_sd = 0;
+													add_ml = 0;
+													remain_bp = 0;
+													level = 0;
+												}
+
+												function core_caculate(is_wild)
+												{
+													var tld = document.getElementById("tili1").value;
+													var stld = document.getElementById("tili2").value;
+													var lld = document.getElementById("liliang1").value;
+													var slld = document.getElementById("liliang2").value;
+													var qdd = document.getElementById("qiangdu1").value;
+													var sqdd = document.getElementById("qiangdu2").value;
+													var sdd = document.getElementById("sudu1").value;
+													var ssdd = document.getElementById("sudu2").value;
+													var mld = document.getElementById("moli1").value;
+													var smld = document.getElementById("moli2").value;
+
+													var res_bp_tl = (0.041 * (parseFloat(tld) + parseFloat(stld))) * (parseFloat(level) - 1) + (parseFloat(tld) + parseFloat(stld)) / 5;
+													var res_bp_ll = (0.041 * (parseFloat(lld) + parseFloat(slld))) * (parseFloat(level) - 1) + (parseFloat(lld) + parseFloat(slld)) / 5;
+													var res_bp_qd = (0.041 * (parseFloat(qdd) + parseFloat(sqdd))) * (parseFloat(level) - 1) + (parseFloat(qdd) + parseFloat(sqdd)) / 5;
+													var res_bp_sd = (0.041 * (parseFloat(sdd) + parseFloat(ssdd))) * (parseFloat(level) - 1) + (parseFloat(sdd) + parseFloat(ssdd)) / 5;
+													var res_bp_ml = (0.041 * (parseFloat(mld) + parseFloat(smld))) * (parseFloat(level) - 1) + (parseFloat(mld) + parseFloat(smld)) / 5;
+
+													if(is_wild)
+													{
+														var wild_level = document.getElementById("csdj").value;
+
+														var wild_tl = document.getElementById("cstl").value;
+														var wild_ll = document.getElementById("csll").value;
+														var wild_qd = document.getElementById("csqd").value;
+														var wild_sd = document.getElementById("cssd").value;
+														var wild_ml = document.getElementById("csml").value;
+
+														var res_bp_tl_wd = (0.041 * (parseFloat(tld) + parseFloat(stld))) * (parseFloat(wild_level) - 1) + (parseFloat(tld) + parseFloat(stld)) / 5;
+														var res_bp_ll_wd = (0.041 * (parseFloat(lld) + parseFloat(slld))) * (parseFloat(wild_level) - 1) + (parseFloat(lld) + parseFloat(slld)) / 5;
+														var res_bp_qd_wd = (0.041 * (parseFloat(qdd) + parseFloat(sqdd))) * (parseFloat(wild_level) - 1) + (parseFloat(qdd) + parseFloat(sqdd)) / 5;
+														var res_bp_sd_wd = (0.041 * (parseFloat(sdd) + parseFloat(ssdd))) * (parseFloat(wild_level) - 1) + (parseFloat(sdd) + parseFloat(ssdd)) / 5;
+														var res_bp_ml_wd = (0.041 * (parseFloat(mld) + parseFloat(smld))) * (parseFloat(wild_level) - 1) + (parseFloat(mld) + parseFloat(smld)) / 5;
+
+
+														var all_res = parseInt(res_bp_tl_wd) + parseInt(res_bp_ll_wd) + parseInt(res_bp_qd_wd) + parseInt(res_bp_sd_wd) + parseInt(res_bp_ml_wd);
+														var t1 = parseInt(all_res.toString()) + parseInt(wild_level) - 1;
+														var t2 = parseInt(wild_tl) + parseInt(wild_ll) + parseInt(wild_qd) + parseInt(wild_sd) + parseInt(wild_ml);
+														if(t1 != t2)
+														{
+															alert("初始BP错误，请检查!");
+															return;
+														}
+
+														var ss = 0.041;
+														var tili4       = (parseFloat(tld) + parseFloat(stld)) / 5 + (parseFloat(tld) + parseFloat(stld)) * ss * (parseFloat(wild_level) - 1);
+														var liliang4    = (parseFloat(lld) + parseFloat(slld)) / 5 + (parseFloat(lld) + parseFloat(slld)) * ss * (parseFloat(wild_level) - 1);
+														var qiangdu4    = (parseFloat(qdd) + parseFloat(sqdd)) / 5 + (parseFloat(qdd) + parseFloat(sqdd)) * ss * (parseFloat(wild_level) - 1);
+														var sudu4       = (parseFloat(sdd) + parseFloat(ssdd)) / 5 + (parseFloat(sdd) + parseFloat(ssdd)) * ss * (parseFloat(wild_level) - 1);
+														var moli4       = (parseFloat(mld) + parseFloat(smld)) / 5 + (parseFloat(mld) + parseFloat(smld)) * ss * (parseFloat(wild_level) - 1);
+														res_bp_tl = (0.041 * (parseFloat(tld) + parseFloat(stld))) * (parseFloat(level) - wild_level) + tili4 + parseInt(wild_tl) - parseInt(tili4);
+														res_bp_ll = (0.041 * (parseFloat(lld) + parseFloat(slld))) * (parseFloat(level) - wild_level) + liliang4 + parseInt(wild_ll) - parseInt(liliang4);
+														res_bp_qd = (0.041 * (parseFloat(qdd) + parseFloat(sqdd))) * (parseFloat(level) - wild_level) + qiangdu4 + parseInt(wild_qd) - parseInt(qiangdu4);
+														res_bp_sd = (0.041 * (parseFloat(sdd) + parseFloat(ssdd))) * (parseFloat(level) - wild_level) + sudu4 + parseInt(wild_sd) - parseInt(sudu4);
+														res_bp_ml = (0.041 * (parseFloat(mld) + parseFloat(smld))) * (parseFloat(level) - wild_level) + moli4 + parseInt(wild_ml) - parseInt(moli4);
+
+													}
+
+													res_bp_tl += add_tl;
+													res_bp_ll += add_ll;
+													res_bp_qd += add_qd;
+													res_bp_sd += add_sd;
+													res_bp_ml += add_ml;
+
+													document.getElementById("AllBP").value = parseInt(remain_bp);
+													document.getElementById("tili3").value = parseInt(res_bp_tl);
+													document.getElementById("liliang3").value = parseInt(res_bp_ll);
+													document.getElementById("qiangdu3").value = parseInt(res_bp_qd);
+													document.getElementById("sudu3").value = parseInt(res_bp_sd);
+													document.getElementById("moli3").value = parseInt(res_bp_ml);
+
+													var shengming =20+ 8 * res_bp_tl + 2 * res_bp_ll + 3 * res_bp_qd + 3 * res_bp_sd + 1 * res_bp_ml;
+													var mofa =20+ 1 * res_bp_tl + 2 * res_bp_ll + 2 * res_bp_qd + 2 * res_bp_sd + 10 * res_bp_ml;
+													var gongji =20+ 0.2 * res_bp_tl + 2.7 * res_bp_ll + 0.3 * res_bp_qd + 0.3 * res_bp_sd + 0.2 * res_bp_ml;
+													var fangyu =20+ 0.2 * res_bp_tl + 0.3 * res_bp_ll + 3 * res_bp_qd + 0.3 * res_bp_sd + 0.2 * res_bp_ml;
+													var minjie =20+ 0.1 * res_bp_tl + 0.2 * res_bp_ll + 0.2 * res_bp_qd + 2 * res_bp_sd + 0.1 * res_bp_ml;
+													var jingshen =100 -0.3 * res_bp_tl -0.1 * res_bp_ll + 0.2 * res_bp_qd - 0.1 * res_bp_sd + 0.8 * res_bp_ml;
+													var huifu = 100+0.8 * res_bp_tl + 0.1 * res_bp_ll -0.1 * res_bp_qd + 0.2 * res_bp_sd -0.3 * res_bp_ml;
+
+													document.getElementById("shengming").value = parseInt(shengming);
+													document.getElementById("mofa").value = parseInt(mofa);
+													document.getElementById("gongji").value = parseInt(gongji);
+													document.getElementById("fangyu").value = parseInt(fangyu);
+													document.getElementById("minjie").value = parseInt(minjie);
+													document.getElementById("jingshen").value = parseInt(jingshen);
+													document.getElementById("huifu").value = parseInt(huifu);
+
+												}
+
+												function cal_1()
+												{
+													init();
+													var checkbox = document.getElementById("checkwild");
+													level = document.getElementById("dengji").value;
+
+													if(checkbox.checked)
+													{
+														var wild_level = document.getElementById("csdj").value;
+														remain_bp = level - wild_level;
+													}
+													else
+													{
+														remain_bp = level-1;
+													}
+
+													core_caculate(checkbox.checked);
+												}
+
+												function add(type, count)
+												{
+													if(remain_bp == 0)
+														return;
+
+													if(remain_bp - count >= 0)
+														remain_bp-=count;
+													else
+													{
+														count = remain_bp % count;
+														remain_bp = 0;
+													}
+											 
+													switch(type)
+													{
+														case 0:
+														add_tl+=count;
+														break;
+														case 1:
+														add_ll+=count;
+														break;
+														case 2:
+														add_qd+=count;
+														break;
+														case 3:
+														add_sd+=count;
+														break;
+														case 4:
+														add_ml+=count;
+														break;
+													}
+
+
+													var checkbox = document.getElementById("checkwild");
+													core_caculate(checkbox.checked);
+
+												}
+
+												function sub(type,count)
+												{
+													if(remain_bp == level - 1)
+														return;
+
+													if(remain_bp + count > level - 1)
+														count = level - 1 - remain_bp;
+
+													switch(type)
+													{
+														case 0:
+														if(add_tl - count < 0)
+															count = add_tl;
+														add_tl-=count;
+														break;
+														case 1:
+														if(add_ll - count < 0)
+															count = add_ll;
+														add_ll-=count;
+														break;
+														case 2:
+														if(add_qd - count < 0)
+															count = add_qd;
+														add_qd-=count;
+														break;
+														case 3:
+														if(add_sd - count < 0)
+															count = add_sd;
+														add_sd-=count;
+														break;
+														case 4:
+														if(add_ml - count < 0)
+															count = add_ml;
+														add_ml-=count;
+														break;
+													}
+
+													remain_bp += count;
+
+													var checkbox = document.getElementById("checkwild");
+													core_caculate(checkbox.checked);
+
+												}
+
+												function addtl()
+												{
+													add(0, 1);
+												}
+
+												function addll()
+												{
+													add(1, 1);
+												}
+
+												function addqd()
+												{
+													add(2, 1);
+												}
+
+												function addsd()
+												{
+													add(3, 1);
+												}
+
+												function addml()
+												{
+													add(4, 1);
+												}
+
+												function addtl_10()
+												{
+													add(0, 10);
+												}
+
+												function addll_10()
+												{
+													add(1, 10);
+												}
+
+												function addqd_10()
+												{
+													add(2, 10);
+												}
+
+												function addsd_10()
+												{
+													add(3, 10);
+												}
+
+												function addml_10()
+												{
+													add(4, 10);
+												}
+
+												function subtl()
+												{
+													sub(0,1);
+												}
+
+												function subll()
+												{
+													sub(1, 1);
+												}
+
+												function subqd()
+												{
+													sub(2, 1);
+												}
+
+												function subsd()
+												{
+													sub(3, 1);
+												}
+
+												function subml()
+												{
+													sub(4, 1);
+												}
+
+												function subtl_10()
+												{
+													sub(0,10);
+												}
+
+												function subll_10()
+												{
+													sub(1,10);
+												}
+
+												function subqd_10()
+												{
+													sub(2,10);
+												}
+
+												function subsd_10()
+												{
+													sub(3,10);
+												}
+
+												function subml_10()
+												{
+													sub(4,10);
+												}
+
+											</script>
+										</div>
+									
+										<!--技能-->
+										<div id="skill" style="width:1080px;height:1080px;display:none;overflow-y:auto">
+											<style>
+												table.skill,table.skill th,table.skill td{border:1px solid #908860;text-align:center}table.skill{width:800px;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.skill th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.skill th a{color:#fff}table.skill td,table.skill th.td{color:#000;background-color:#fef7e7;padding:5px}table.skill tr.sub td,table.skill td.sub{background-color:#f0eee7}table.skill th.subhead,table.skill tr.head th,table.skill td.head,table.skill tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.skill th.left,table.skill td.left,table.mission td{text-align:left}table.mission td{line-height:18px}table.missionlist tr:hover td{background-color:#f1ede0}table.mission ol{margin:0;padding:0 0 0 20px}table.mission li{margin:10px auto}table.mission ol ol{}table.mission span.note{color:#f0f}table.mission span.place{color:red}table.mission span.npc{color:#00a;display:inline-block}table.mission span.item{color:green;display:inline-block}table.mission span.item:hover{background:#ff0;cursor:default}table.mission span.pet{color:#ba00d8;display:inline-block}table.mission span.dialog{color:#ba00d8;display:inline-block}table.mission span.npc img{max-height:24px;margin-right:2px}table.mission span.item img{max-height:14px;margin-right:2px}table.mission span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.mission.logspan span.log{display:block}table.mission span.missionhead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.mission span.logspan{background-color:#ebebe0}table.mission div.missionhead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+											</style>
+											<table class="skill" align="center"><tbody><tr><th>商城技能</th></tr></tbody></table>
+										</div>
+									
+										<!--宠物-->
+										<div id="monster" style="width:1080px;height:1080px;display:none;overflow-y:auto">
+											<style>
+												table.monster,table.monster th,table.monster td{border:1px solid #908860;text-align:center}table.monster{width:100%;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.monster th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.monster th a{color:#fff}table.monster td,table.monster th.td{color:#000;background-color:#fef7e7;padding:5px}table.monster tr.sub td,table.monster td.sub{background-color:#f0eee7}table.monster th.subhead,table.monster tr.head th,table.monster td.head,table.monster tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.monster th.left,table.monster td.left,table.mission td{text-align:left}table.mission td{line-height:18px}table.missionlist tr:hover td{background-color:#f1ede0}table.mission ol{margin:0;padding:0 0 0 20px}table.mission li{margin:10px auto}table.mission ol ol{}table.mission span.note{color:#f0f}table.mission span.place{color:red}table.mission span.npc{color:#00a;display:inline-block}table.mission span.item{color:green;display:inline-block}table.mission span.item:hover{background:#ff0;cursor:default}table.mission span.pet{color:#ba00d8;display:inline-block}table.mission span.dialog{color:#ba00d8;display:inline-block}table.mission span.npc img{max-height:24px;margin-right:2px}table.mission span.item img{max-height:14px;margin-right:2px}table.mission span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.mission.logspan span.log{display:block}table.mission span.missionhead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.mission span.logspan{background-color:#ebebe0}table.mission div.missionhead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+											</style>
+											<table class="monster" align="center">
+												<thead>
+													<tr><th colspan="20">商城宠物</th></tr>
+													<tr>	
+													<th style='width:160px'>昵称</th>
+													<th style='width:60px'>种族</th>
+													<th style='width:60px'>体力档</th>
+													<th style='width:60px'>力量档</th>
+													<th style='width:60px'>强度档</th>
+													<th style='width:60px'>速度档</th>
+													<th style='width:60px'>魔法档</th>
+													<th style='width:60px'>总档位</th>
+													<th style='width:30px'>地</th>
+													<th style='width:30px'>水</th>
+													<th style='width:30px'>火</th>
+													<th style='width:30px'>风</th>
+													<th style='width:40px'>必杀</th>
+													<th style='width:40px'>命中</th>
+													<th style='width:40px'>反击</th>
+													<th style='width:40px'>闪躲</th>
+													<th style='width:40px'>抗性</th>
+													<th style='width:60px'>技能栏</th>
+													<th style='width:60px'>钻石</th>
+													<th style='width:80px'>王宠专属</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									
+										<!--宠物-->
+										<div id="monster2" style="width:1080px;height:1080px;display:none;overflow-y:auto">
+											<style>
+												table.monster2,table.monster2 th,table.monster2 td{border:1px solid #908860;text-align:center}table.monster2{width:100%;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.monster2 th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.monster2 th a{color:#fff}table.monster2 td,table.monster2 th.td{color:#000;background-color:#fef7e7;padding:5px}table.monster2 tr.sub td,table.monster2 td.sub{background-color:#f0eee7}table.monster2 th.subhead,table.monster2 tr.head th,table.monster2 td.head,table.monster2 tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.monster2 th.left,table.monster2 td.left,table.mission td{text-align:left}table.mission td{line-height:18px}table.missionlist tr:hover td{background-color:#f1ede0}table.mission ol{margin:0;padding:0 0 0 20px}table.mission li{margin:10px auto}table.mission ol ol{}table.mission span.note{color:#f0f}table.mission span.place{color:red}table.mission span.npc{color:#00a;display:inline-block}table.mission span.item{color:green;display:inline-block}table.mission span.item:hover{background:#ff0;cursor:default}table.mission span.pet{color:#ba00d8;display:inline-block}table.mission span.dialog{color:#ba00d8;display:inline-block}table.mission span.npc img{max-height:24px;margin-right:2px}table.mission span.item img{max-height:14px;margin-right:2px}table.mission span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.mission.logspan span.log{display:block}table.mission span.missionhead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.mission span.logspan{background-color:#ebebe0}table.mission div.missionhead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+											</style>
+											<table class="monster2" align="center">
+												<thead>
+													<tr><th colspan="19">特色宠物</th></tr>
+													<tr>	
+													<th style='width:160px'>昵称</th>
+													<th style='width:60px'>种族</th>
+													<th style='width:60px'>体力档</th>
+													<th style='width:60px'>力量档</th>
+													<th style='width:60px'>强度档</th>
+													<th style='width:60px'>速度档</th>
+													<th style='width:60px'>魔法档</th>
+													<th style='width:60px'>总档位</th>
+													<th style='width:30px'>地</th>
+													<th style='width:30px'>水</th>
+													<th style='width:30px'>火</th>
+													<th style='width:30px'>风</th>
+													<th style='width:40px'>必杀</th>
+													<th style='width:40px'>命中</th>
+													<th style='width:40px'>反击</th>
+													<th style='width:40px'>闪躲</th>
+													<th style='width:40px'>抗性</th>
+													<th style='width:60px'>技能栏</th>
+													<th style='width:140px'>出处</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										
+										</div>
+									
+										<!--物资缴纳-->
+										<div id="materials" style="width:1080px;height:1080px;display:none;overflow-y:auto">
+											<style>
+												table.materials,table.materials th,table.materials td{border:1px solid #908860;text-align:center}table.materials{width:800px;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.materials th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.materials th a{color:#fff}table.materials td,table.materials th.td{color:#000;background-color:#fef7e7;padding:5px}table.materials tr.sub td,table.materials td.sub{background-color:#f0eee7}table.materials th.subhead,table.materials tr.head th,table.materials td.head,table.materials tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.materials th.left,table.materials td.left,table.mission td{text-align:left}table.mission td{line-height:18px}table.missionlist tr:hover td{background-color:#f1ede0}table.mission ol{margin:0;padding:0 0 0 20px}table.mission li{margin:10px auto}table.mission ol ol{}table.mission span.note{color:#f0f}table.mission span.place{color:red}table.mission span.npc{color:#00a;display:inline-block}table.mission span.item{color:green;display:inline-block}table.mission span.item:hover{background:#ff0;cursor:default}table.mission span.pet{color:#ba00d8;display:inline-block}table.mission span.dialog{color:#ba00d8;display:inline-block}table.mission span.npc img{max-height:24px;margin-right:2px}table.mission span.item img{max-height:14px;margin-right:2px}table.mission span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.mission.logspan span.log{display:block}table.mission span.missionhead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.mission span.logspan{background-color:#ebebe0}table.mission div.missionhead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+											</style>
+											<table class="materials" align="center">
+												<tbody>
+													<tr>
+														<th>魔币回收-物资缴纳</th>
+													</tr>
+													<tr>
+														<td style="text-align:left">
+														● 物资缴纳<br>
+														━ 当角色20级后开启需要缴纳物资才能换取经验锁<br>
+														━ 所需缴纳物资道具为: 法兰城物资<br>
+														━ 所需物资数量以10级为一个阶梯划分, 比如20-30级需要100万经验值才能升级, 一共需要缴纳10个物资, 那么折合就是每缴纳一个物资就能解锁10万的经验值上限, 如此类推! (以上是举例, 不是100万点经验)<br>
+														━ 每个阶段只能缴纳当前阶段的物资, 不能无限缴纳到满级, 比如我50级的时候, 可以直接把50-60的全部经验锁交满, 然后就可以直接练级不用管物资这个东西了, 练到60后, 再解锁60-70的, 如此类推<br>
+														━ 物资单个格子可叠加8000个数量<br>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									
+										<!--百人道场-->
+										<div id="hundreds" style="width:1080px;height:1080px;display:none;overflow-y:auto">
+											<style>
+												table.hundreds,table.hundreds th,table.hundreds td{border:1px solid #908860;text-align:center}table.hundreds{width:800px;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.hundreds th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.hundreds th a{color:#fff}table.hundreds td,table.hundreds th.td{color:#000;background-color:#fef7e7;padding:5px}table.hundreds tr.sub td,table.hundreds td.sub{background-color:#f0eee7}table.hundreds th.subhead,table.hundreds tr.head th,table.hundreds td.head,table.hundreds tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.hundreds th.left,table.hundreds td.left,table.mission td{text-align:left}table.mission td{line-height:18px}table.missionlist tr:hover td{background-color:#f1ede0}table.mission ol{margin:0;padding:0 0 0 20px}table.mission li{margin:10px auto}table.mission ol ol{}table.mission span.note{color:#f0f}table.mission span.place{color:red}table.mission span.npc{color:#00a;display:inline-block}table.mission span.item{color:green;display:inline-block}table.mission span.item:hover{background:#ff0;cursor:default}table.mission span.pet{color:#ba00d8;display:inline-block}table.mission span.dialog{color:#ba00d8;display:inline-block}table.mission span.npc img{max-height:24px;margin-right:2px}table.mission span.item img{max-height:14px;margin-right:2px}table.mission span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.mission.logspan span.log{display:block}table.mission span.missionhead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.mission span.logspan{background-color:#ebebe0}table.mission div.missionhead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+											</style>
+											<table class="hundreds" align="center">
+												<tbody>
+													<tr>
+														<th>魔力回忆2(新服) 百人道场规则说明</th>
+													</tr>
+													<tr>
+														<td style="text-align:left">
+														发布日期：2020/5/19 8:19:04<br>
+														1. 等级要求20级以上<br>
+														2. 每个角色每天只能重新开始一次<br>
+														3. 道场记忆隔天后自动作废 *(比如我1号拿的记忆, 到2号就作废了, 1号当天一整天都可以用)<br>
+														4. 从50层开始, 除了元素碎片外还会额外掉落特殊奖励<br>
+														5. 奖品包括: 特殊材料箱子*(魔水, 钢骑等), 宝石福袋, 首饰礼盒等...可交易<br>
+														6. Vip角色可以花5000G跳过前40层<br>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										
+										<!--备用下载-->
+										<div id="download" style="width:1080px;height:1080px;display:none;overflow-y:auto">
+											<table>
+												<tbody>
+													<tr>
+														<td rowspan="4">
+															安卓
+														</td>
+														<td>
+															腾讯 微云
+														</td>
+														<td>
+															<p><a href="https://share.weiyun.com/nBKnryBv" target="_blank">魔力回忆2手机版v5.4.0.apk</a></p>
+															<p><a href="https://share.weiyun.com/izhW1HZ5" target="_blank">魔力回忆2手机版资源包2.0.apk</a></p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															迅雷 云盘
+														</td>
+														<td>  
+															<p><a href="https://pan.xunlei.com/s/VNDH_k4oGSYY9-OPeeHNcivlA1?pwd=hvnn&path=%2F" target="_blank">魔力回忆2手机版v5.4.0.apk</a></p>
+														</td> 
+													</tr>
+													<tr>
+														<td>
+															绿联 云
+														</td>
+														<td>  
+														 	<p><a href="https://web.ugreen.cloud/web/#/share/HB-OiKC316F5021hvPQ-004168" target="_blank">魔力回忆2手机版v5.4.0.apk</a>   提取码：T75Y</p>
+															<p><a href="https://web.ugreen.cloud/web/#/share/HB-wqBs316F50216HoD-004168" target="_blank">魔力回忆2手机版资源包2.0.apk</a>   提取码：C466</p>
+														</td> 
+													</tr>
+													<tr>
+														<td>
+															Google Drive
+														</td>
+														<td>
+															<p><a href="https://drive.google.com/file/d/12BpmmWcuWZfwRHgh8a_f774yrkfJe5PG/view?usp=sharing" target="_blank">魔力回忆2手机版v5.4.0.apk</a></p>
+															<p><a href="https://drive.google.com/file/d/1A76KP2j2Y7X2Q8gR4EHRE107uZk76S_4/view?usp=sharing" target="_blank">魔力回忆2手机版资源包2.0.apk</a></p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															百度 TeraBox
+														</td>
+														<td>
+															<p><a href="https://terabox.com/s/1OjwmuIBp2Rq2oTJrof-fkQ" target="_blank">魔力回忆2手机版v5.4.0.apk</a></p>
+															<p><a href="https://terabox.com/s/1YtFEqiHBukpBOq96FuJHtQ" target="_blank">魔力回忆2手机版资源包2.0.apk</a></p>
+														</td>
+													</tr>
+													<tr>
+														<td rowspan="1">
+															iOS
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															<p><a href="http://jisu.tufenfa.cn/z/H9fZBr" target="_blank">魔力回忆2手机版v5.3.0 All In One</a></p>
+															<p><a href="http://jisu.fenfagou.com/z/H9fZBr" target="_blank">魔力回忆2手机版v5.3.0 All In One</a></p>
+															<p><a href="http://jisu.youfenfa.cn/z/H9fZBr" target="_blank">魔力回忆2手机版v5.3.0 All In One</a></p>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--回忆任务-->
+					<div id="mission" style="display:none;width:1080px;height:1080px">
+						<style>
+							table.mission,table.mission th,table.mission td{border:1px solid #908860;text-align:center}table.mission{width:100%;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.mission th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.mission th a{color:#fff}table.mission td,table.mission th.td{color:#000;background-color:#fef7e7;padding:5px}table.mission tr.sub td,table.mission td.sub{background-color:#f0eee7}table.mission th.subhead,table.mission tr.head th,table.mission td.head,table.mission tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.mission th.left,table.mission td.left,table.mission td{text-align:left}table.mission td{line-height:18px}table.missionlist tr:hover td{background-color:#f1ede0}table.mission ol{margin:0;padding:0 0 0 20px}table.mission li{margin:10px auto}table.mission ol ol{}table.mission span.note{color:#f0f}table.mission span.place{color:red}table.mission span.npc{color:#00a;display:inline-block}table.mission span.item{color:green;display:inline-block}table.mission span.item:hover{background:#ff0;cursor:default}table.mission span.pet{color:#ba00d8;display:inline-block}table.mission span.dialog{color:#ba00d8;display:inline-block}table.mission span.npc img{max-height:24px;margin-right:2px}table.mission span.item img{max-height:14px;margin-right:2px}table.mission span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.mission.logspan span.log{display:block}table.mission span.missionhead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.mission span.logspan{background-color:#ebebe0}table.mission div.missionhead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+						</style>
+						<table class="mission">
+							<tbody>
+								<tr>
+									<td rowspan="5">
+										回忆任务
+									</td>
+									<td>
+										特色任务
+									</td>
+									<td>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?765.html')">消失的王子</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?798.html')" >龙神之里</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?807.html')" >异次元试验场</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?806.html')" >重铸村雨丸</a> </span><br/>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?759.html')" >日常活动</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?779.html')" >天梯挑战</a> </span>
+									</td>
+
+								</tr>
+								<tr>
+									<td>
+										勋章系列
+									</td>
+									<td>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'https://cgsword.com/Mission402.htm')">八等勋章 - 商队袭击任务</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'https://cgsword.com/Mission410.htm')">七等勋章 - 人鱼之泪</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'https://cgsword.com/Mission408.htm')">六等勋章 - 暗杀犯追迹</a> </span><br/>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'https://cgsword.com/Mission411.htm')">五等勋章 - 返魂之珠</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'https://cgsword.com/Mission509.htm')">四等勋章 - 哥拉尔的晚宴</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'https://cgsword.com/Mission512.htm')">三等勋章 - 天帝之证</a> </span><br/>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'https://cgsword.com/Mission515.htm')">二等勋章 - 始祖之墓</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'https://cgsword.com/Mission409.htm')">一等勋章 - 最后的真相</a> </span>
+										
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										半山系列
+									</td>
+									<td>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?786.html')">第1章 - 彷徨的亡灵</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?787.html')">第2章 - 亡者之镇</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?788.html')">第3章 - 圣鸟之谜</a> </span><br/>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?789.html')">第4章 - 赎罪的亡灵</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?790.html')">第5章 - 小岛之谜</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?794.html')">第6章 - 地狱的回响</a> </span><br/>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?795.html')">第7章 - 结界之链</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?796.html')">第8章 - 死神的降临</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?800.html')">第9章 - 死与新生</a> </span>
+
+									</td>
+								</tr>
+								<tr>
+									<td>
+										洗礼系列
+									</td>
+									<td>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?811.html')">第1章 - 路见不平</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?812.html')" >第2章 - 传承使者</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?813.html')" >第3章 - 阿蒙的幻影</a> </span><br/>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?814.html')">第4章 - 龙之试炼</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?823.html')" >第5章 - 最后的洗礼</a> </span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										旋涡系列
+									</td>
+									<td>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?817.html')">第0章 - 深渊</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?818.html')" >第1章 - 消亡之地</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?819.html')" >第2章 - 抉择之刻</a> </span><br/>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?820.html')" >第3章 - 白之意志、黑之意志</a> </span>
+										<span><a href="#" onclick="$('#mission #win').attr('src', 'http://www.dreamgate.cc/content/?821.html')" >第4章 - 闪耀者、引导者</a> </span>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3">
+										<iframe id="win" style="width:1080px;height:1080px" ></iframe>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--地图坐标-->
+					<div id="map" style="display:none;width:1080px;height:1080px">
+						<style>
+							table.map,table.map th,table.map td{border:1px solid #908860;text-align:center}table.map{width:100%;margin-left:auto;margin-right:auto;border-collapse:collapse;background-color:#fef7e7}table.map th{background-color:#604c40;font-weight:400;color:#fff;padding:3px}table.map th a{color:#fff}table.map td,table.map th.td{color:#000;background-color:#fef7e7;padding:5px}table.map tr.sub td,table.map td.sub{background-color:#f0eee7}table.map th.subhead,table.map tr.head th,table.map td.head,table.map tr.head td{color:#000;text-align:center;background-color:#d8cca8}table#download td.left,table.map th.left,table.map td.left,table.mission td{text-align:left}table.mission td{line-height:18px}table.missionlist tr:hover td{background-color:#f1ede0}table.mission ol{margin:0;padding:0 0 0 20px}table.mission li{margin:10px auto}table.mission ol ol{}table.mission span.note{color:#f0f}table.mission span.place{color:red}table.mission span.npc{color:#00a;display:inline-block}table.mission span.item{color:green;display:inline-block}table.mission span.item:hover{background:#ff0;cursor:default}table.mission span.pet{color:#ba00d8;display:inline-block}table.mission span.dialog{color:#ba00d8;display:inline-block}table.mission span.npc img{max-height:24px;margin-right:2px}table.mission span.item img{max-height:14px;margin-right:2px}table.mission span.log{display:none;padding-left:10px;color:#939;padding-top:2px}table.mission.logspan span.log{display:block}table.mission span.missionhead{border:1px solid #006;color:#00f;display:inline-block;padding:5px 15px;text-align:center;background-color:#ffc}table.mission span.logspan{background-color:#ebebe0}table.mission div.missionhead{border:1px solid #006;padding:5px;background-color:#ffc;margin:auto auto 5px}table.itemlist{border-collapse:separate}table.itemlist td{line-height:16px}table.itemlist img{margin:2px}div#ajax_restore,div#restore_bg,div#restore_body,div#restore,div#ajax_loading,div#loading_bg,div#loading_body,div#loading{width:256px;height:96px;margin:auto}div#restore_body td,div#restore,div#loading_body td,div#loading{line-height:96px;color:#fff;text-align:center;font-weight:700;font-size:12pt}div#ajax_restore,div#ajax_loading{visibility:hidden;left:272px;position:absolute;z-index:1000}div#restore_body,div#loading_body{position:relative;background-image:url(image/ajax_loading.gif)}div#restore,div#loading{background-image:url(image/ajax_loading.png)}div.author{font-size:8pt;float:left}div#update{font-size:8pt;float:right}table#download{width:580px;border-collapse:collapse;text-align:center}table#download td{border-bottom:1px #908860 solid;padding:2px}
+						</style>
+						<table class="map">
+							<tbody>
+								<tr>
+									<td rowspan="3">
+										<a href="https://s3.bmp.ovh/imgs/2022/08/28/682719c409067d75.jpg" target="_blank">法兰王国<a>
+									</td>
+									<td>
+										<a href="https://cgsword.com/image/map/map1.jpg" target="_blank">芙蕾雅岛</a>
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1511115340001.jpg" target="_blank">法兰城</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506496779002.jpg" target="_blank">圣拉鲁卡村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563529985001.jpg" target="_blank">伊尔村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509376897001.jpg" target="_blank">亚留特村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509337506002.jpg" target="_blank">维诺亚村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506656383001.jpg" target="_blank">乌克兰村</a>
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299001.jpg" target="_blank">哈巴鲁东边洞窟</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508507021001.jpg" target="_blank">维诺亚洞窟</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509419946004.jpg" target="_blank">维多亚海底洞窟</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299004.jpg" target="_blank">索奇亚海底洞窟</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299003.jpg" target="_blank">莎莲娜海底洞窟</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href="https://cgsword.com/image/map/map2.jpg" target="_blank">索奇亚岛</a>
+									</td>
+									<td>
+										<a href="http://images.17173.com/cg/images/images/ditu/qili.gif" target="_blank">奇利村</a> <br/>
+										<a href="http://images.17173.com/cg/images/images/ditu/jiana.jpg" target="_blank">加纳村</a> <br/>
+										<a href="http://images.17173.com/cg/images/images/ditu/habeilu.gif" target="_blank">哈贝鲁村</a>
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299004.jpg" target="_blank">索奇亚海底洞窟</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1516683542001.jpg" target="_blank">洪恩大风洞</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1622695246001.jpg" target="_blank">流星山-上山</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1622695246002.jpg" target="_blank">流星山-饲养</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href="https://cgsword.com/image/map/map3.jpg" target="_blank">莎莲娜岛</a>
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509496384001.jpg" target="_blank">杰诺瓦镇</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509496384002.jpg" target="_blank">蒂娜村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1510160972001.jpg" target="_blank">阿巴尼斯村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509580742001.jpg" target="_blank">魔法大学</a>
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299003.jpg" target="_blank">莎莲娜海底洞窟</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508815134001.jpg" target="_blank">莎莲娜西边洞窟</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508554871001.jpg" target="_blank">莎莲娜东边洞窟</a> <br/>
+										<a href="http://images.17173.com/cg/images/item/mi_drago.gif" target="_blank">青龙洞窟</a>
+									</td>
+								</tr>
+								
+								<tr>
+									<td rowspan="3">
+										<a href="https://s3.bmp.ovh/imgs/2022/08/28/f5e6320c4ee16a2b.jpg" target="_blank">亚诺曼王国</a>
+									</td>
+									<td>
+										<a href="https://cgsword.com/image/map/map6.png" target="_blank">德威特岛</a>
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1627039781.jpg" target="_blank">亚诺曼城</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506878872001.jpg" target="_blank">克瑞村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506527383001.jpg" target="_blank">摩顿村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509901083001.jpg" target="_blank">尼维尔海村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506878872002.jpg" target="_blank">达米达村</a>
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1511460071001.jpg" target="_blank">立葛曲洞</a>
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509379107001.jpg" target="_blank">杰诺姆岛</a>
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1520788205001.jpg" target="_blank">蕾欧娜村</a>
+									</td>
+									<td>
+									
+									</td>
+								</tr>
+								<tr>
+									<td>
+										弗利德岛
+									</td>
+									<td>
+										汉米顿村
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506709801002.jpg" target="_blank">冰之神殿</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506709801006.gif" target="_blank">库德洞窟-STAR</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506709801003.jpg" target="_blank">火炎之谷</a> <br/>
+										库德洞窟-SOFT <br/>
+										汉米顿村域 
+									</td>
+								</tr>
+								<tr>
+									<td><a href="https://s3.bmp.ovh/imgs/2022/08/28/443f10c8ddf3db35.jpg" target="_blank">苏国</a></td>
+									<td><a href="https://cgsword.com/image/map/map4.jpg" target="_blank">米內葛尔岛</a></td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1566368599001.jpg" target="_blank">阿凯鲁法村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1507614284001.jpg" target="_blank">坎那贝拉村</a> 
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506500385001.jpg" target="_blank">南恰拉山1/2通道</a> <br/>
+										<a href="http://images.17173.com/cg/images/item/mi_nacha.gif" target="_blank">南恰拉山-矿物</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1577936325001.jpg" target="_blank">海底通道-路线</a> <br/>
+										<a href="https://s3.bmp.ovh/imgs/2022/08/21/5abba5a355a63787.gif" target="_blank">海底通道-矿物</a> 
+										
+									</td>
+								</tr>
+								<tr>
+									<td><a href="https://s3.bmp.ovh/imgs/2022/08/28/443f10c8ddf3db35.jpg" target="_blank">艾尔巴尼亚王国</a></td>
+									<td><a href="https://cgsword.com/image/map/map5.jpg" target="_blank">库鲁克斯岛</a></td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563528050001.jpg" target="_blank">哥拉尔镇</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1511543823001.jpg" target="_blank">鲁米纳斯村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1513498922001.jpg" target="_blank">米诺基亚村</a> <br/>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1623714511001.jpg" target="_blank">雷克塔尔村</a> 
+									</td>
+									<td>
+										<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1513501517001.jpg" target="_blank">麦尼村</a> <br/>
+										<a href="http://www.quietmoli.com/images/map/md001_01.jpg" target="_blank">伊利斯矿山-路线</a> <br/>
+										<a href="http://image2.sina.com.cn/gm/ol/cross/kuangqu/mi_elice2.gif" target="_blank">伊利斯矿山-矿物</a> <br/>
+										<a href="" target="_blank">贝尼恰斯火山</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,4 +1,4 @@
-[
+var map=[
 {name:'法兰王国', islands:[{name:'法兰王国', map:'', towns:[{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},]}]},
 {name:'法兰王国', islands:[{name:'法兰王国', map:'', towns:[{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},]}]},
 {name:'法兰王国', islands:[{name:'法兰王国', map:'', towns:[{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},{name:'', map:''},]}]},

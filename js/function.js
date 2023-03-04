@@ -1,0 +1,1 @@
+function setbgposition(o,x,y){o=typeof(o)=='object'?o:document.getElementById(o);if(o.style.backgroundPosition!=''){var p=o.style.backgroundPosition.split(' ');var ox=p[0],oy=p[1];}else var ox=oy=0;ox=x!='auto'?x+'px':ox;oy=y!='auto'?y+'px':oy;o.style.backgroundPosition=ox+' '+oy;}

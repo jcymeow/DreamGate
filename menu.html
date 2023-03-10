@@ -1,9 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>魔力回忆2 - 资料站</title>
-<base target="main">
+<!--<base target="main">--><base href="." target="main">
 <style type="text/css">
 html {
 	height: 100%;
@@ -59,7 +58,7 @@ div.menu a {
 div.menu a:hover, div.menu a:focus {
 	border-bottom: 1px #663300 dashed;
 }
-</script>
+</style>
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="js/function.js"></script>
 <script type="text/javascript">
@@ -95,7 +94,7 @@ $(function(){
 });
 </script>
 </head>
-<body>
+<body style="">
 <div id="head">
 
 </div>
@@ -206,9 +205,7 @@ $(function(){
 <a href="products">產品包資料</a><br>
 <a href="propCal.html">屬性相剋計算器</a>
 </div>
-<a id="button11" class="button" href="guestbook.php">
 
-</a>
 <script type="text/javascript">
 for(i=0;i<11;i++){
 	btn = document.getElementById('button'+(i+1));

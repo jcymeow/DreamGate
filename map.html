@@ -10,9 +10,9 @@
         $(function () {
             var area = getUrlParam("area") || 1;
             console.log(area);
-            var file = './data /map'+area+'.json';
+            var file = './data/map'+area+'.json';
             console.log(file);
-            $.getJSON("./data/map"+area+".json", null, function(mapData){
+            $.getJSON(file, null, function(mapData){
                 console.log(mapData);
                 initMap(mapData);
             });

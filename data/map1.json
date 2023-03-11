@@ -1,4 +1,4 @@
-var mapData = {
+{
     "name":"1区",
     "timestamp":"2023/3/9",
     "maps":[
@@ -21,4 +21,4 @@ var mapData = {
             ]
         }
     ]
-};
+}

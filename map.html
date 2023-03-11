@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function () {
+            var area = getUrlParam("area");
+            $.getJSON("./data/map"+area+".json", function(mapData){
+                initMap(mapData);
+            });
+        });
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        function initMap(json) {
+            $("#title").html(json.name + " " + json.timestamp);
+
+            var html = new Array();
+            if (json.maps) {
+                $(json.maps).each(function (i, map) {
+                    //table-title
+                    html.push('<table style="width:990px" border="1">');
+                    html.push('<tr><th colspan="11" aligh="left">');
+                    html.push(map.name + ' ' + (map.line || ''));
+                    html.push('线</th></tr>');
+
+                    //table-head
+                    html.push('<tr>');
+                    for (var ii = 0; ii <= 10; ii++) {
+                        html.push('<td style="width=90px">');
+                        if (ii > 0) {
+                            html.push(ii)
+                        }
+                        html.push('</td>');
+                    }
+                    html.push('</tr>');
+
+                    //table-data
+                    $(map.data).each(function (j, tr) {
+                        var col = tr.data.length;
+                        var mu = parseInt((col - 1) / 10 + 1);
+
+                        for (var k = 0; k < mu; k++) {
+                            html.push('<tr>');
+                            //tag
+                            if (k == 0) {
+                                if (mu == 1) {
+                                    html.push('<td>');
+                                    html.push(tr.tag || '&nbsp;');
+                                    html.push('</td>')
+                                } else {
+                                    html.push('<td rowSpan="');
+                                    html.push(mu)
+                                    html.push('">')
+                                    html.push(tr.tag || '&nbsp;');
+                                    html.push('</td>')
+                                }
+                            }
+                            //data
+                            for (var l = 0; l < 10; l++) {
+                                var idx = k * 10 + l;
+                                if (idx <= col) {
+                                    html.push('<td>');
+                                    html.push(tr.data[idx]);
+                                    html.push('</td>');
+                                } else {
+                                    html.push('<td></td>');
+                                }
+                            }
+                            html.push('</tr>');
+                        }
+                    });
+                    html.push('</table>');
+                });
+
+            }
+            $("#maps").html(html.join(''));
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1 id="title"></h1>
+
+    <div id="maps">
+
+    </div>
+</body>
+
+</html>

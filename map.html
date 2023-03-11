@@ -7,6 +7,9 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
     <script type="text/javascript">
+        //每行数量
+        var num = 8;
+
         $(function () {
             var area = getUrlParam("area") || 1;
             var file = './data/map'+area+'.json';
@@ -27,12 +30,15 @@
             if (json.maps) {
                 $(json.maps).each(function (i, map) {
                     //table-title
-                    html.push('<table style="width:792px" border="1">');
-                    html.push('<tr><th colspan="11" aligh="left">');
-                    html.push(map.name + ' ' + map.line || '');
+                    html.push('<table style="width:792px;table-layout:fixed;" border="1">');
+                    html.push('<tr><th colspan="'+(num+1)+'" aligh="left">');
+                    html.push(map.name);
+                    html.push('&nbsp;&nbsp;&nbsp;&nbsp;');
+                    html.push(map.line ? map.line + '线' : map.line || '');
                     html.push('</th></tr>');
 
                     //table-head
+                    /**
                     html.push('<tr>');
                     for (var ii = 0; ii <= 10; ii++) {
                         html.push('<td style="width=72px">');
@@ -42,11 +48,12 @@
                         html.push('</td>');
                     }
                     html.push('</tr>');
+                    **/
 
                     //table-data
                     $(map.data).each(function (j, tr) {
                         var col = tr.data.length;
-                        var mu = parseInt((col - 1) / 10 + 1);
+                        var mu = parseInt((col - 1) / num + 1);
 
                         for (var k = 0; k < mu; k++) {
                             html.push('<tr>');
@@ -65,10 +72,12 @@
                                 }
                             }
                             //data
-                            for (var l = 0; l < 10; l++) {
-                                var idx = k * 10 + l;
-                                if (idx <= col) {
+                            for (var l = 0; l < num; l++) {
+                                var idx = k * num + l;
+                                if (idx < col) {
                                     html.push('<td>');
+                                    html.push(idx+1);
+                                    html.push('-');
                                     html.push(tr.data[idx]);
                                     html.push('</td>');
                                 } else {

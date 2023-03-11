@@ -6,294 +6,409 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="./css/css.css">
 	<style type="text/css">
-		div#banner,
-		div#body {
-			width: 780px;
-			margin-bottom: 5px;
+		table.map,
+		table.map th,
+		table.map td {
+			border: 1px solid #908860;
+			text-align: center
 		}
 
-		div#frame {
-			width: 600px;
-			float: left;
-		}
-
-		div#frame div {
-			width: 600px;
-			margin: 0px auto 0px auto;
-			background-image: url('image/main/frame.gif');
-		}
-
-		div#frame div#head {
-			height: 23px;
-			color: maroon;
-			line-height: 23px;
-		}
-
-		div#frame div#foot {
-			height: 10px;
-			background-position: 0px -25px;
-			font-size: 0px;
-			line-height: 0px;
-		}
-
-		div#news {
-			background-position: -600px 0px;
-		}
-
-		div#news div,
-		div#news_head,
-		div#f100map div,
-		div#serverstatus div {
-			width: 580px;
-			background-image: none;
-		}
-
-		div#news_head,
-		div#news_body,
-		div#f100map_head {
-			border-bottom: 1px #663300 dashed;
-		}
-
-		div#news_body {
-			text-align: left;
-		}
-
-		div#f100map,
-		div#serverstatus,
-		div#produceweapon,
-		div#producedef,
-		div#download {
-			position: relative;
-			display: none;
-			background-position: -600px 0px;
-			z-index: 100;
-		}
-
-		div#morelink div {
-			width: 600px;
-			background-image: url('image/main/morelink.png');
-			text-align: center;
-		}
-
-		div#morelink fieldset {
-			width: 550px;
-			margin: auto 15px;
-			padding: 5px;
-			border: 1px #6B5518 solid;
-		}
-
-		div#serverstatus {
-			text-align: left;
-		}
-
-		div#serverstatus div {
+		table.map {
+			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
+			border-collapse: collapse;
+			background-color: #fef7e7
 		}
 
-		div#serverstatus div.title {
-			margin: 0px auto 3px auto;
-			padding-top: 5px;
-			border-bottom: 2px #663300 dotted;
+		table.map th {
+			background-color: #604c40;
+			font-weight: 400;
+			color: #fff;
+			padding: 3px
 		}
 
-		div#serverstatus div.serverstatushead {
-			width: 568px;
-			padding: 3px;
-			padding-left: 5px;
-			margin-top: 2px;
-			height: 15px;
-			border-bottom: 1px #663300 dotted;
+		table.map th a {
+			color: #fff
 		}
 
-		div#serverstatus div.serverstatushead:hover,
-		div#serverstatus div.serverstatusheadhover {
-			width: 568px;
-			padding: 3px;
-			padding-left: 5px;
-			margin-top: 2px;
-			height: 15px;
-			border-bottom: 1px #663300 dotted;
-			background-color: #E8DABD;
+		table.map td,
+		table.map th.td {
+			color: #000;
+			background-color: #fef7e7;
+			padding: 5px
 		}
 
-		div#serverstatus div.serverstatusacc {
-			width: 560px;
-			padding: 5px 5px 2px 10px;
-			border-top-style: none;
-			background-color: #F3ECDC;
+		table.map tr.sub td,
+		table.map td.sub {
+			background-color: #f0eee7
 		}
 
-		div#f100map_body img {
-			margin: 2px;
+		table.map th.subhead,
+		table.map tr.head th,
+		table.map td.head,
+		table.map tr.head td {
+			color: #000;
+			text-align: center;
+			background-color: #d8cca8
 		}
 
-		div#link,
-		div#link div {
-			width: 160px;
+		table#download td.left,
+		table.map th.left,
+		table.map td.left,
+		table.mission td {
+			text-align: left
 		}
 
-		div#link div {
-			background-image: url('image/main/link.gif');
+		table.mission td {
+			line-height: 18px
 		}
 
-		div#link div.link {
-			height: 40px;
-			background-position: 0px -25px;
-			line-height: 20px;
+		table.missionlist tr:hover td {
+			background-color: #f1ede0
 		}
 
-		div#link a:hover {
-			border-style: none;
+		table.mission ol {
+			margin: 0;
+			padding: 0 0 0 20px
 		}
 
-		div#link table {
-			margin: 0px auto 0px auto;
+		table.mission li {
+			margin: 10px auto
 		}
 
-		hr.hr {
-			height: 1px;
-			width: 90%;
-			border: 1px #663300 dotted;
+		table.mission ol ol {}
+
+		table.mission span.note {
+			color: #f0f
+		}
+
+		table.mission span.place {
+			color: red
+		}
+
+		table.mission span.npc {
+			color: #00a;
+			display: inline-block
+		}
+
+		table.mission span.item {
+			color: green;
+			display: inline-block
+		}
+
+		table.mission span.item:hover {
+			background: #ff0;
+			cursor: default
+		}
+
+		table.mission span.pet {
+			color: #ba00d8;
+			display: inline-block
+		}
+
+		table.mission span.dialog {
+			color: #ba00d8;
+			display: inline-block
+		}
+
+		table.mission span.npc img {
+			max-height: 24px;
+			margin-right: 2px
+		}
+
+		table.mission span.item img {
+			max-height: 14px;
+			margin-right: 2px
+		}
+
+		table.mission span.log {
+			display: none;
+			padding-left: 10px;
+			color: #939;
+			padding-top: 2px
+		}
+
+		table.mission.logspan span.log {
+			display: block
+		}
+
+		table.mission span.missionhead {
+			border: 1px solid #006;
+			color: #00f;
+			display: inline-block;
+			padding: 5px 15px;
+			text-align: center;
+			background-color: #ffc
+		}
+
+		table.mission span.logspan {
+			background-color: #ebebe0
+		}
+
+		table.mission div.missionhead {
+			border: 1px solid #006;
+			padding: 5px;
+			background-color: #ffc;
+			margin: auto auto 5px
+		}
+
+		table.itemlist {
+			border-collapse: separate
+		}
+
+		table.itemlist td {
+			line-height: 16px
+		}
+
+		table.itemlist img {
+			margin: 2px
+		}
+
+		div#ajax_restore,
+		div#restore_bg,
+		div#restore_body,
+		div#restore,
+		div#ajax_loading,
+		div#loading_bg,
+		div#loading_body,
+		div#loading {
+			width: 256px;
+			height: 96px;
+			margin: auto
+		}
+
+		div#restore_body td,
+		div#restore,
+		div#loading_body td,
+		div#loading {
+			line-height: 96px;
+			color: #fff;
+			text-align: center;
+			font-weight: 700;
+			font-size: 12pt
+		}
+
+		div#ajax_restore,
+		div#ajax_loading {
+			visibility: hidden;
+			left: 272px;
+			position: absolute;
+			z-index: 1000
+		}
+
+		div#restore_body,
+		div#loading_body {
+			position: relative;
+			background-image: url(image/ajax_loading.gif)
+		}
+
+		div#restore,
+		div#loading {
+			background-image: url(image/ajax_loading.png)
+		}
+
+		div.author {
+			font-size: 8pt;
+			float: left
+		}
+
+		div#update {
+			font-size: 8pt;
+			float: right
+		}
+
+		table#download {
+			width: 580px;
+			border-collapse: collapse;
+			text-align: center
+		}
+
+		table#download td {
+			border-bottom: 1px #908860 solid;
+			padding: 2px
 		}
 	</style>
-	<script type="text/javascript" src="js/ajax.js"></script>
-	<script type="text/javascript">
-
-	</script>
 </head>
 
 <body>
-	<div id="banner">
+	<table class="map">
+		<tbody>
+			<tr>
+				<td rowspan="3">
+					法兰王国
+				</td>
+				<td>
+					<a href="./image/map/" target="_blank">芙蕾雅岛</a>
+				</td>
+				<td>
+					<a href="./image/map/sllk.webp"
+						target="_blank">圣拉鲁卡村</a> <br />
+					<a href="./image/map/yl.webp"
+						target="_blank">伊尔村</a> <br />
+					<a href="./image/map/ylt.webp"
+						target="_blank">亚留特村</a> <br />
+					<a href="./image/map/wny.webp"
+						target="_blank">维诺亚村</a> <br />
+					<a href="./image/map/wkl.webp"
+						target="_blank">乌克兰村</a>
+				</td>
+				<td>
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299001.jpg"
+						target="_blank">哈巴鲁东边洞窟</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508507021001.jpg"
+						target="_blank">维诺亚洞窟</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509419946004.jpg"
+						target="_blank">维多亚海底洞窟</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299004.jpg"
+						target="_blank">索奇亚海底洞窟</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299003.jpg"
+						target="_blank">莎莲娜海底洞窟</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./image/map/sqyd.webp" target="_blank">索奇亚岛</a>
+				</td>
+				<td>
+					<a href="./image/map/ql.webp" target="_blank">奇利村</a> <br />
+					<a href="./image/map/jn.webp" target="_blank">加纳村</a> <br />
+					<a href="" target="_blank">哈贝鲁村</a>
+				</td>
+				<td>
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299004.jpg"
+						target="_blank">索奇亚海底洞窟</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1516683542001.jpg"
+						target="_blank">洪恩大风洞</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1622695246001.jpg"
+						target="_blank">流星山-上山</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1622695246002.jpg"
+						target="_blank">流星山-饲养</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./image/map/slnd.webp" target="_blank">莎莲娜岛</a>
+				</td>
+				<td>
+					<a href="./image/map/jnw.webp"
+						target="_blank">杰诺瓦镇</a> <br />
+					<a href="./image/map/dn.webp"
+						target="_blank">蒂娜村</a> <br />
+					<a href="./image/map/abns.webp"
+						target="_blank">阿巴尼斯村</a> <br />
+					<a href=""
+						target="_blank">魔法大学</a>
+				</td>
+				<td>
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508387299003.jpg"
+						target="_blank">莎莲娜海底洞窟</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508815134001.jpg"
+						target="_blank">莎莲娜西边洞窟</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1508554871001.jpg"
+						target="_blank">莎莲娜东边洞窟</a> <br />
+					<a href="http://images.17173.com/cg/images/item/mi_drago.gif" target="_blank">青龙洞窟</a>
+				</td>
+			</tr>
 
-	</div>
-	<div id="body">
-		<div id="frame">
-			<div id="head">
-				最新消息
-			</div>
-			<div id="news">
-				<div id="news_head">
-					&nbsp;
-				</div>
-				<div id="news_body">
-					<table>
-						<tr>
-							<td width="27">&nbsp;</td>
-							<td width="50">&nbsp;</td>
-							<td>
-								<font color="#ff0000">&nbsp;</font>
-							</td>
-						</tr>
-					</table>
-					<table class="mission">
-						<tbody>
-							<tr>
-								<td></td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="27">dd/mm</td>
-								<td width="50">官网消息</td>
-								<td style="text-align: left">
-								</td>
-							</tr>
-							<tr>
-								<td></td>
-							</tr>
-							<tr style="vertical-align: top">
-								<td width="27">dd/mm</td>
-								<td width="50">官网消息</td>
-								<td style="text-align: left">
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div id="news_siteinfo">
-					<table style="text-align: left; width: 100%">
-						<tr>
-							<th colspan="2">本站資訊</th>
-						</tr>
-						<tr>
-							<td>網址:
-								<a href="https://jcymeow.github.io/DreamGate/"
-									target="_parent">https://jcymeow.github.io/DreamGate/</a>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th colspan="2">最佳浏览模式</th>
-						</tr>
-						<tr>
-							<td style="width: 45%">浏览器: Google Chrome</td>
-							<td style="width: 55%">分辨率: 1024 * 768</td>
-						</tr>
-					</table>
-				</div>
-			</div>
+			<tr>
+				<td rowspan="3">
+					亚诺曼王国
+				</td>
+				<td>
+					<a href="./image/map/dwtd.webp" target="_blank">德威特岛</a>
+				</td>
+				<td>
+					<a href=""
+						target="_blank">亚诺曼城</a> <br />
+					<a href="./image/map/kr.webp"
+						target="_blank">克瑞村</a> <br />
+					<a href="./image/map/md.webp"
+						target="_blank">摩顿村</a> <br />
+					<a href="./image/map/nweh.webp"
+						target="_blank">尼维尔海村</a> <br />
+					<a href="./image/map/dmd.webp"
+						target="_blank">达米达村</a>
+				</td>
+				<td>
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1511460071001.jpg"
+						target="_blank">立葛曲洞</a>
+				</td>
+			</tr>
 
-			<div id="morelink" style="margin-top: 5px">
-				<div style="height: 15px; padding-top: 10px"></div>
-				<div style="background-position: -600px 0px">
-					<table style="width: 98%;text-align: left;margin:auto">
-						<tr>
-							<td></td>
-						</tr>
-					</table>
-				</div>
-				<div style="height: 9px; background-position: 0px -25px; font-size: 0px"></div>
-			</div>
-		</div>
-		<div style="float: left; margin-left: 10px" id="link">
-			<div style="height: 15px; padding-top: 10px">
-			</div>
-			<div class="link" onmouseover="this.style.backgroundPosition='0px -65px'"
-				onmouseout="this.style.backgroundPosition='0px -25px'">
-				A
+			<tr>
+				<td>
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1509379107001.jpg"
+						target="_blank">杰诺姆岛</a>
+				</td>
+				<td>
+					<a href="./image/map/lon.webp"
+						target="_blank">蕾欧娜村</a>
+				</td>
+				<td>
 
-			</div>
-			<div class="link" onmouseover="this.style.backgroundPosition='0px -65px'"
-				onmouseout="this.style.backgroundPosition='0px -25px'">
-				B
-			</div>
-			<div class="link" style="line-height: 16px" onmouseover="this.style.backgroundPosition='0px -65px'"
-				onmouseout="this.style.backgroundPosition='0px -25px'">
-				C
-			</div>
-			<div class="link" style="line-height: 16px" onmouseover="this.style.backgroundPosition='0px -65px'"
-				onmouseout="this.style.backgroundPosition='0px -25px'">
-				D
-			</div>
-			<div class="link" style="height: 38px; line-height: 16px; padding-top: 2px"
-				onmouseover="this.style.backgroundPosition='0px -65px'"
-				onmouseout="this.style.backgroundPosition='0px -25px'">
-				E
-			</div>
-			<div class="link" style="height: 38px; line-height: 16px; padding-top: 2px"
-				onmouseover="this.style.backgroundPosition='0px -65px'"
-				onmouseout="this.style.backgroundPosition='0px -25px'">
-				F
-			</div>
-			<div class="link" style="height: 20px" onmouseover="this.style.backgroundPosition='0px -65px'"
-				onmouseout="this.style.backgroundPosition='0px -25px'">
-				G
-			</div>
-			<div style="height: 8px; background-position: 0px -105px; font-size: 0px">
-			</div>
-			<div style="margin-top: 5px; height: 15px; background-position: 0px -113px; padding-top: 10px">
-			</div>
-			<div style="background-position: -160px 0px; line-height: 20px">
-				友情連結<br>
-				<a href="http://www.dreamgate.cc/" target="_blank">回忆官网</a><br>
-				<a href="http://cg.17173.com/" target="_blank">17173</a><br>
-				<a href="http://www.molibaike.com/" target="_blank">魔力百科</a><br>
-				<a href="https://cgsword.com/" target="_blank">御剑轩</a><br>
-				<a href="https://bluecg.gamerch.com/" target="_blank">水蓝魔力wiki</a><br>
-			</div>
-			<div style="height: 8px; background-position: 0px -105px; font-size: 0px">
-			</div>
-		</div>
-	</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					弗利德岛
+				</td>
+				<td>
+					汉米顿村
+				</td>
+				<td>
+					<a href="./image/map/bzsd.webp"
+						target="_blank">冰之神殿</a> <br />
+					<a href=""
+						target="_blank">库德洞窟-STAR</a> <br />
+					<a href="./image/map/hyzg.webp"
+						target="_blank">火炎之谷</a> <br />
+					库德洞窟-SOFT <br />
+					汉米顿村域
+				</td>
+			</tr>
+			<tr>
+				<td><苏国</td>
+				<td><a href="./image/map/mnged.webp" target="_blank">米內葛尔岛</a></td>
+				<td>
+					<a href="./image/map/aklf.webp"
+						target="_blank">阿凯鲁法村</a> <br />
+					<a href="./image/map/knbl.webp"
+						target="_blank">坎那贝拉村</a>
+				</td>
+				<td>
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1506500385001.jpg"
+						target="_blank">南恰拉山1/2通道</a> <br />
+					<a href="http://images.17173.com/cg/images/item/mi_nacha.gif" target="_blank">南恰拉山-矿物</a> <br />
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1577936325001.jpg"
+						target="_blank">海底通道-路线</a> <br />
+					<a href="https://s3.bmp.ovh/imgs/2022/08/21/5abba5a355a63787.gif" target="_blank">海底通道-矿物</a>
+				</td>
+			</tr>
+			<tr>
+				<td>艾尔巴尼亚王国</td>
+				<td><a href="https://cgsword.com/image/map/map5.jpg" target="_blank">库鲁克斯岛</a></td>
+				<td>
+					<a href="https://cdn.img-conv.gamerch.com/img.gamerch.com/bluecg/1563528050001.jpg"
+						target="_blank">哥拉尔镇</a> <br />
+					<a href="./image/map/lmns.webp"
+						target="_blank">鲁米纳斯村</a> <br />
+					<a href="./image/map/mnjy.webp"
+						target="_blank">米诺基亚村</a> <br />
+					<a href="./image/map/lkte.webp"
+						target="_blank">雷克塔尔村</a>
+				</td>
+				<td>
+					<a href=""
+						target="_blank">麦尼村</a> <br />
+					<a href="http://www.quietmoli.com/images/map/md001_01.jpg" target="_blank">伊利斯矿山-路线</a> <br />
+					<a href="http://image2.sina.com.cn/gm/ol/cross/kuangqu/mi_elice2.gif" target="_blank">伊利斯矿山-矿物</a>
+					<br />
+					<a href="" target="_blank">贝尼恰斯火山</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 
 </html>

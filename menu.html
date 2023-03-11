@@ -10,7 +10,7 @@
 	<style type="text/css">
 		html {
 			height: 100%;
-			
+
 		}
 
 		body {
@@ -28,8 +28,9 @@
 		div#head {
 			width: 200px;
 			height: 94px;
-			background-image: url('image/menu/logo.png');
-			background-position: right top;
+			background-image: url(./image/menu/logo.png);
+			background-position: left top;
+			background-size:90% 100%;
 		}
 
 		div.button,
@@ -75,6 +76,14 @@
 	<script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
 	<script type="text/javascript" src="js/function.js"></script>
 	<script type="text/javascript">
+
+		$(function () {
+			//initMission
+			$.getJSON('./data/mission.json', function(data){
+				initMission(data)
+			});
+		});
+
 		var lastmenu;
 		function doSection(secNum) {
 			if (lastmenu == secNum) {
@@ -102,9 +111,7 @@
 			}
 			document.documentElement.scrollTop = document.body.clientHeight;
 		}
-		$(function () {
-			//$.ajax({url:'userupdate.php?lp='+parent.frames['main'].document.location+'&sd='+screen.width+'x'+screen.height});
-		});
+
 		function moveIn(event) {
 			var x = parseInt($(event).css("background-position-x"));
 			$(event).css("background-position-x", (x - 120) + "px");
@@ -114,10 +121,18 @@
 			$(event).css("background-position-x", (x + 120) + "px");
 		}
 
-		function move(event, xPos, yPos) {
-			event.style.backgroundPosition = xPos + "px " + yPos + "px";
+		function initMission(data){
+			$('#menu4').empty();
+			$(data).each(function(i, mission){
+				var link = new Array();
+				link.push('<a href="./mission.html?id=');
+				link.push(mission.id);
+				link.push('">');
+				link.push(mission.name);
+				link.push('</a><br>');
+				$('#menu4').append(link.join(''));
+			});
 		}
-
 	</script>
 </head>
 
@@ -129,23 +144,35 @@
 		<a id="button2" class="button" href="./main.html" style="background-position: 0px -40px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
 		<a id="button3" class="button" href="./main.html" style="background-position: 0px -80px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
 		<a id="button5" class="button" href="./main.html" style="background-position: 0px -160px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-		<a id="button6" class="button" href="./main.html" style="background-position: 0px -200px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+		
 		<a id="button7" class="button" href="./main.html" style="background-position: 0px -240px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
 		<a id="button8" class="button" href="./main.html" style="background-position: 0px -280px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+		<a id="button10" class="button" href="./other.html" style="background-position: 0px -360px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
 	-->
-	<a id="button1" class="button" href="./main.html" style="background-position: 0px 0px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)" ></a>
+	<a id="button1" class="button" href="./main.html" style="background-position: 0px 0px;" onmouseover="moveIn(this)"
+		onmouseout="moveOut(this)"></a>
 
-	<a id="button4" class="button" href="./mission.html" style="background-position: 0px -120px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)" ></a>
-
-	<div id="button9" class="button" style="background-position: 0px -320px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)" onclick="javascript:doSection('menu9')" ></div>
-
-	<div id="menu9" class="menu">
-		<a href="./gameMap.html">原版地图</a><br>
+	<div id="button4" class="button" style="background-position: 0px -120px;" onmouseover="moveIn(this)"
+		onmouseout="moveOut(this)" onclick="javascript:doSection('menu4')"></div>
+	<div id="menu4" class="menu">
+		<a href="javascript:void(0);">原版地图</a><br>
 		<a href="./map.html?area=1">1区路线图</a><br>
 		<a href="./map.html?area=2">2区路线图</a><br>
-	</div>	
+	</div>
 
-	<a id="button10" class="button" href="./other.html" style="background-position: 0px -360px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+
+	<a id="button6" class="button" href="./goods.html" style="background-position: 0px -200px;"
+		onmouseover="moveIn(this)" onmouseout="moveOut(this)"></a>
+
+	<div id="button9" class="button" style="background-position: 0px -320px;" onmouseover="moveIn(this)"
+		onmouseout="moveOut(this)" onclick="javascript:doSection('menu9')"></div>
+	<div id="menu9" class="menu">
+		<a href="javascript:void(0);">原版地图</a><br>
+		<a href="./map.html?area=1">1区路线图</a><br>
+		<a href="./map.html?area=2">2区路线图</a><br>
+	</div>
+
+
 
 </body>
 

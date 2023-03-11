@@ -8,7 +8,7 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script>
-        
+
         $(function () {
             import mapData from './data/map2.json';
             initMap(mapData);
@@ -46,7 +46,7 @@
                             html.push('<tr>');
                             //tag
                             if (k == 0) {
-                                if(mu == 1){
+                                if (mu == 1) {
                                     html.push('<td>');
                                     html.push(tr.tag || '&nbsp;');
                                     html.push('</td>')
@@ -57,7 +57,7 @@
                                     html.push(tr.tag || '&nbsp;');
                                     html.push('</td>')
                                 }
-                            } 
+                            }
                             //data
                             for (var l = 0; l < 10; l++) {
                                 var idx = k * 10 + l;

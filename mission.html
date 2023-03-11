@@ -5,12 +5,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="./css/css.css">
+	<!--
 	<style type="text/css">
 		html {
 			width:  1600px;
 			height: 2116px;
 		}
-
 		body {
 			background-image:url(./image/mission.png);
             background-repeat:no-repeat;
@@ -18,13 +18,27 @@
 			background-attachment: scroll;
 		}
 	</style>
+	-->
+	<script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
 	<script type="text/javascript">
-
+		$(function () {
+            var id = getUrlParam("id") || 1;
+			$("#mission_bar").attr("src", "./mission_list.html?id="+id);
+			$("#mission_bar").click();
+        });
+		function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
 	</script>
 </head>
 
-<body>
-
-</body>
+<frameset cols="182,*" framespacing="0" border="0" frameborder="0">
+	<frame id="mission_bar" name="mission_bar" scrolling="auto"
+		style="background: #e4e4cc url('image/background.jpg') repeat fixed center center;"></frame>
+	<frame id="mission_content" name="mission_content"
+		style="background: #e4e4cc url('image/background.jpg') repeat fixed center center;"></frame>
+</frameset>
 
 </html>

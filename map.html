@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script>
+    <script type="text/javascript">
         $(function () {
-            var area = getUrlParam("area");
+            var area = getUrlParam("area") || 1;
             $.getJSON("./data/map"+area+".json", function(mapData){
+                console.log(mapData);
                 initMap(mapData);
             });
         });

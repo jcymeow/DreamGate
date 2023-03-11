@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width">
-		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-		<title>魔力回忆2资料站</title>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery-ui.min.js"></script>
-		<link href="css/jquery-ui.min.css" rel="stylesheet">
-		<script>
-			$(function(){
-				tab('0.html');
-			});
-			function tab(src){
-				$("#spa").hide();
-				$('#win').attr('src', src);
-			}
-		</script>
-	</head>
-	<body>
-		<a href="#" onClick="tab('0.html')">首页</a>
-		<a href="#" onClick="tab('1.html')">1区共享地图</a>
-		<a href="#" onClick="tab('2.html')">2区共享地图</a>
-		<a href="#" onClick="tab('成长模拟器4.02.html')">成长模拟器v4.0.2</a>
-		<a href="#" onClick="tab('洗档模拟器4.02.html')">洗档模拟器v4.0.2</a>
-		<hr/>
-		<iframe id="win" style="width:1080px;height:1080px"></iframe>
-	</body>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>魔力回忆2 - 资料站</title>
+</head>
+<frameset cols="182,*" framespacing="0" border="0" frameborder="0">
+<frame name="contents" src="./menu.html" scrolling="auto" noresize style="background: #D8CCA8 url('image/menu/background.jpg') repeat-y fixed right top">
+<frame name="main" src="./main.html" style="background: #e4e4cc url('image/background.jpg') repeat fixed center center;">
+</frameset>
 </html>

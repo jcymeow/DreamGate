@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title></title>
+    <link rel="stylesheet" type="text/css" href="./css/css.css">
+    <style>
+        body {
+            width:180px;
+        }
+
+        table.style {
+            width:140px;
+        }
+    </style>
+	<base href="." target="mission_content">
+    <script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+            var id = getUrlParam("id") || 1;
+            $.getJSON('./data/mission.json', function(data){
+                $(data).each(function(i, ms){
+                    if(ms.id == id){
+                        var links = new Array();
+                        $(ms.data).each(function(j, m){
+                            links.push('<tr class="style"><td>')
+                            links.push('<a id="mb');
+                            links.push(j);
+                            links.push('" class="menu" href="./');
+                            links.push(m.page)
+                            links.push('">');
+                            links.push(m.name);1
+                            links.push('</a><br></td></tr>');
+                        });
+                        $('#mession_table_body').append(links.join(''));
+                        $('#mession_table_body').find('a').eq(0).click();
+                    }
+                });
+            });
+        });
+
+		function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+	</script>
+</head>
+<body>
+    <table class="style">
+        <tbody id="mession_table_body">
+
+        </tbody>
+    </table>
+</body>
+</html>

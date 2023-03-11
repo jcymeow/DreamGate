@@ -1,0 +1,74 @@
+@charset "gb2312";
+/**
+* SDG CopyRight
+* Jan 2011
+* Ivan Xuximing @ SDG
+* xuximing@shandagames.com
+*/
+
+@import url("copy.css");
+.SDGCOPYRIGHT-wrap{
+	background:#000 url("../img/bg_w.jpg") repeat-x left top;
+}
+#SDGCOPYRIGHT{
+	background:#000 url("../img/bg_w.jpg") repeat-x left top;
+}
+.SDGCOPYRIGHT-logo1,
+.SDGCOPYRIGHT-logol{
+	background:url("../img/SDG_logo_w.jpg") no-repeat left top;
+}
+
+.SDGCOPYRIGHT-con{
+	background:url("../img/slice_w.jpg") no-repeat left top;
+}
+
+.SDGCOPYRIGHT-priv1{
+	background:url("../img/plc_1_w.jpg") no-repeat left top;
+}
+.SDGCOPYRIGHT-priv2{
+	background:url("../img/plc_2_w.jpg") no-repeat left top;
+}
+.SDGCOPYRIGHT-priv3{
+	background:url("../img/img_cp_jubao_w.png") no-repeat left top;
+}
+
+.add1026 {color:#c81b21}
+.add1026 span { margin:0 10px;color:#c81b21}
+.SDGCOPYRIGHT-wrap .add1026 a:link,.SDGCOPYRIGHT-wrap .add1026 a:visited { color:#c81b21}
+.SDGCOPYRIGHT-wrap .add1026 a:hover { color:#c81b21}
+
+
+
+
+
+/** new copyright start add by shanjie **/
+.SDGCOPYRIGHT-wrap20130425{
+	background:#000 url("../img/bg_w.jpg") repeat-x left top;
+}
+.SDGCOPYRIGHT-wrap20130425 #SDGCOPYRIGHT{
+	background:#000 url("../img/bg_w.jpg") repeat-x left top;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-logo1,
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-logol{
+	background:url("../img/SDG_logo_w.jpg") no-repeat left top;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-con{
+	background:url("../img/slice_w.jpg") no-repeat left top;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv1{
+	background:url("../img/plc_1_w.jpg") no-repeat left top;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv2{
+	background:url("../img/plc_2_w.jpg") no-repeat left top;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv3{
+	background:url("../img/img_cp_jubao_w.png") no-repeat left top;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .add1026 {color:#c81b21}
+.SDGCOPYRIGHT-wrap20130425 .add1026 span { margin:0 10px;color:#c81b21}
+.SDGCOPYRIGHT-wrap20130425 .add1026 a:link,.SDGCOPYRIGHT-wrap20130425 .add1026 a:visited { color:#c81b21}
+.SDGCOPYRIGHT-wrap20130425 .add1026 a:hover { color:#c81b21}
+/** new copyright end add by shanjie **/

@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="module">
+        import mapData from './data/map1.json';
+    </script>
     <script>
-
         $(function () {
-            import mapData from './data/map2.json';
             initMap(mapData);
         });
 

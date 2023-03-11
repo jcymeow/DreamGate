@@ -9,7 +9,10 @@
     <script type="text/javascript">
         $(function () {
             var area = getUrlParam("area") || 1;
-            $.getJSON("./data/map"+area+".json", function(mapData){
+            console.log(area);
+            var file = './data /map'+area+'.json';
+            console.log(file);
+            $.getJSON("./data/map"+area+".json", null, function(mapData){
                 console.log(mapData);
                 initMap(mapData);
             });

@@ -1,140 +1,151 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>魔力回忆2 - 资料站</title>
-<!--<base target="main">--><base href="." target="main">
-<style type="text/css">
-html {
-	height: 100%;
-	/*cursor: url('cursor.cur'),auto;*/
-}
-body {
-	width: 164px;
-	margin: 5px 0px 5px 0px;
-	background: #D8CCA8 url('image/menu/background.jpg') repeat-y fixed right top;
-}
-div {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-div#head {
-	width: 200px;
-	height: 94px;
-	background-image: url('image/menu/logo.png');
-	background-position: right top;
-}
-div.button,a.button {
-	width: 120px;
-	height: 40px;
-	background-image: url('image/menu/menu.png');
-	background-repeat: no-repeat;
-	cursor: url('./alink.cur'),auto;
-	margin-top: 2px;
-	display: block;
-    margin: 2px auto auto auto;
-}
-div.button a {
-	width: 120px;
-	height: 40px;
-}
-div.menu {
-	width: 110px;
-	font-size: 9pt;
-	overflow: hidden;
-	display: none;
-	margin: 0px auto 0px auto;
-	background-image: url('image/menu/menu.png');
-	background-position: -240px bottom;
-}
-div.menu a {
-	text-decoration: none;
-	color: #0000FF;
-	line-height: 18px;
-	/*cursor: url('alink.cur'),auto;*/
-	border: 0px transparent none;
-}
-div.menu a:hover, div.menu a:focus {
-	border-bottom: 1px #663300 dashed;
-}
-</style>
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="js/function.js"></script>
-<script type="text/javascript">
-var lastmenu;
-function doSection(secNum){
-	if(lastmenu == secNum){
-		showmenu(secNum,0,document.getElementById(secNum).clientHeight,'off');
-		lastmenu = null;
-	}else{
-		if(lastmenu != null) showmenu(lastmenu,0,document.getElementById(lastmenu).clientHeight,'off');
-		document.getElementById(secNum).style.display="block";
-		showmenu(secNum,0,document.getElementById(secNum).clientHeight,'show');
-		lastmenu = secNum;
-	}
-}
-function gotourl(loca){
-	parent.frames['main'].document.location= loca;
-}
-function showmenu(id,o,orgh,a){
-	s = document.getElementById(id).style;
-	if(o<0.99){
-		o+= (1-o) * 0.5;
-		s.height = a == 'show' ? orgh * o + 'px' : orgh * (1-o) + 'px';
-		setTimeout('showmenu("'+id+'",'+o+','+orgh+',"'+a+'")',1);
-	}else{
-		if(a != 'show') s.display="none";
-		s.height = orgh + 'px';
-	}
-	document.documentElement.scrollTop = document.body.clientHeight;
-}
-$(function(){
-    //$.ajax({url:'userupdate.php?lp='+parent.frames['main'].document.location+'&sd='+screen.width+'x'+screen.height});
-});
-function moveIn(event){
-var x = parseInt($(event).css("background-position-x"));
-$(event).css("background-position-x", (x-120)+"px");
-}
-function moveOut(event){
-var x = parseInt($(event).css("background-position-x"));
-$(event).css("background-position-x", (x+120)+"px");
-}
+<html>
 
-function move(event, xPos, yPos){
-event.style.backgroundPosition= xPos +"px "+yPos+"px";
-}
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>魔力回忆2 - 资料站</title>
+	<!--<base target="main">-->
+	<base href="." target="main">
+	<style type="text/css">
+		html {
+			height: 100%;
+			/*cursor: url('cursor.cur'),auto;*/
+		}
 
-</script>
+		body {
+			width: 164px;
+			margin: 5px 0px 5px 0px;
+			background: #D8CCA8 url('image/menu/background.jpg') repeat-y fixed right top;
+		}
+
+		div {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+
+		div#head {
+			width: 200px;
+			height: 94px;
+			background-image: url('image/menu/logo.png');
+			background-position: right top;
+		}
+
+		div.button,
+		a.button {
+			width: 120px;
+			height: 40px;
+			background-image: url('image/menu/menu.png');
+			background-repeat: no-repeat;
+			cursor: url('./alink.cur'), auto;
+			margin-top: 2px;
+			display: block;
+			margin: 2px auto auto auto;
+		}
+
+		div.button a {
+			width: 120px;
+			height: 40px;
+		}
+
+		div.menu {
+			width: 110px;
+			font-size: 9pt;
+			overflow: hidden;
+			display: none;
+			margin: 0px auto 0px auto;
+			background-image: url('image/menu/menu.png');
+			background-position: -240px bottom;
+		}
+
+		div.menu a {
+			text-decoration: none;
+			color: #0000FF;
+			line-height: 18px;
+			/*cursor: url('alink.cur'),auto;*/
+			border: 0px transparent none;
+		}
+
+		div.menu a:hover,
+		div.menu a:focus {
+			border-bottom: 1px #663300 dashed;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/function.js"></script>
+	<script type="text/javascript">
+		var lastmenu;
+		function doSection(secNum) {
+			if (lastmenu == secNum) {
+				showmenu(secNum, 0, document.getElementById(secNum).clientHeight, 'off');
+				lastmenu = null;
+			} else {
+				if (lastmenu != null) showmenu(lastmenu, 0, document.getElementById(lastmenu).clientHeight, 'off');
+				document.getElementById(secNum).style.display = "block";
+				showmenu(secNum, 0, document.getElementById(secNum).clientHeight, 'show');
+				lastmenu = secNum;
+			}
+		}
+		function gotourl(loca) {
+			parent.frames['main'].document.location = loca;
+		}
+		function showmenu(id, o, orgh, a) {
+			s = document.getElementById(id).style;
+			if (o < 0.99) {
+				o += (1 - o) * 0.5;
+				s.height = a == 'show' ? orgh * o + 'px' : orgh * (1 - o) + 'px';
+				setTimeout('showmenu("' + id + '",' + o + ',' + orgh + ',"' + a + '")', 1);
+			} else {
+				if (a != 'show') s.display = "none";
+				s.height = orgh + 'px';
+			}
+			document.documentElement.scrollTop = document.body.clientHeight;
+		}
+		$(function () {
+			//$.ajax({url:'userupdate.php?lp='+parent.frames['main'].document.location+'&sd='+screen.width+'x'+screen.height});
+		});
+		function moveIn(event) {
+			var x = parseInt($(event).css("background-position-x"));
+			$(event).css("background-position-x", (x - 120) + "px");
+		}
+		function moveOut(event) {
+			var x = parseInt($(event).css("background-position-x"));
+			$(event).css("background-position-x", (x + 120) + "px");
+		}
+
+		function move(event, xPos, yPos) {
+			event.style.backgroundPosition = xPos + "px " + yPos + "px";
+		}
+
+	</script>
 </head>
-<body style="">
-<div id="head">
 
-</div>
+<body>
+	<div id="head">
 
-<a id="button1" class="button" href="./1.html" style="background-position: 0px 0px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-<!--<a id="button2" class="button" href="./main.html" style="background-position: 0px -40px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-<a id="button3" class="button" href="./main.html" style="background-position: 0px -80px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>-->
-<a id="button4" class="button" href="./2.html" style="background-position: 0px -120px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-<!--<a id="button5" class="button" href="./main.html" style="background-position: 0px -160px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-<a id="button6" class="button" href="./main.html" style="background-position: 0px -200px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-<a id="button7" class="button" href="./main.html" style="background-position: 0px -240px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-<a id="button8" class="button" href="./main.html" style="background-position: 0px -280px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-<a id="button9" class="button" href="./main.html" style="background-position: 0px -320px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
-<a id="button10" class="button" href="./main.html" style="background-position: 0px -360px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>-->
+	</div>
+	<!--
+		<a id="button2" class="button" href="./main.html" style="background-position: 0px -40px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+		<a id="button3" class="button" href="./main.html" style="background-position: 0px -80px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+		<a id="button5" class="button" href="./main.html" style="background-position: 0px -160px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+		<a id="button6" class="button" href="./main.html" style="background-position: 0px -200px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+		<a id="button7" class="button" href="./main.html" style="background-position: 0px -240px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+		<a id="button8" class="button" href="./main.html" style="background-position: 0px -280px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
+	-->
+	<a id="button1" class="button" href="./main.html" style="background-position: 0px 0px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)" ></a>
 
-<script type="text/javascript">
+	<a id="button4" class="button" href="./mission.html" style="background-position: 0px -120px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)" ></a>
 
-/**
-for(i=0;i<11;i++){
-	style="background-position: 0px 0px;"
+	<div id="button9" class="button" style="background-position: 0px -320px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)" onclick="javascript:doSection('menu9')" ></div>
 
-	btn = document.getElementById('button'+(i+1));
-	setbgposition(btn,'auto',-i*40);
-	btn.onmouseover = function(){setbgposition(this.id,-120,'auto');}
-	btn.onmouseout = function(){setbgposition(this.id,0,'auto');}
-}
-**/
-</script>
+	<div id="menu9" class="menu">
+		<a href="./map.html?area=1">1区</a><br>
+		<a href="./map.html?area=2">2区</a><br>
+	</div>	
+
+	<a id="button10" class="button" href="./other.html" style="background-position: 0px -360px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
 
 </body>
+
 </html>

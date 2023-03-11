@@ -9,12 +9,9 @@
     <script type="text/javascript">
         $(function () {
             var area = getUrlParam("area") || 1;
-            console.log(area);
             var file = './data/map'+area+'.json';
-            console.log(file);
-            $.getJSON(file, null, function(mapData){
-                console.log(mapData);
-                initMap(mapData);
+            $.getJSON(file, function(data){
+                initMap(data);
             });
         });
 
@@ -26,7 +23,6 @@
 
         function initMap(json) {
             $("#title").html(json.name + " " + json.timestamp);
-
             var html = new Array();
             if (json.maps) {
                 $(json.maps).each(function (i, map) {

@@ -123,15 +123,16 @@
 
 		function initMission(data){
 			$('#menu4').empty();
+			var links = new Array();
 			$(data).each(function(i, mission){
-				var link = new Array();
-				link.push('<a href="./mission.html?id=');
-				link.push(mission.id);
-				link.push('">');
-				link.push(mission.name);
-				link.push('</a><br>');
-				$('#menu4').append(link.join(''));
+				links.push('<a href="./mission.html?id=');
+				links.push(mission.id);
+				links.push('">');
+				links.push(mission.name);
+				links.push('</a><br>');
+				
 			});
+			$('#menu4').append(links.join(''));
 		}
 	</script>
 </head>
@@ -155,9 +156,7 @@
 	<div id="button4" class="button" style="background-position: 0px -120px;" onmouseover="moveIn(this)"
 		onmouseout="moveOut(this)" onclick="javascript:doSection('menu4')"></div>
 	<div id="menu4" class="menu">
-		<a href="javascript:void(0);">原版地图</a><br>
-		<a href="./map.html?area=1">1区路线图</a><br>
-		<a href="./map.html?area=2">2区路线图</a><br>
+		
 	</div>
 
 

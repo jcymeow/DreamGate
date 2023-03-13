@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" type="text/css" href="./css/css.css" media="screen">
     <script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
     <script type="text/javascript">
         //每行数量
@@ -29,15 +30,16 @@
             var html = new Array();
             if (json.maps) {
                 $(json.maps).each(function (i, map) {
+                    html.push('<p></p>');
                     //table-title
-                    html.push('<table style="width:792px;table-layout:fixed;" border="1">');
-                    html.push('<tr><th colspan="'+(num)+'" aligh="left">');
+                    html.push('<table class="style" style="table-layout:fixed;">');
+                    html.push('<tr class="head"><td colspan="'+(num+1)+'" aligh="left">');
                     html.push(map.name);
                     html.push('&nbsp;&nbsp;&nbsp;&nbsp;');
                     html.push(map.line ? map.line + '线' : map.line || '');
-                    html.push('</th><th>&nbsp;By&nbsp;&nbsp;&nbsp;');
-                    html.push(map.author || '');
-                    html.push('</th></tr>');
+                    html.push('&nbsp;&nbsp;&nbsp;&nbsp;');
+                    html.push(map.author ? 'By&nbsp;'+map.author : '');
+                    html.push('</td></tr>');
 
                     //table-head
                     /**
@@ -62,11 +64,11 @@
                             //tag
                             if (k == 0) {
                                 if (mu == 1) {
-                                    html.push('<td>');
+                                    html.push('<td class="head">');
                                     html.push(tr.tag || '&nbsp;');
                                     html.push('</td>')
                                 } else {
-                                    html.push('<td rowSpan="');
+                                    html.push('<td class="head" rowSpan="');
                                     html.push(mu)
                                     html.push('">')
                                     html.push(tr.tag || '&nbsp;');

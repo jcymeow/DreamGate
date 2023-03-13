@@ -81,8 +81,8 @@
 
 		$(function () {
 			//initMission
-			$.getJSON('./data/mission.json', function(data){
-				initMission(data)
+			$.getJSON('./data/mission.json', function(list){
+				initMission(list)
 			});
 		});
 
@@ -123,14 +123,16 @@
 			$(event).css("background-position-x", (x + 120) + "px");
 		}
 
-		function initMission(data){
+		function initMission(list){
 			$('#menu4').empty();
 			var links = new Array();
-			$(data).each(function(i, mission){
-				links.push('<a href="./mission.html?id=');
-				links.push(mission.id);
-				links.push('">');
-				links.push(mission.name);
+			$(list).each(function(i, series){
+				links.push('<a href="./')
+				links.push(series.data[0].page);
+				links.push('?id=');
+				links.push(series.id);
+				links.push('&idx=0">');
+				links.push(series.name);
 				links.push('</a><br>');
 				
 			});

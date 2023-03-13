@@ -1,0 +1,325 @@
+@charset "gb2312";
+/**
+* SDG CopyRight
+* Jan 2011
+* Ivan Xuximing @ SDG
+* xuximing@shandagames.com
+*/
+.SDGCOPYRIGHT-wrap{
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:12px;
+	height:132px;
+	color:#888;
+	width:auto;
+  text-align:center;
+}
+.SDGCOPYRIGHT-wrap *{
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:12px;
+	font-family:宋体;
+	color:#888;
+  text-align:left;
+}
+.SDGCOPYRIGHT-wrap a,
+.SDGCOPYRIGHT-wrap a:link,
+.SDGCOPYRIGHT-wrap a:active,
+.SDGCOPYRIGHT-wrap a:visited
+{
+	text-decoration:none;
+  color:#888;
+}
+.SDGCOPYRIGHT-wrap a:hover{
+  color:#888;
+	text-decoration:underline;
+}
+
+#SDGCOPYRIGHT{
+	width:980px;
+	height:132px;
+	margin:0 auto;
+}
+
+#SDGCOPYRIGHT_1{
+	width:1220px;
+	height:132px;
+	margin:0 auto;
+}
+
+.SDGCOPYRIGHT-logo{
+	float:left;
+	width:222px;
+	height:66px;
+	margin:33px 0 0 30px;
+	display:inline;
+}
+.SDGCOPYRIGHT-logo-1{
+	float:left;
+	width:auto;
+	height:66px;
+	margin:33px 0 0 30px;
+	display:inline;
+}
+
+.SDGCOPYRIGHT-logo a{
+	float:left;
+}
+.SDGCOPYRIGHT-logol{
+	height:66px;
+	width:64px;
+	margin:0 0 0 65px;
+	text-indent:-99999px;
+}
+.SDGCOPYRIGHT-logo1{
+	height:66px;
+	width:64px;
+	margin:0 30px 0 0;
+	text-indent:-99999px;
+}
+.SDGCOPYRIGHT-con{
+	float:left;
+	text-align:left;
+	margin:0 0 0 0;
+	padding:15px 0 0 27px;
+	display:inline;
+	width:422px;
+	height:117px;
+}
+
+.SDGCOPYRIGHT-con p{
+	margin:0;
+	text-align:left;
+	line-height:18px;
+	font-family:宋体;
+	height:18px;
+	overflow:hidden;
+}
+.SDGCOPYRIGHT-con a *{
+  cursor:pointer;
+}
+
+.SDGCOPYRIGHT-ct{
+	float:left;
+	font-family:宋体;
+	width:155px;
+}
+
+.SDGCOPYRIGHT-sdlogo{
+	 /* background:url("http://pic.static.sdo.com/SDGCOPYRIGHT/sndalogo.gif") no-repeat 240px center; */
+}
+
+
+.SDGCOPYRIGHT-priv{
+	float:left;
+	width:220px;
+	margin:42px 0 0 0;
+	display:inline;
+}
+.SDGCOPYRIGHT-priv a, .SDGCOPYRIGHT-priv span{
+	float:left;
+	margin:0 0 0 4px;
+}
+.SDGCOPYRIGHT-priv1{
+	width:45px;
+	height:44px;
+	text-indent:-99999px;
+}
+.SDGCOPYRIGHT-priv2{
+	width:45px;
+	height:44px;
+	text-indent:-99999px;
+}
+.SDGCOPYRIGHT-priv3{
+	width:111px;
+	height:45px;
+	text-indent:-99999px;
+}
+
+
+
+
+
+
+/** new copyright start add by shanjie **/
+.SDGCOPYRIGHT-wrap20130425{
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:12px;
+	height:132px;
+	color:#888;
+	width:auto;
+  text-align:center;
+}
+.SDGCOPYRIGHT-wrap20130425 *{
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:12px;
+	font-family:宋体;
+	color:#888;
+  text-align:left;
+}
+.SDGCOPYRIGHT-wrap20130425 a,
+.SDGCOPYRIGHT-wrap20130425 a:link,
+.SDGCOPYRIGHT-wrap20130425 a:active,
+.SDGCOPYRIGHT-wrap20130425 a:visited
+{
+	text-decoration:none;
+  color:#888;
+}
+.SDGCOPYRIGHT-wrap20130425 a:hover{
+  color:#888;
+	text-decoration:underline;
+}
+
+.SDGCOPYRIGHT-wrap20130425 #SDGCOPYRIGHT{
+	width:1215px;
+	height:132px;
+	margin:0 auto;
+}
+
+.SDGCOPYRIGHT-wrap20130425 #SDGCOPYRIGHT-fo{
+	width:1100px;
+	height:132px;
+	margin:0 auto;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-logo{
+	float:left;
+	width:222px;
+	height:66px;
+	margin:33px 0 0 30px;
+	display:inline;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-logo-fo{
+	float:left;
+	width:350px;
+	height:66px;
+	margin:33px 0 0 30px;
+	display:inline;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-logo-1{
+	float:left;
+	width:auto;
+	height:66px;
+	margin:33px 0 0 30px;
+	display:inline;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-logo a{
+	float:left;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-logol{
+	height:66px;
+	width:64px;
+	margin:0 0 0 65px;
+	text-indent:-99999px;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-logo1{
+	height:66px;
+	width:64px;
+	margin:0 30px 0 0;
+	text-indent:-99999px;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-con{
+	float:left;
+	text-align:left;
+	margin:0 0 0 0;
+	padding:28px 0 0 23px;
+	display:inline;
+	width:460px;
+	height:104px;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-con p{
+	margin:0;
+	text-align:left;
+	line-height:18px;
+	font-family:宋体;
+	height:19px;
+	overflow:hidden;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-con a *{
+  cursor:pointer;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-ct{
+	float:left;
+	font-family:宋体;
+	width:155px;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-sdlogo{
+	/* background:url("http://pic.static.sdo.com/SDGCOPYRIGHT/sndalogo.gif") no-repeat 240px center; */
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv{
+	float:left;
+	width:350px;
+	margin:42px 0 0 0;
+	display:inline;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv a,.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv span{
+	float:left;
+	margin:0 0 0 4px;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv1{
+	width:45px;
+	height:44px;
+	text-indent:-99999px;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv2{
+	width:45px;
+	height:44px;
+	text-indent:-99999px;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-priv3{
+	width:111px;
+	height:45px;
+	text-indent:-99999px;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-con p.add1026{height:24px;}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-pr3{padding-right:3px;}
+
+
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-conH{
+	float:left;
+	text-align:left;
+	margin:0 0 0 0;
+	padding:24px 0 0 43px;
+	display:inline;
+	width:440px;
+	height:108px;
+}
+
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-conH p{
+	margin:0;
+	text-align:left;
+	line-height:18px;
+	font-family:宋体;
+	height:22px;
+	overflow:hidden;
+}
+.SDGCOPYRIGHT-wrap20130425 .SDGCOPYRIGHT-conH a *{
+  cursor:pointer;
+}
+
+
+
+
+
+
+/** new copyright end add by shanjie **/
+
+
+
+
+
+
+

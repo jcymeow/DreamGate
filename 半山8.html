@@ -8,6 +8,13 @@
     <link rel="stylesheet" type="text/css" href="./css/white.css" media="screen">
     <link rel="stylesheet" type="text/css" href="./css/news.css" media="screen">
     <link rel="stylesheet" type="text/css" href="./css/nav_white.css" media="screen">
+    <script type="text/javascript" src="./js/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="./js/function.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            initMissionPage();
+        });        
+    </script>
 </head>
 
 <body>
@@ -18,8 +25,7 @@
                 <h1 class="tit">
                     <strong>任务攻略</strong><i class="en">news center</i>
                 </h1>
-                <div class="crumb">
-                    &gt; 游戏资料 &gt; 任务攻略</div>
+                <div id="crumb" class="crumb"></div>
             </div>
             <div class="news-content">
                 <h1 class="title">
@@ -30,9 +36,9 @@
                 <div class="content">
                     <p></p>
                     <div class="mission-info section"
-                        style="box-sizing: border-box; padding: 20px 0px; color: rgb(33, 37, 41); font-family: "
-                        microsoft="" yahei";="" font-size:="" 14px;="" white-space:="" normal;="" background-color:=""
-                        rgb(255,="" 255,="" 255);"="">
+                        style="box-sizing: border-box; padding: 20px 0px; color: rgb(33, 37, 41);" microsoft=""
+                        yahei";="" font-size:="" 14px;="" white-space:="" normal;="" background-color:="" rgb(255,=""
+                        255,="" 255);"="">
                         <h3 class="section-title clearfix"
                             style="box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; font-family: inherit; line-height: 1.7; color: rgb(91, 151, 214); font-size: 1.75rem; border-bottom: 1px solid rgb(207, 167, 106); position: relative;">
                             死神的降临&nbsp;
@@ -89,9 +95,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="section" style="box-sizing: border-box; color: rgb(33, 37, 41); font-family: "
-                        microsoft="" yahei";="" font-size:="" 14px;="" white-space:="" normal;="" background-color:=""
-                        rgb(255,="" 255,="" 255);"="">
+                    <div class="section" style="box-sizing: border-box; color: rgb(33, 37, 41);" microsoft="" yahei";=""
+                        font-size:="" 14px;="" white-space:="" normal;="" background-color:="" rgb(255,="" 255,=""
+                        255);"="">
                         <h4 class="section-title"
                             style="box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; font-family: inherit; line-height: 1.7; color: rgb(91, 151, 214); font-size: 1.5rem; border-bottom: 1px solid rgb(207, 167, 106); position: relative;">
                             详情</h4>
@@ -105,8 +111,7 @@
                             </p>
                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;"><span
                                     style="box-sizing: border-box; font-family: 宋体;">◆【结界之链】获得方式参考《<a class="datatag"
-                                        target="_blank"
-                                        href="./半山7.html"
+                                        target="_blank" href="./半山7.html"
                                         style="box-sizing: border-box; color: rgb(51, 51, 51); text-decoration-line: none; background-color: transparent; transition: all 0.2s ease 0s; outline: none;">结界之链</a>》任务</span>
                             </p>
                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;"><span
@@ -290,71 +295,83 @@
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">矿工</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">矿工</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">挖掘</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">挖掘</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">稀有金属</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">稀有金属</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
                                                 <span
                                                     style="box-sizing: border-box; font-family: 宋体;">（</span>95.45<span
-                                                    style="box-sizing: border-box; font-family: 宋体;">）</span></p>
+                                                    style="box-sizing: border-box; font-family: 宋体;">）</span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr style="box-sizing: border-box;">
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">猎人</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">猎人</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">狩猎</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">狩猎</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">闪亮的珍珠</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">闪亮的珍珠</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
                                                 <span style="box-sizing: border-box; font-family: 宋体;">（</span>66.9<span
-                                                    style="box-sizing: border-box; font-family: 宋体;">）</span></p>
+                                                    style="box-sizing: border-box; font-family: 宋体;">）</span>
+                                            </p>
                                         </td>
                                     </tr>
                                     <tr style="box-sizing: border-box;">
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-right-color: windowtext; border-bottom-color: windowtext; border-left-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">樵夫</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">樵夫</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">伐木</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">伐木</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
-                                                <span style="box-sizing: border-box; font-family: 宋体;">古藤</span></p>
+                                                <span style="box-sizing: border-box; font-family: 宋体;">古藤</span>
+                                            </p>
                                         </td>
                                         <td width="142" valign="middle" align="center"
                                             style="box-sizing: border-box; border-bottom-color: windowtext; border-right-color: windowtext; padding: 0px 7px;">
                                             <p style="box-sizing: border-box; margin-top: 15px; margin-bottom: 15px;">
                                                 <span
                                                     style="box-sizing: border-box; font-family: 宋体;">（</span>73.98<span
-                                                    style="box-sizing: border-box; font-family: 宋体;">）</span></p>
+                                                    style="box-sizing: border-box; font-family: 宋体;">）</span>
+                                            </p>
                                         </td>
                                     </tr>
                                 </tbody>

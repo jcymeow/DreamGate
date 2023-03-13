@@ -31,10 +31,12 @@
                 $(json.maps).each(function (i, map) {
                     //table-title
                     html.push('<table style="width:792px;table-layout:fixed;" border="1">');
-                    html.push('<tr><th colspan="'+(num+1)+'" aligh="left">');
+                    html.push('<tr><th colspan="'+(num)+'" aligh="left">');
                     html.push(map.name);
                     html.push('&nbsp;&nbsp;&nbsp;&nbsp;');
                     html.push(map.line ? map.line + '线' : map.line || '');
+                    html.push('</th></th>');
+                    html.push(map.author || '');
                     html.push('</th></tr>');
 
                     //table-head

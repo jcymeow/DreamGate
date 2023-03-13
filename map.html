@@ -41,19 +41,6 @@
                     html.push(map.author ? 'By&nbsp;'+map.author : '');
                     html.push('</td></tr>');
 
-                    //table-head
-                    /**
-                    html.push('<tr>');
-                    for (var ii = 0; ii <= 10; ii++) {
-                        html.push('<td style="width=72px">');
-                        if (ii > 0) {
-                            html.push(ii)
-                        }
-                        html.push('</td>');
-                    }
-                    html.push('</tr>');
-                    **/
-
                     //table-data
                     $(map.data).each(function (j, tr) {
                         var col = tr.data.length;

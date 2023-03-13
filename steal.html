@@ -22,77 +22,146 @@
         }
     </style>
     <script type="text/javascript" src="./js/jquery-3.6.3.min.js"></script>
-    <script type="text/javascript" src="./js/jquery.cookie.js"></script>
     <script type="text/javascript">
 
         $(function () {
-            $.getJSON('./data/steal.json', function (data) {
-                var rows = new Array();
-                $(data).each(function (i, s) {
-                    rows.push('<tr><td>');
-                    rows.push(s.id);
-                    rows.push('</td><td>');
-                    rows.push(s.name);
-                    rows.push('</td><td><img src="./image/steal/s');
-                    rows.push(s.id);
-                    rows.push('.gif"/></td><td>');
-                    rows.push(s.lv);
-                    rows.push('</td><td style="text-align:left">');
-                    rows.push(s.func);
-                    rows.push('</td><td>');
-                    rows.push(s.obj);
-                    rows.push('</td><td>');
-                    rows.push(s.place);
-                    rows.push('</td></tr>');
-
-                });
-                $("#steal_list").html(rows.join(''));
-            });
+            initGrid();
         });
 
+        var keys = new Array();
+
+        function sel(cell){
+            var key = $(cell).text();
+            var hasKey=false;
+            if(keys){
+                for(var i=0;i<keys.length;i++){
+                    if(key == keys[i]){
+                        hasKey = true;
+                        break;
+                    } 
+                }
+            }
+
+            if(hasKey){
+                $(cell).removeClass("head");
+                keys.pop(key);
+            } else {
+                $(cell).addClass("head");
+                keys.push(key);
+            }
+
+            keys.sort();
+            $("#keys").html(keys.join(','));
+            initGrid();
+        }
+
+        function init(){
+            keys.length=0;
+            $(".body").removeClass('head');
+            $("#keys").html(keys.join(','));
+            initGrid();
+        }
+
+        function initGrid(){
+            $("#steal_list").empty();
+            var num = 0;
+            var rows = new Array();
+            $.getJSON('./data/steal.json', function (data) {
+                $(data).each(function (i, s) {
+                    var include = keys.length == 0;
+
+                    //filter
+                    if(!include){
+                        $(keys).each(function(j, key){
+                            if(isNaN(key)){
+                                if(s.func.includes(key)){
+                                    include = true;
+                                    return false;
+                                }
+                            } else {
+                                if(s.lv == key){
+                                    include = true;
+                                    return false;
+                                }
+                            }
+                        });
+                    }
+
+                    //fillGrid
+                    if(include){
+                        num++;
+                        rows.push('<tr><td>');
+                        rows.push(s.id);
+                        rows.push('</td><td>');
+                        rows.push(s.name);
+                        rows.push('</td><td><img src="./image/steal/s');
+                        rows.push(s.id);
+                        rows.push('.gif"/></td><td>');
+                        rows.push(s.lv);
+                        rows.push('</td><td style="text-align:left">');
+                        rows.push(s.type);
+                        rows.push('</td><td style="text-align:left">');
+                        rows.push(s.func);
+                        rows.push('</td><td>');
+                        rows.push(s.obj);
+                        rows.push('</td><td>');
+                        rows.push(s.place);
+                        rows.push('</td></tr>');
+                    }
+                });
+                $("#steal_list").html(rows.join(''));
+                $("#keys").html($("#keys").html()+"   符合条件:"+num);
+            });
+            
+        }
     </script>
 </head>
 
 <body>
     <div class="head">盗窃全书</div>
-    <table class="style" id="steal" width="100%">
+    <table id="steal" class="style" style="table-layout:fixed;">
         <tbody>
             <tr>
-                <td onclick="norlist(0,'001','015')">001~015</td>
-                <td onclick="norlist(0,'016','030')">016~030</td>
-                <td onclick="norlist(0,'031','045')">031~045</td>
-                <td onclick="norlist(0,'046','060')">046~060</td>
-                <td onclick="norlist(0,'061','075')">061~075</td>
-                <td onclick="norlist(0,'076','090')">076~090</td>
-                <td onclick="norlist(0,'091','105')">091~105</td>
+                <td class="head" rowspan="2">等级</td>
+                <td class="body" onclick="sel(this)">1</td>
+                <td class="body" onclick="sel(this)">2</td>
+                <td class="body" onclick="sel(this)">3</td>
+                <td class="body" onclick="sel(this)">4</td>
+                <td class="body" onclick="sel(this)">5</td>
+                <td class="head" rowspan="2" onclick="init()">清空条件</td>
             </tr>
             <tr>
-                <td onclick="norlist(0,'106','120')">106~120</td>
-                <td onclick="norlist(0,'121','135')">121~135</td>
-                <td onclick="norlist(0,'136','150')">136~150</td>
-                <td onclick="norlist(0,'151','165')">151~165</td>
-                <td onclick="norlist(0,'166','180')">166~180</td>
-                <td onclick="norlist(0,'181','195')">181~195</td>
-                <td onclick="norlist(0,'196','210')">196~210</td>
+                <td class="body" onclick="sel(this)">6</td>
+                <td class="body" onclick="sel(this)">7</td>
+                <td class="body" onclick="sel(this)">8</td>
+                <td class="body" onclick="sel(this)">9</td>
+                <td class="body" onclick="sel(this)">10</td>
             </tr>
             <tr>
-                <td onclick="norlist(0,'211','225')">211~225</td>
-                <td onclick="norlist(0,'226','240')">226~240</td>
-                <td onclick="norlist(0,'241','255')">241~255</td>
-                <td onclick="norlist(0,'256','270')">256~270</td>
-                <td onclick="norlist(0,'271','285')">271~285</td>
-                <td onclick="norlist(0,'286','300')">286~300</td>
-                <td onclick="norlist(0,'301','315')">301~315</td>
+                <td class="head" rowspan="3">修正<br>属性<br>抵抗</td>
+                <td class="body" onclick="sel(this)">生命</td>
+                <td class="body" onclick="sel(this)">魔力</td>
+                <td class="body" onclick="sel(this)">必杀</td>
+                <td class="body" onclick="sel(this)">命中</td>
+                <td class="body" onclick="sel(this)">反击</td>
+                <td class="body" onclick="sel(this)">闪躲</td>
+                
             </tr>
             <tr>
-                <td onclick="bookmark('print')">書籤</td>
-                <td onclick="norlist(1,1)">Boss1</td>
-                <td onclick="norlist(1,2)">Boss2</td>
-                <td onclick="norlist(1,3)">Boss3</td>
-                <td onclick="norlist(1,4)">Boss4</td>
-                <td onclick="norlist(1,5)">Boss5</td>
-                <td onclick="lastsearch()">
-                    搜尋</td>
+                <td class="body" onclick="sel(this)">攻击</td>
+                <td class="body" onclick="sel(this)">防御</td>
+                <td class="body" onclick="sel(this)">敏捷</td>
+                <td class="body" onclick="sel(this)">精神</td>
+                <td class="body" onclick="sel(this)">回复</td>
+                <td class="body" onclick="sel(this)">魅力</td>
+            </tr>
+            <tr>
+                <td class="body" onclick="sel(this)">抗毒</td>
+                <td class="body" onclick="sel(this)">抗昏睡</td>
+                <td class="body" onclick="sel(this)">抗石化</td>
+                <td class="body" onclick="sel(this)">抗酒醉</td>
+                <td class="body" onclick="sel(this)">抗混乱</td>
+                <td class="body" onclick="sel(this)">抗遗忘</td>
             </tr>
         </tbody>
     </table>
@@ -107,7 +176,8 @@
         <hr>
     </div>
 
-    <div id="itemlist_div" style="text-align: center; color: #ff0000"><b>Boss1 物品等級:Lv1~2</b><br>
+    <div id="itemlist_div" style="text-align: center; color: #ff0000">
+        <b id="keys"></b><br>
         <table class="style" style="width: 100%;height: 100px">
             <thead>
                 <tr class="head">
@@ -115,7 +185,8 @@
                     <td width="10%">名称</td>
                     <td width="10%">图</td>
                     <td width="10%">等级</td>
-                    <td width="30%">附加能力</td>
+                    <td width="10%">种类</td>
+                    <td width="20%">附加能力</td>
                     <td width="15%">盗取对像</td>
                     <td width="15%">盗取地点</td>
                 </tr>

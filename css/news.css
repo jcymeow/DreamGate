@@ -55,7 +55,7 @@ body{font:14px/1.5 "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",arial,tahoma,sans-se
 .header{height:338px; position:relative;}
 .header .logo{position:absolute; top:30px; left:10px;}
 .main-box{margin-bottom:50px;}
-.main{width:815px; float:right; background:#FFF;}
+.main{width:815px; /*float:right;*/ background:#FFF;}
 .main .column{background-color:#fff; margin-bottom:5px;}
 .main .column:hover{box-shadow:0 0 10px rgba(0,0,0,.3);}
 
@@ -227,7 +227,7 @@ body{font:14px/1.5 "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",arial,tahoma,sans-se
 .btn-down em{width:207px; height:148px; background:url("about:blank"); display:block; position:absolute; top:0; left:0;}
 
 
-/*1230 ´Ë.wallpaper liÒªÌí¼ÓÀàÃûrelative*/
+/*1230 ï¿½ï¿½.wallpaper liÒªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½relative*/
 .wallpaper li .btn_all{display:inline-block;line-height:22px;padding:5px 10px;background:#a74bb7;color:#fff;font-size:14px;position:absolute;top:0;right:0;cursor:pointer;z-index:2;}
 .wallpaper li .btns_zy{width:197px;height:100px;background:rgba(0,0,0,0.5)!important;filter:Alpha(opacity=60); background:#000;position:absolute;top:0;left:0;z-index:1;padding:20px 0 20px 35px;display:none;}
 .wallpaper li .btns_zy a{font-size:16px;color:#fff;float:left;width:auto;height:25px;margin-right:27px;margin-bottom:10px;position:relative;}

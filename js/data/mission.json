@@ -45,10 +45,10 @@
         "name":"龙之沙漏",
         "path":"/DreamGate/mission/龙之沙漏/",
         "data":[
-            { "name":"帕鲁凯斯的亡灵", "page":"任务模板.html" },
-            { "name":"沉默之龙", "page":"任务模板.html" },
-            { "name":"盲目之龙", "page":"任务模板.html" },
-            { "name":"失翼之龙", "page":"任务模板.html" }
+            { "name":"帕鲁凯斯的亡灵", "page":"帕鲁凯斯的亡灵.html" },
+            { "name":"沉默之龙", "page":"沉默之龙.html" },
+            { "name":"盲目之龙", "page":"盲目之龙.html" },
+            { "name":"失翼之龙", "page":"失翼之龙.html" }
         ]
     },
     {

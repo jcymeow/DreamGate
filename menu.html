@@ -16,7 +16,7 @@
 		body {
 			width: 164px;
 			margin: 5px 0px 5px 0px;
-			background: #D8CCA8 url('image/menu/background.jpg') repeat-y fixed right top;
+			background: #D8CCA8 url(/DreamGate/image/menu/background.jpg) repeat-y fixed right top;
 		}
 
 		div {
@@ -28,20 +28,20 @@
 		div#head {
 			width: 200px;
 			height: 94px;
-			background-image: url(./image/menu/logo.png);
+			background-image: url(/DreamGate/image/menu/logo.png);
 			background-repeat: no-repeat;
 			background-position: left top;
-			background-size:90% 100%;
-			
+			background-size: 90% 100%;
+
 		}
 
 		div.button,
 		a.button {
 			width: 120px;
 			height: 40px;
-			background-image: url('image/menu/menu.png');
+			background-image: url(/DreamGate/image//menu//menu.png);
 			background-repeat: no-repeat;
-			cursor: url('./image/alink.cur'), auto;
+			cursor: url(/DreamGate/image/main/alink.cur), auto;
 			margin-top: 2px;
 			display: block;
 			margin: 2px auto auto auto;
@@ -58,7 +58,7 @@
 			overflow: hidden;
 			display: none;
 			margin: 0px auto 0px auto;
-			background-image: url('image/menu/menu.png');
+			background-image: url(/DreamGate/image/menu/menu.png);
 			background-position: -240px bottom;
 		}
 
@@ -75,15 +75,12 @@
 			border-bottom: 1px #663300 dashed;
 		}
 	</style>
-	<script type="text/javascript" src="js/jquery-3.6.3.min.js"></script>
-	<script type="text/javascript" src="js/function.js"></script>
+	<script type="text/javascript" src="/DreamGate/js/jquery-3.6.3.min.js"></script>
+	<script type="text/javascript" src="/DreamGate/js/function.js"></script>
 	<script type="text/javascript">
 
 		$(function () {
-			//initMission
-			$.getJSON('./data/mission.json', function(list){
-				initMission(list)
-			});
+			initMissionMenu();
 		});
 
 		var lastmenu;
@@ -123,21 +120,27 @@
 			$(event).css("background-position-x", (x + 120) + "px");
 		}
 
-		function initMission(list){
+		function initMissionMenu(list) {
 			$('#menu4').empty();
 			var links = new Array();
-			$(list).each(function(i, series){
-				links.push('<a href="./')
-				links.push(series.data[0].page);
-				links.push('?id=');
-				links.push(series.id);
-				links.push('&idx=0">');
-				links.push(series.name);
-				links.push('</a><br>');
-				
+			$.getJSON('/DreamGate/js/data/mission.json', function (json) {
+				$(json).each(function kk(i, series) {
+					console.log(series);
+					links.push('<a href="')
+					links.push(series.path);
+					links.push(series.data[0].page);
+					links.push('?index=');
+					links.push(i);
+					links.push('">');
+					links.push(series.name);
+					links.push('</a><br>');
+				});
+				console.log(links.join(''));
+				$('#menu4').append(links.join(''));
 			});
-			$('#menu4').append(links.join(''));
+			
 		}
+
 	</script>
 </head>
 
@@ -154,31 +157,31 @@
 		<a id="button8" class="button" href="./main.html" style="background-position: 0px -280px;" onmouseover="moveIn(this)" onmouseout="moveOut(this)"/>
 		
 	-->
-	<a id="button1" class="button" href="./news.html" style="background-position: 0px 0px;" onmouseover="moveIn(this)"
-		onmouseout="moveOut(this)"></a>
+	<a id="button1" class="button" href="/DreamGate/news/news.html" style="background-position: 0px 0px;"
+		onmouseover="moveIn(this)" onmouseout="moveOut(this)"></a>
 
 	<div id="button4" class="button" style="background-position: 0px -120px;" onmouseover="moveIn(this)"
 		onmouseout="moveOut(this)" onclick="javascript:doSection('menu4')"></div>
 	<div id="menu4" class="menu"></div>
 
 
-	<a id="button6" class="button" href="./steal.html" style="background-position: 0px -200px;"
+	<a id="button6" class="button" href="/DreamGate/steal/steal.html" style="background-position: 0px -200px;"
 		onmouseover="moveIn(this)" onmouseout="moveOut(this)"></a>
 
 	<div id="button9" class="button" style="background-position: 0px -320px;" onmouseover="moveIn(this)"
 		onmouseout="moveOut(this)" onclick="javascript:doSection('menu9')"></div>
 	<div id="menu9" class="menu">
-		<a href="./nav.html">原版地图</a><br>
-		<a href="./map.html?area=1">1区路线图</a><br>
-		<a href="./map.html?area=2">2区路线图</a><br>
+		<a href="/DreamGate/map/nav.html">原版地图</a><br>
+		<a href="/DreamGate/map/map.html?area=1">1区路线图</a><br>
+		<a href="/DreamGate/map/map.html?area=2">2区路线图</a><br>
 	</div>
 	<div id="button10" class="button" style="background-position: 0px -360px;" onmouseover="moveIn(this)"
 		onmouseout="moveOut(this)" onclick="javascript:doSection('menu10')"></div>
 	<div id="menu10" class="menu">
-		<a href="./下载安装.html">下载安装</a><br>
-		<a href="./成长模拟器4.02.html">成长模拟器</a><br>
-		<a href="./洗档模拟器4.02.html">洗档模拟器</a><br>
-		
+		<a href="/DreamGate/other/下载安装.html">下载安装</a><br>
+		<a href="/DreamGate/other/成长模拟器4.02.html">成长模拟器</a><br>
+		<a href="/DreamGate/other/洗档模拟器4.02.html">洗档模拟器</a><br>
+
 	</div>
 
 </body>

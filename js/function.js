@@ -1,16 +1,17 @@
 function initMissionPage(){
-    var id = getUrlParam("id");
-    var idx = getUrlParam("idx");
-    $.getJSON('./data/mission.json', function(list){
+    var index = getUrlParam("index");
+    var idx = getUrlParam("idx") || 0;
+    $.getJSON('/Dreamgate/js/data/mission.json', function(list){
         $(list).each(function(i, series){
-            if(series.id == id){
+            if(index == i){
                 var sel = new Array();
                 sel.push('<select onChange="gotourl(this.value)">');
                 $(series.data).each(function(j, mission){
-                    sel.push('<option value="./');
+                    sel.push('<option value="');
+                    sel.push(series.pth);
                     sel.push(mission.page);
-                    sel.push('?id=');
-                    sel.push(series.id);
+                    sel.push('?index=');
+                    sel.push(i);
                     sel.push('&idx=');
                     sel.push(j)
                     sel.push('" ');
@@ -30,8 +31,8 @@ function initMissionPage(){
 
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return null;
+    var r = window.location.search.substring(1).match(reg);
+    if (r != null) return decodeURI(r[2]); return null;
 }
 
 function gotourl(loca) {

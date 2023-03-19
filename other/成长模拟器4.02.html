@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>宠物成长模拟器4.02</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="all" />
+    <meta http-equiv="cache-control" content="no-siteapp">
+    <meta name="render" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!-- <meta name="viewport" content="width=750, user-scalable=no, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0">
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?cdd614327cbae618caad44cd5388fc01";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+</head>
+
+<style type="text/css">
+*{ padding: 0; margin: 0; font-family: '微软雅黑'; font-size: 16px;  user-select: none}
+html,body{ position: fixed; width: 100%; height: 100%;}
+ul,ol,li{ list-style:none;}
+a{ text-decoration: none;}
+
+body{ overflow: hidden; }
+.title{ text-align: center; padding: 10px; font-size: 12px}
+.tac{ text-align: center; }
+input,select{ outline: none;}
+#center{position: relative; min-height: 1000px; box-sizing: border-box; padding-left: 10px;  max-width: 750px; height: 1000px; margin: 0 auto; background: #fff;}
+.input-div{ margin-top: 8px; }
+label{display: inline-block; width:100px}
+input,select{ box-sizing: border-box; padding: 0 20px; width: 69%;  height: 40px; line-height: 40px;  color: #004eff;
+     border-radius: 20px; background: #eee; border: 1px solid #004eff;}
+.submit{ display: inline-block; width: 100px; height: 40px; line-height: 40px; margin: 0 auto; color: #fff; font-weight: bold; cursor: pointer;
+    text-align: center; border-radius: 20px;  background: -webkit-linear-gradient(-90deg, rgb(255, 155, 0), rgb(255, 100, 0)) }
+.submit2{display: none; background: -webkit-linear-gradient(-90deg,  rgb(80, 190, 200) ,rgb(20, 160, 200))}
+#info{ padding-top: 12px; margin: 0 auto; display: none}
+#info>li{ text-align: center; }
+#info>li>span{ display: inline-block; width: 66px; text-align: left; }
+#info>li>span:nth-child(1){ text-align: right;}
+#info>li>span:nth-child(2){ text-align: left;}
+#info>li>span:nth-child(3){ width: 150px; display: none; }
+#pet{width: 50%;}
+#up-btn{display: inline-block;vertical-align: top; width: 18%;line-height:40px; text-align: center; font-weight: bold; color: #fff; background: #ccc; border-radius: 20px; cursor: pointer;}
+#up-div{display: none;}
+#pet-list{display: none; position: absolute; top: 40px; left: 0; right: 0; padding: 20px; box-sizing: border-box; margin: 0 auto; width: 100%; height: 380px;
+ overflow-y: auto; background: #eee; text-align: center; line-height: 40px;}
+#pet-list>li{  cursor: pointer; }
+#pet-list>li:hover{background: #fff;}
+#pet-info{color:#aaaaaa}
+#point-tpye{ text-align: center; cursor: pointer; display: inline-block;}
+#point-tpye>strong{ color: #aaaaaa; font-weight: normal;}
+#point-tpye>strong:nth-child(1){ color: #004eff; font-weight: bold;}
+#point-tpye>span{ display: inline-block; width: 28px; height: 14px; padding: 0 1px; border: 2px solid #004eff; border-radius: 9px;vertical-align: bottom; text-align: left;}
+#point-tpye>span>i{ display: inline-block; width: 14px; height: 14px; background: #004eff; border-radius: 7px; vertical-align: top;}
+#point-tpye.act>span{ text-align: right;}
+#point-tpye.act>strong{ color: #aaaaaa; font-weight: normal;}
+#point-tpye.act>strong:nth-child(3){ color: #004eff; font-weight: bold;}
+
+#sel{ display: inline-block;   font-weight: bold; color: #fff; background: #f66f36; border-radius: 12px; padding: 3px 9px;}
+#unsel{ display: inline-block;   font-weight: bold; color: #fff; background: #ccc; border-radius: 12px; padding: 3px 9px;}
+</style>
+<body ondragstart='return false' onselectstart ='return false' >
+<p class="title">宠物模拟器  <a href="#" id="sel">成长</a> <a href="./洗档模拟器4.02.html" id="unsel">洗档</a> By：出来吧零档 </p>
+
+<div id="center">
+    <div class="input-div">
+        <label for="pet">宠物名：</label>
+        <input type="text" id="pet" placeholder="请输入拼音缩写" oninput="searchFun(event)">
+        <span id="up-btn" onclick="upFun()">升档</span>
+    </div>
+    <ul id="pet-list">
+     
+    </ul>
+    <p id="pet-info" class="tac"></p>
+    <div class="input-div" id="up-div">
+      <label for="up">升档：</label>
+      <input type="text" id="up-input" placeholder="请用空格隔开,如：0 25 0 0 0" oninput="reset()">
+    </div>
+    <div class="input-div">
+        <label for="grade">档次：</label>
+        <input type="tel" id="grade" placeholder="请输入,如：00001" maxlength="5" oninput="reset()">
+    </div>
+    
+    <div class="input-div">
+        <label for="random">随机：</label>
+        <input type="text" id="random" placeholder="请用空格隔开,如：0 15 0 0 0" oninput="reset()">
+    </div>
+    <div class="input-div">
+        <label for="level">等级：</label>
+        <input type="tel" id="level" placeholder="请输入等级" maxlength="3" oninput="reset()">
+    </div>
+    <div class="input-div">
+        <label for="point">加点：</label>
+        <select id="point" oninput="reset()">
+            <option value="1">体力</option>
+            <option value="2">力量</option>
+            <option value="3">强度</option>
+            <option value="4">速度</option>
+            <option value="5">魔力</option>
+        </select>
+    </div>
+    <div class="input-div" style="text-align: center;">
+      <p id="point-tpye" onclick="pTpyeFun()">
+        <strong>纯点</strong>
+        <span><i></i></span>
+        <strong>混加</strong>
+      </p>
+    </div>
+    <div class="input-div" id="hun-div" style="display: none">
+      <label for="blend">混加：</label>
+      <input type="tel" id="hun-point" placeholder="0" maxlength="2" oninput="reset()" style="width: 27%;">
+      <span style="display: inline-block; width: 4.5%;">点</span>
+      <select id="hun-type" oninput="reset()" style="width: 35%;">
+          <option value="1">体力</option>
+          <option value="2">力量</option>
+          <option value="3">强度</option>
+          <option value="4">速度</option>
+          <option value="5">魔力</option>
+      </select>
+    </div>
+    <div style="height: 18px"></div>
+    <div class="tac">
+        <p class="submit" onclick="submitFun()">计算</p>
+        <p class="submit submit2" id="submit2" onclick="contrastFun()">跟满档对比</p>
+    </div>
+    <ul id="info">
+        <li>
+            <span class="tit"></span>
+            <span class="txt"></span>
+            <span class="txt contrast">满档数据(相差值)</span>
+        </li>
+        <li>
+            <span class="tit">生命：</span>
+            <span class="txt" id="shengming"></span>
+            <span class="txt contrast" id="sm"></span>
+        </li>
+        <li>
+            <span class="tit">魔法：</span>
+            <span class="txt" id="mofa"></span>
+            <span class="txt contrast" id="mf"></span>
+        </li>
+        <li>
+            <span class="tit">攻击：</span>
+            <span class="txt" id="gongji"></span>
+            <span class="txt contrast" id="gj"></span>
+        </li>
+        <li>
+            <span class="tit">防御：</span>
+            <span class="txt" id="fangyu"></span>
+            <span class="txt contrast" id="fy"></span>
+        </li>
+        <li>
+            <span class="tit">敏捷：</span>
+            <span class="txt" id="minjie"></span>
+            <span class="txt contrast" id="mj"></span>
+        </li>
+        <li>
+            <span class="tit">精神：</span>
+            <span class="txt" id="jingshen"></span>
+            <span class="txt contrast" id="js"></span>
+        </li>
+        <li>
+            <span class="tit">回复：</span>
+            <span class="txt" id="huifu"></span>
+            <span class="txt contrast" id="hf"></span>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="https://fend.cmct22.com/2023/moli/data.js?time=202302141318"></script>
+<!-- <script type="text/javascript" src="./data.js"></script> -->
+<script type="text/javascript">
+var PetList=document.getElementById("pet-list");
+var PetInput=document.getElementById("pet");
+var PetInfo=document.getElementById("pet-info");
+var DataInfo=document.getElementById('info');
+var PointTpye=document.getElementById('point-tpye');
+var HunDiv=document.getElementById('hun-div');
+var UpBtn=document.getElementById('up-btn');
+var UpDiv=document.getElementById('up-div');
+var UpInput=document.getElementById('up-input');
+var pTpye='c';//'c','h'
+var fullInfo=[];
+var cId=-1;
+var myInfo={};
+var dataType='';//'my','full'
+function upFun(){
+  if(UpDiv.style.display=='block'){
+    UpDiv.style.display='none';
+    UpBtn.style.background='#cccccc';
+    UpInput.value='0 0 0 0 0';
+  }else{
+    UpDiv.style.display='block';
+    UpBtn.style.background='#f66f36';
+  }
+  reset()
+}
+function searchFun(event){
+    PetList.innerHTML='';
+    // console.log(event.target.value)
+    var body='<div>请选择宠物</div>';
+    for(var i in data){
+        if(data[i].pinyin.indexOf(event.target.value.toLowerCase())!=-1){
+            // console.log(data[i].name)
+            body+='<li onclick="selFun('+i+')">'+data[i].name+'</li>'
+        }
+    }
+    reset();
+    PetList.style.display=event.target.value?'block':'none';
+    // console.log(323,body)
+    PetList.innerHTML=body;
+}
+function selFun(i){
+    cId=i;
+    PetList.style.display='none';
+    reset();
+    PetInput.value=data[i].name;
+    PetInfo.innerHTML=data[i].tili+' '+data[i].liliang+' '+data[i].qiangdu+' '+data[i].sudu+' '+data[i].mofa+' '+data[i].totle;
+    fullInfo=[data[i].tili,data[i].liliang,data[i].qiangdu,data[i].sudu,data[i].mofa]
+}
+function pTpyeFun(){
+  if(pTpye=='c'){
+    pTpye='h';
+    PointTpye.classList.add('act');
+    HunDiv.style.display='block';
+  }else{
+    pTpye='c';
+    PointTpye.classList.remove('act');
+    HunDiv.style.display='none';
+    document.getElementById('hun-point').value='';
+  }
+  reset();
+}
+function submitFun() {
+    DataInfo.style.display='block';
+    document.getElementById('submit2').style.display='inline-block';
+    var grade=document.getElementById('grade').value;
+    var random=document.getElementById('random').value.split(' ');
+    console.log(111,random)
+    dataType='my';
+    var up=UpInput.value?UpInput.value:'0 0 0 0 0';
+    console.log(1,'up',up)
+    calculation(
+        fullInfo[0]-grade[0],
+        fullInfo[1]-grade[1],
+        fullInfo[2]-grade[2],
+        fullInfo[3]-grade[3],
+        fullInfo[4]-grade[4],
+        random[0]-0,
+        random[1]-0,
+        random[2]-0,
+        random[3]-0,
+        random[4]-0,
+        up.split(' ')[0]-0,
+        up.split(' ')[1]-0,
+        up.split(' ')[2]-0,
+        up.split(' ')[3]-0,
+        up.split(' ')[4]-0
+    )
+}
+function reset(){
+    DataInfo.style.display='none';
+    document.getElementById('submit2').style.display='none';
+    var c_txt = document.getElementsByClassName('contrast')
+    for(var i=0; i<c_txt.length; i++){
+        c_txt[i].style.display='none'
+    }
+}
+function contrastFun() {
+    var c_txt = document.getElementsByClassName('contrast')
+    for(var i=0; i<c_txt.length; i++){
+        c_txt[i].style.display='inline-block'
+    }
+    var random=document.getElementById('random').value.split(' ');
+    dataType='full';
+    var up=UpInput.value?UpInput.value:'0 0 0 0 0';
+    console.log(1,'up',up)
+    calculation(
+        fullInfo[0]-0,
+        fullInfo[1]-0,
+        fullInfo[2]-0,
+        fullInfo[3]-0,
+        fullInfo[4]-0,
+        random[0]-0,
+        random[1]-0,
+        random[2]-0,
+        random[3]-0,
+        random[4]-0,
+        up.split(' ')[0]-0,
+        up.split(' ')[1]-0,
+        up.split(' ')[2]-0,
+        up.split(' ')[3]-0,
+        up.split(' ')[4]-0
+    )
+}
+function calculation(tl,ll,qd,sd,ml,tl2,ll2,qd2,sd2,ml2,tl3,ll3,qd3,sd3,ml3){
+    console.log(3,tl,ll,qd,sd,ml,tl2,ll2,qd2,sd2,ml2,tl3,ll3,qd3,sd3,ml3)
+    var level=document.getElementById('level').value-0;
+    var point=document.getElementById('point').value;
+    var hunPoint=document.getElementById('hun-point').value-0;
+    var hunType=document.getElementById('hun-type').value;
+    console.log(hunPoint)
+    console.log(hunType)
+    var tili_bp = (0.041 * (tl+tl2+tl3)) * (level - 1) + (tl+tl2+tl3) / 5;
+    var liliang_bp = (0.041 * (ll+ll2+ll3)) * (level - 1) + (ll+ll2+ll3) / 5;
+    var qiangdu_bp = (0.041 * (qd+qd2+qd3)) * (level - 1) + (qd+qd2+qd3) / 5;
+    var sudu_bp = (0.041 * (sd+sd2+sd3)) * (level - 1) + (sd+sd2+sd3) / 5;
+    var moli_bp = (0.041 * (ml+ml2+ml3)) * (level - 1) + (ml+ml2+ml3) / 5;
+    switch(point){
+        case '1':
+        tili_bp += level - 1-hunPoint;
+        break
+        case '2':
+        liliang_bp += level - 1-hunPoint;
+        break
+        case '3':
+        qiangdu_bp += level - 1-hunPoint;
+        break
+        case '4':
+        sudu_bp += level - 1-hunPoint;
+        break
+        case '5':
+        moli_bp += level - 1-hunPoint;
+        break
+    }
+    switch(hunType){
+        case '1':
+        tili_bp += hunPoint;
+        break
+        case '2':
+        liliang_bp += hunPoint;
+        break
+        case '3':
+        qiangdu_bp += hunPoint;
+        break
+        case '4':
+        sudu_bp += hunPoint;
+        break
+        case '5':
+        moli_bp += hunPoint;
+        break
+    }
+    result(tili_bp,liliang_bp,qiangdu_bp,sudu_bp,moli_bp)
+}
+function result(tili_bp,liliang_bp,qiangdu_bp,sudu_bp,moli_bp){
+    var shengming = parseInt( 20 + 8 * tili_bp + 2 * liliang_bp + 3 * qiangdu_bp + 3 * sudu_bp + 1 * moli_bp );
+    var mofa = parseInt( 20 + 1 * tili_bp + 2 * liliang_bp + 2 * qiangdu_bp + 2 * sudu_bp + 10 * moli_bp );
+    var gongji = parseInt( 20 + 0.2 * tili_bp + 2.7 * liliang_bp + 0.3 * qiangdu_bp + 0.3 * sudu_bp + 0.2 * moli_bp );
+    var fangyu = parseInt( 20 + 0.2 * tili_bp + 0.3 * liliang_bp + 3 * qiangdu_bp + 0.3 * sudu_bp + 0.2 * moli_bp );
+    var minjie = parseInt( 20 + 0.1 * tili_bp + 0.2 * liliang_bp + 0.2 * qiangdu_bp + 2 * sudu_bp + 0.1 * moli_bp );
+    var jingshen = parseInt( 100 - 0.3 * tili_bp - 0.1 * liliang_bp + 0.2 * qiangdu_bp - 0.1 * sudu_bp + 0.8 * moli_bp );
+    var huifu = parseInt( 100 + 0.8 * tili_bp + 0.1 * liliang_bp - 0.1 * qiangdu_bp + 0.2 * sudu_bp - 0.3 * moli_bp );
+
+    if(dataType=='my'){
+        document.getElementById("shengming").innerHTML = shengming;
+        document.getElementById("mofa").innerHTML = mofa;
+        document.getElementById("gongji").innerHTML = gongji;
+        document.getElementById("fangyu").innerHTML = fangyu;
+        document.getElementById("minjie").innerHTML = minjie;
+        document.getElementById("jingshen").innerHTML = jingshen;
+        document.getElementById("huifu").innerHTML = huifu;
+        myInfo={
+            sm:shengming,
+            mf:mofa,
+            gj:gongji,
+            fy:fangyu,
+            mj:minjie,
+            js:jingshen,
+            hf:huifu
+        }
+    }
+    if(dataType=='full'){
+        document.getElementById("sm").innerHTML = shengming+' ('+(myInfo.sm-shengming)+')';
+        document.getElementById("sm").style.color=shengming<=myInfo.sm?'red':'green';
+
+        document.getElementById("mf").innerHTML = mofa+' ('+(myInfo.mf-mofa)+')';
+        document.getElementById("mf").style.color=mofa<=myInfo.mf?'red':'green';
+        
+        document.getElementById("gj").innerHTML = gongji+' ('+(myInfo.gj-gongji)+')';
+        document.getElementById("gj").style.color=gongji<=myInfo.gj?'red':'green';
+        
+        document.getElementById("fy").innerHTML = fangyu+' ('+(myInfo.fy-fangyu)+')';
+        document.getElementById("fy").style.color=fangyu<=myInfo.fy?'red':'green';
+        
+        document.getElementById("mj").innerHTML = minjie+' ('+(myInfo.mj-minjie)+')';
+        document.getElementById("mj").style.color=minjie<=myInfo.mj?'red':'green';
+        
+        document.getElementById("js").innerHTML = jingshen+' ('+(myInfo.js-jingshen)+')';
+        document.getElementById("js").style.color=jingshen<=myInfo.js?'red':'green';
+        
+        document.getElementById("hf").innerHTML = huifu+' ('+(myInfo.hf-huifu)+')';
+        document.getElementById("hf").style.color=huifu<=myInfo.hf?'red':'green';
+        
+    }
+    
+}
+// for(var i in data){
+//     if(data[i].totle>=125){
+//         console.log(data[i].name)
+//     }
+// }
+</script>
+
+</body>
+</html>

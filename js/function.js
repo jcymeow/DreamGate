@@ -8,7 +8,7 @@ function initMissionPage(){
                 sel.push('<select onChange="gotourl(this.value)">');
                 $(series.data).each(function(j, mission){
                     sel.push('<option value="');
-                    sel.push(series.pth);
+                    sel.push(series.path);
                     sel.push(mission.page);
                     sel.push('?index=');
                     sel.push(i);

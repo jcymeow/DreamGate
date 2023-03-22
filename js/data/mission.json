@@ -1,7 +1,7 @@
 [
     {
         "name":"特色玩法",
-        "path":"/DreamGate/mission/特色玩法/",
+        "path":"/mission/特色玩法/",
         "data":[
             { "name":"分区说明", "page":"分区说明.html" },
             { "name":"分身系统", "page":"分身系统.html" },
@@ -12,7 +12,7 @@
     },
     {
         "name":"特色任务",
-        "path":"/DreamGate/mission/特色任务/",
+        "path":"/mission/特色任务/",
         "data":[
             { "name":"为大明星当助手", "page":"为大明星当助手.html" },
             { "name":"消失的王子", "page":"消失的王子.html" },
@@ -24,7 +24,7 @@
     },
     {
         "name":"职业进阶",
-        "path":"/DreamGate/mission/职业进阶/",
+        "path":"/mission/职业进阶/",
         "data":[
             { "name":"树精长老的末日", "page":"树精长老的末日.html" },
             { "name":"挑战神兽", "page":"挑战神兽.html" },
@@ -33,7 +33,7 @@
     },
     {
         "name":"时空之门",
-        "path":"/DreamGate/mission/时空之门/",
+        "path":"/mission/时空之门/",
         "data":[
             { "name":"开启者", "page":"开启者.html" },
             { "name":"冰雪的牢城", "page":"冰雪的牢城.html" },
@@ -43,7 +43,7 @@
     },
     {
         "name":"龙之沙漏",
-        "path":"/DreamGate/mission/龙之沙漏/",
+        "path":"/mission/龙之沙漏/",
         "data":[
             { "name":"帕鲁凯斯的亡灵", "page":"帕鲁凯斯的亡灵.html" },
             { "name":"沉默之龙", "page":"沉默之龙.html" },
@@ -53,7 +53,7 @@
     },
     {
         "name":"勋章系列",
-        "path":"/DreamGate/mission/勋章系列/",
+        "path":"/mission/勋章系列/",
         "data":[
             { "name":"八等勋章 - 商队的袭击", "page":"勋章8.html" },
             { "name":"七等勋章 - 人鱼之泪", "page":"勋章7.html" },
@@ -67,7 +67,7 @@
     },
     {
         "name":"不可思议",
-        "path":"/DreamGate/mission/不可思议/",
+        "path":"/mission/不可思议/",
         "data":[
             { "name":"不可思议1 - 神秘豪宅", "page":"神秘豪宅.html" },
             { "name":"不可思议2 - 月光花园", "page":"月光花园.html" },
@@ -79,7 +79,7 @@
     },
     {
         "name":"半山系列",
-        "path":"/DreamGate/mission/半山系列/",
+        "path":"/mission/半山系列/",
         "data":[
             { "name":"第1章 - 彷徨的亡灵", "page":"半山1.html" },
             { "name":"第2章 - 亡者之镇", "page":"半山2.html" },
@@ -94,7 +94,7 @@
     },
     {
         "name":"洗礼系列",
-        "path":"/DreamGate/mission/洗礼系列/",
+        "path":"/mission/洗礼系列/",
         "data":[
             { "name":"第1章 - 路见不平", "page":"洗礼1.html" },
             { "name":"第2章 - 传承使者", "page":"洗礼2.html" },
@@ -105,7 +105,7 @@
     },
     {
         "name":"龙族纷争",
-        "path":"/DreamGate/mission/龙族纷争/",
+        "path":"/mission/龙族纷争/",
         "data":[
             { "name":"第1章 - 深渊", "page":"深渊.html" },
             { "name":"第2章 - 永久冻土", "page":"永久冻土.html" },
@@ -115,7 +115,7 @@
     },
     {
         "name":"漩涡系列",
-        "path":"/DreamGate/mission/漩涡系列/",
+        "path":"/mission/漩涡系列/",
         "data":[
             { "name":"第1章 - 消亡之地", "page":"漩涡1.html" },
             { "name":"第2章 - 抉择之刻", "page":"漩涡2.html" },
@@ -125,7 +125,7 @@
     },
     {
         "name":"森罗万象",
-        "path":"/DreamGate/mission/森罗万象/",
+        "path":"/mission/森罗万象/",
         "data":[
             { "name":"土之洞窟", "page":"土之洞窟.html" },
             { "name":"风之洞窟", "page":"风之洞窟.html" },

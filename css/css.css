@@ -20,7 +20,7 @@ html {
 
 body {
     width: 800px;
-    background: #e4e4cc url(/DreamGate/image/main/background.jpg) repeat fixed center center;
+    background: #e4e4cc url(/image/main/background.jpg) repeat fixed center center;
     text-align: center
 }
 
@@ -265,12 +265,12 @@ div#ajax_loading {
 div#restore_body,
 div#loading_body {
     position: relative;
-    background-image: url(/DreamGate/image/main/ajax_loading.png)
+    background-image: url(/image/main/ajax_loading.png)
 }
 
 div#restore,
 div#loading {
-    background-image: url(/DreamGate/image/main/ajax_loading.png)
+    background-image: url(/image/main/ajax_loading.png)
 }
 
 div.author {

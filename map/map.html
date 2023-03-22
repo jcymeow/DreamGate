@@ -5,16 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="stylesheet" type="text/css" href="/DreamGate/css/css.css" media="screen">
-    <script type="text/javascript" src="/DreamGate/js/jquery-3.6.3.min.js"></script>
-	<script type="text/javascript" src="/DreamGate/js/function.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/css.css" media="screen">
+    <script type="text/javascript" src="/js/jquery-3.6.3.min.js"></script>
+	<script type="text/javascript" src="/js/function.js"></script>
     <script type="text/javascript">
         //每行数量
         var num = 8;
 
         $(function () {
             var area = getUrlParam("area") || 1;
-            var file = '/DreamGate/js/data/map'+area+'.json';
+            var file = '/js/data/map'+area+'.json';
             $.getJSON(file, function(data){
                 initMap(data);
             });

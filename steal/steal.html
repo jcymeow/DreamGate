@@ -68,25 +68,25 @@
             $("#steal_list").empty();
             var num = 0;
             var rows = new Array();
-            $.getJSON('/js/data/steal.json', function (data) {
+            $.getJSON(DATA.STEAL, function (data) {
                 $(data).each(function (i, s) {
                     var include = keys.length == 0;
 
                     //filter
                     if(!include){
+                        var match=0;
                         $(keys).each(function(j, key){
                             if(isNaN(key)){
                                 if(s.func.includes(key)){
-                                    include = true;
-                                    return false;
+                                    match++;
                                 }
                             } else {
                                 if(s.lv == key){
-                                    include = true;
-                                    return false;
+                                    match++;
                                 }
                             }
                         });
+                        includ = keys.length == match;
                     }
 
                     //fillGrid

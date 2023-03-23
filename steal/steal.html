@@ -34,16 +34,7 @@
 
         function sel(cell){
             var key = $(cell).text();
-            var hasKey=false;
-            if(keys){
-                for(var i=0;i<keys.length;i++){
-                    if(key == keys[i]){
-                        hasKey = true;
-                        break;
-                    } 
-                }
-            }
-
+            var hasKey=keys.includes(key);
             if(hasKey){
                 $(cell).removeClass("head");
                 keys.pop(key);
@@ -86,7 +77,7 @@
                                 }
                             }
                         });
-                        includ = keys.length == match;
+                        include = keys.length == match;
                     }
 
                     //fillGrid
@@ -140,7 +131,7 @@
                 <td class="body" onclick="sel(this)">10</td>
             </tr>
             <tr>
-                <td class="head" rowspan="3">修正<br>属性<br>抵抗</td>
+                <td class="head" rowspan="3">词条</td>
                 <td class="body" onclick="sel(this)">生命</td>
                 <td class="body" onclick="sel(this)">魔力</td>
                 <td class="body" onclick="sel(this)">必杀</td>

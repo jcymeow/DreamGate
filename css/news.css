@@ -49,9 +49,9 @@ a.red:link,a.red:visited{color:#ff3c00;}
 a.red:hover,a.red:active{color:#e50000;}
 .simsun{font-family:"simsun","\5B8B\4F53";}
 body{font:14px/1.5 "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",arial,tahoma,sans-serif; color:#606060; background-color:#f1f1f1;}
-.wrap{width:100%; background:url(../images/body.jpg) no-repeat 50% 0;}
+.wrap{width:100%; background:url(/DreamGate/images/body.jpg) no-repeat 50% 0;}
 .wrapIn{width:1040px; margin:0 auto; background:none; position:relative; z-index:10;}
-/*.wrapIn{width:1040px; margin:0 auto; background:url(../images/main.jpg) no-repeat 50% 0;}*/
+/*.wrapIn{width:1040px; margin:0 auto; background:url(../DreamGate/images/main.jpg) no-repeat 50% 0;}*/
 .header{height:338px; position:relative;}
 .header .logo{position:absolute; top:30px; left:10px;}
 .main-box{margin-bottom:50px;}
@@ -60,15 +60,15 @@ body{font:14px/1.5 "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",arial,tahoma,sans-se
 .main .column:hover{box-shadow:0 0 10px rgba(0,0,0,.3);}
 
 .side .btn-reg em,.side .btn-guide em,.side .btn-gift em,.side .btns a em,.side .account .icon{
-	display:block; background:url(../images/icon1.png) no-repeat; _background:url(../images/icon1_ie6.png) no-repeat;
+	display:block; background:url(/DreamGate/images/icon1.png) no-repeat; _background:url(../DreamGate/images/icon1_ie6.png) no-repeat;
 }
 .side{width:207px; float:left;}
 .side .btn-down,.side .btn-reg,.side .btn-guide,.side .btn-gift{display:block;}
 .side .btn-reg,.side .btn-guide,.side .btn-gift{overflow:hidden;}
-.side .btn-down{height:148px; background:url(../images/index_down.jpg) no-repeat; position:relative;}
+.side .btn-down{height:148px; background:url(/DreamGate/images/index_down.jpg) no-repeat; position:relative;}
 .side .btn-down i{display:block; position:absolute;}
-.side .btn-down .i1{width:18px; height:27px; background:url(../images/down_ico1.png) no-repeat; top:-4px; left:-7px;}
-.side .btn-down .i2{width:19px; height:18px; background:url(../images/down_ico2.png) no-repeat; top:137px; left:-27px;}
+.side .btn-down .i1{width:18px; height:27px; background:url(/DreamGate/images/down_ico1.png) no-repeat; top:-4px; left:-7px;}
+.side .btn-down .i2{width:19px; height:18px; background:url(/DreamGate/images/down_ico2.png) no-repeat; top:137px; left:-27px;}
 .side .btn-down:hover .i2{top:132px; left:-7px;}
 .side .btn-reg,.side .btn-guide{width:103px; height:59px; line-height:59px; border-top:1px solid #45195f; border-top:1px solid #45195f; border-bottom:1px solid #503779; background-color:#61468f; color:#fff; position:relative; box-shadow:inset 0 0 1px rgba(255,255,255,.4);}
 .side .btn-guide{border-left:1px solid #503779;}
@@ -77,7 +77,7 @@ body{font:14px/1.5 "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",arial,tahoma,sans-se
 .side .btn-reg:hover em,.side .btn-guide:hover em{left:0; filter:alpha(opacity=0);opacity:0;}
 .side .btn-reg span,.side .btn-guide span{margin-left:30px; font-weight:bold; color:#fff;}
 .side .btn-reg:hover span,.side .btn-guide:hover span{color:#9be6f9; margin-left:20px;}
-.side .btn-gift{height:61px; line-height:61px; background:url(../images/index_gift.jpg) no-repeat; clear:both; position:relative;}
+.side .btn-gift{height:61px; line-height:61px; background:url(/DreamGate/images/index_gift.jpg) no-repeat; clear:both; position:relative;}
 .side .btn-gift:hover{background-position:0 -61px;}
 .side .btn-gift span{margin-left:77px; font-size:18px; color:#0f3c8d; font-weight:bold;}
 .side .btn-gift em{width:18px; height:18px; display:block; background-position:-120px 0; position:absolute; top:22px; left:45px;}
@@ -164,13 +164,13 @@ body{font:14px/1.5 "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",arial,tahoma,sans-se
 .act2-col dd li{width:194px; height:154px; margin:15px 25px 15px 0; float:left; overflow:hidden;}
 .act2-col dd li a{display:block;}
 .act2-col dd li .pic{width:194px; height:90px; margin-bottom:10px; overflow:hidden;}
-.act2-col dd li a .name{padding-left:15px; background:url(../images/icon2.png) no-repeat 0 50%;}
+.act2-col dd li a .name{padding-left:15px; background:url(/DreamGate/images/icon2.png) no-repeat 0 50%;}
 .act2-col dd li a:hover .name{color:#000;}
 .act2-col dd li .txt,.act2-col dd li .time{font-size:12px; color:#868686;}
 
 .ver-tab li{width:163px;}
 .ver-tab .jcarousel-clip{width:815px; overflow:hidden;}
-.ver-tab .jcarousel-prev,.ver-tab .jcarousel-next{width:14px; height:22px; background:url(../images/icon_arrow.png) no-repeat; position:absolute; top:25px; cursor:pointer;}
+.ver-tab .jcarousel-prev,.ver-tab .jcarousel-next{width:14px; height:22px; background:url(/DreamGate/images/icon_arrow.png) no-repeat; position:absolute; top:25px; cursor:pointer;}
 .ver-tab .jcarousel-prev{background-position:0 0; left:15px;}
 .ver-tab .jcarousel-next{background-position:-14px 0; right:15px;}
 .ver-tab .jcarousel-prev-disabled,.ver-tab .jcarousel-next-disabled{background-position:0 40px;}
@@ -196,7 +196,7 @@ body{font:14px/1.5 "Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",arial,tahoma,sans-se
 .search a.btn-search{width:75px; height:32px; line-height:32px; text-align:center; color:#fff; background-color:#9760e0; display:inline-block;}
 .search a.btn-search:hover{background-color:#6b2bc0;}
 
-#btn-toTop{width:33px; height:34px; display:none; background:url(../images/icon_top.png) no-repeat; position:fixed; bottom:150px; left:50%; margin-left:530px; _position:absolute; text-indent:-9999em;}
+#btn-toTop{width:33px; height:34px; display:none; background:url(/DreamGate/images/icon_top.png) no-repeat; position:fixed; bottom:150px; left:50%; margin-left:530px; _position:absolute; text-indent:-9999em;}
 /* animation */
 .nav a,.main-top .btn-down .i2,.main-top,.entry,.acts li a,.brand,.history,.lab,.fans,.media,.strategy,
 .grid-top .more{-webkit-transition:all .3s linear;-moz-transition:all .3s linear;-ms-transition:all .3s linear;transition:all .3s linear;}

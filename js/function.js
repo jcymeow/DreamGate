@@ -1,7 +1,30 @@
+var DATA = {
+    MISSION : /DreamGate/js/data/mission.json
+}
+
+function initMissionMenu() {
+    $('#menu4').empty();
+    var links = new Array();
+    $.getJSON(DATA.MISSION, function (list) {
+        $(list).each(function kk(i, series) {
+            links.push('<a href="')
+            links.push(series.path);
+            links.push(series.data[0].page);
+            links.push('?index=');
+            links.push(i);
+            links.push('">');
+            links.push(series.name);
+            links.push('</a><br>');
+        });
+        $('#menu4').append(links.join(''));
+    });
+    
+}
+
 function initMissionPage(){
     var index = getUrlParam("index");
     var idx = getUrlParam("idx") || 0;
-    $.getJSON('/DreamGate/js/data/mission.json', function(list){
+    $.getJSON(DATA.MISSION, function(list){
         $(list).each(function(i, series){
             if(index == i){
                 var sel = new Array();

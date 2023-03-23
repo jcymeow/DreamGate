@@ -1,5 +1,5 @@
 var DATA = {
-    MISSION : /DreamGate/js/data/mission.json
+    MISSION : new URI(/DreamGate/js/data/mission.json)
 }
 
 function initMissionMenu() {

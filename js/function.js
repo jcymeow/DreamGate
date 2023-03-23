@@ -1,7 +1,7 @@
 function initMissionPage(){
     var index = getUrlParam("index");
     var idx = getUrlParam("idx") || 0;
-    $.getJSON('/js/data/mission.json', function(list){
+    $.getJSON('/DreamGate/js/data/mission.json', function(list){
         $(list).each(function(i, series){
             if(index == i){
                 var sel = new Array();

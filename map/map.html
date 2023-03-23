@@ -14,7 +14,7 @@
 
         $(function () {
             var area = getUrlParam("area") || 1;
-            var file = '/js/data/map'+area+'.json';
+            var file = '/DreamGate/js/data/map'+area+'.json';
             $.getJSON(file, function(data){
                 initMap(data);
             });

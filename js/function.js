@@ -1,5 +1,12 @@
 var DATA = {
-    MISSION : new URL(/DreamGate/js/data/mission.json)
+    BOSS : "/DreamGate/js/data/boss.json",
+    MAKE : "/DreamGate/js/data/make.json",
+    MAP1 : "/DreamGate/js/data/map1.json",
+    MAP2 : "/DreamGate/js/data/map2.json",
+    MISSION : "/DreamGate/js/data/mission.json",
+    PET : "/DreamGate/js/data/pet.json",
+    SKILL : "/DreamGate/js/data/skill.json",
+    STEAL : "/DreamGate/js/data/steal.json"
 }
 
 function initMissionMenu() {

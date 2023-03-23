@@ -120,26 +120,7 @@
 			$(event).css("background-position-x", (x + 120) + "px");
 		}
 
-		function initMissionMenu(list) {
-			$('#menu4').empty();
-			var links = new Array();
-			$.getJSON('/js/data/mission.json', function (json) {
-				$(json).each(function kk(i, series) {
-					console.log(series);
-					links.push('<a href="')
-					links.push(series.path);
-					links.push(series.data[0].page);
-					links.push('?index=');
-					links.push(i);
-					links.push('">');
-					links.push(series.name);
-					links.push('</a><br>');
-				});
-				console.log(links.join(''));
-				$('#menu4').append(links.join(''));
-			});
-			
-		}
+
 
 	</script>
 </head>

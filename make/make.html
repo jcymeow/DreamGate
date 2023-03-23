@@ -3,9 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="/css/css.css">
+    <link rel="stylesheet" type="text/css" href="/DreamGate/css/css.css">
     <style type="text/css">
         #steal,
+        #steal table {
+            font-size: 12pt;
+            table-layout:fixed;
+        }
         #steal td {
             padding: 1px;
             color: #FF0000;
@@ -21,8 +25,8 @@
             padding: 1px;
         }
     </style>
-    <script type="text/javascript" src="/js/jquery-3.6.3.min.js"></script>
-	<script type="text/javascript" src="/js/function.js"></script>
+    <script type="text/javascript" src="/DreamGate/js/jquery-3.6.3.min.js"></script>
+	<script type="text/javascript" src="/DreamGate/js/function.js"></script>
     <script type="text/javascript">
 
         $(function () {
@@ -95,7 +99,7 @@
                         rows.push(s.id);
                         rows.push('</td><td>');
                         rows.push(s.name);
-                        rows.push('</td><td><img src="/image/steal/s');
+                        rows.push('</td><td><img src="/DreamGate/image/steal/s');
                         rows.push(s.id);
                         rows.push('.gif"/></td><td>');
                         rows.push(s.lv);
@@ -119,66 +123,82 @@
 </head>
 
 <body>
-    <div class="head">盗窃全书</div>
-    <table id="steal" class="style" style="table-layout:fixed;">
+    <div class="head">生产制作</div>
+    <table id="steal" class="style">
         <tbody>
             <tr>
-                <td class="head" rowspan="2">等级</td>
-                <td class="body" onclick="sel(this)">1</td>
-                <td class="body" onclick="sel(this)">2</td>
-                <td class="body" onclick="sel(this)">3</td>
-                <td class="body" onclick="sel(this)">4</td>
-                <td class="body" onclick="sel(this)">5</td>
-                <td class="head" rowspan="2" onclick="init()">清空条件</td>
-            </tr>
-            <tr>
-                <td class="body" onclick="sel(this)">6</td>
-                <td class="body" onclick="sel(this)">7</td>
-                <td class="body" onclick="sel(this)">8</td>
-                <td class="body" onclick="sel(this)">9</td>
-                <td class="body" onclick="sel(this)">10</td>
-            </tr>
-            <tr>
-                <td class="head" rowspan="3">修正<br>属性<br>抵抗</td>
-                <td class="body" onclick="sel(this)">生命</td>
-                <td class="body" onclick="sel(this)">魔力</td>
-                <td class="body" onclick="sel(this)">必杀</td>
-                <td class="body" onclick="sel(this)">命中</td>
-                <td class="body" onclick="sel(this)">反击</td>
-                <td class="body" onclick="sel(this)">闪躲</td>
+                <td onclick="selType(this)" style="color: #5A02FF">剑</td>
+                <td onclick="selType(this)" style="color: #5A02FF">斧</td>
+                <td onclick="selType(this)" style="color: #5A02FF">枪</td>
+                <td onclick="selType(this)" style="color: #EE0000">弓</td>
+                <td onclick="selType(this)" style="color: #EE0000">拳</td>
+                <td onclick="selType(this)" style="color: #EE0000">刀</td>
+                <td onclick="selType(this)" style="color: #EE0000">投</td>
+                <td onclick="selType(this)" style="color: #00FF00">杖</td>
+                <td onclick="selKeys(this)" style="color: #4E92C2">血瓶</td>
                 
             </tr>
             <tr>
-                <td class="body" onclick="sel(this)">攻击</td>
-                <td class="body" onclick="sel(this)">防御</td>
-                <td class="body" onclick="sel(this)">敏捷</td>
-                <td class="body" onclick="sel(this)">精神</td>
-                <td class="body" onclick="sel(this)">回复</td>
-                <td class="body" onclick="sel(this)">魅力</td>
+                <td onclick="selType(this)" style="color: #5A02FF">铠</td>
+                <td onclick="selType(this)" style="color: #5A02FF">盔</td>
+                <td onclick="selType(this)" style="color: #5A02FF">靴</td>
+                <td onclick="selType(this)" style="color: #5A02FF">盾</td>
+                <td onclick="selType(this)" style="color: #EE0000">衣</td>
+                <td onclick="selType(this)" style="color: #EE0000">帽</td>
+                <td onclick="selType(this)" style="color: #EE0000">鞋</td>
+                <td onclick="selType(this)" style="color: #00FF00">袍</td>
+                <td onclick="selKeys(this)" style="color: #4E92C2">料理</td>
             </tr>
             <tr>
-                <td class="body" onclick="sel(this)">抗毒</td>
-                <td class="body" onclick="sel(this)">抗昏睡</td>
-                <td class="body" onclick="sel(this)">抗石化</td>
-                <td class="body" onclick="sel(this)">抗酒醉</td>
-                <td class="body" onclick="sel(this)">抗混乱</td>
-                <td class="body" onclick="sel(this)">抗遗忘</td>
+                <td onclick="selLevel(1)">Lv.1</td>
+                <td onclick="selLevel(2)">Lv.2</td>
+                <td onclick="selLevel(3)">Lv.3</td>
+                <td onclick="selLevel(4)">Lv.4</td>
+                <td onclick="selLevel(5)">Lv.5</td>
+                <td onclick="selKeys(this)" rowspan="2">5C</td>
+                <td onclick="selKeys(this)" rowspan="2">7C</td>
+                <td onclick="selKeys(this)" rowspan="2">8C</td>
+                <td onclick="selKeys(this)" rowspan="2">9C</td>
+            </tr>
+            <tr>
+                <td onclick="selLevel(6)">Lv.6</td>
+                <td onclick="selLevel(7)">Lv.7</td>
+                <td onclick="selLevel(8)">Lv.8</td>
+                <td onclick="selLevel(9)">Lv.9</td>
+                <td onclick="selLevel(0)">Lv.10</td>
+            </tr>
+            
+            <tr>
+                <td onclick="selKeys(this)">生命</td>
+                <td onclick="selKeys(this)">魔力</td>
+                <td onclick="selKeys(this)">必杀</td>
+                <td onclick="selKeys(this)">命中</td>
+                <td onclick="selKeys(this)">反击</td>
+                <td onclick="selKeys(this)">闪躲</td>
+                <td rowspan="3" colspan="3" onclick="init()" style="color:0">清空条件</td>
+            </tr>
+            <tr>
+                <td onclick="selKeys(this)">攻击</td>
+                <td onclick="selKeys(this)">防御</td>
+                <td onclick="selKeys(this)">敏捷</td>
+                <td onclick="selKeys(this)">精神</td>
+                <td onclick="selKeys(this)">回复</td>
+                <td onclick="selKeys(this)">魅力</td>
+            </tr>
+            <tr>
+                <td onclick="selKeys(this)">抗毒</td>
+                <td onclick="selKeys(this)">抗昏睡</td>
+                <td onclick="selKeys(this)">抗石化</td>
+                <td onclick="selKeys(this)">抗酒醉</td>
+                <td onclick="selKeys(this)">抗混乱</td>
+                <td onclick="selKeys(this)">抗遗忘</td>
             </tr>
         </tbody>
     </table>
     <hr>
 
-    <div id="search_div" style="display: none;" onkeydown="if(event.keyCode==13)search()">
-        搜尋︰<input type="text" name="search_btn">
-        <label for="bosssearch_check" onclick="search_btn.focus();if(search_btn.value)search()" style="cursor: hand">
-            <input type="checkbox" id="bosssearch_check" value="1"
-                style="border-width: 0px;background-color: transparent">BossSearch</label> 輸入
-        編號/物品名稱/盜取對象 後按下 Enter, 若要搜尋數項資料 請用空格代表一項(例︰100 甲蟲 刀羽)
-        <hr>
-    </div>
-
     <div id="itemlist_div" style="text-align: center; color: #ff0000">
-        <b id="keys"></b><br>
+        <b id="keys" style="font-size: 12pt;"></b><br>
         <table class="style" style="width: 100%;height: 100px">
             <thead>
                 <tr class="head">

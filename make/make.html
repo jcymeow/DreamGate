@@ -35,38 +35,27 @@
         });
 
         var keys = new Array();
-        var condition = {};
+        var condition = {type:null, level:null, keys:[]};
 
-        function selType(type){
-            condition.type = type;
+        function selType(cell){
+            $(cell).toogleClass("head");
+            condition.type = $(cell).text();
+            initGrid();
         }
-        function selLv(lv){
-            condition.lv = lv;
+        function selLevel(cell, level){
+            $(cell).toogleClass("head");
+            condition.level = level;
+            initGrid();
         }
-
-
-        function sel(cell) {
+        function selKeys(cell){
+            $(cell).toogleClass("head");
             var key = $(cell).text();
-            var hasKey = false;
-            if (keys) {
-                for (var i = 0; i < keys.length; i++) {
-                    if (key == keys[i]) {
-                        hasKey = true;
-                        break;
-                    }
-                }
-            }
-
-            if (hasKey) {
-                $(cell).removeClass("head");
-                keys.pop(key);
+            var hasKey=condition.keys.includes(key);
+            if(hasKey){
+                condition.keys.pop(key);
             } else {
-                $(cell).addClass("head");
-                keys.push(key);
+                condition.keys.push(key);
             }
-
-            keys.sort();
-            $("#keys").html(keys.join(','));
             initGrid();
         }
 
@@ -83,24 +72,22 @@
             var rows = new Array();
             $.getJSON(DATA.EQUIP, function (data) {
                 $(data).each(function (i, s) {
-                    var include = true;
-                    // var include = keys.length == 0;
-                    // //filter
-                    // if(!include){
-                    //     $(keys).each(function(j, key){
-                    //         if(isNaN(key)){
-                    //             if(s.func.includes(key)){
-                    //                 include = true;
-                    //                 return false;
-                    //             }
-                    //         } else {
-                    //             if(s.lv == key){
-                    //                 include = true;
-                    //                 return false;
-                    //             }
-                    //         }
-                    //     });
-                    // }
+                    var include = false;
+
+                    if(condition.type && s.type == condition.keys){
+                        include = true;
+                    }
+                    if(condition.level && s.lv == condition.level){
+                        include = true;
+                    }
+                    if(condition.keys){
+                        $(condition.keys).each(function(i, key){
+                            if(s.func.includes(key)){
+                                include = true;
+                                return false;
+                            }
+                        });
+                    }
 
                     //fillGrid
                     if (include) {
@@ -228,22 +215,22 @@
                 <td onclick="selKeys(this)" style="color: #4E92C2">料理</td>
             </tr>
             <tr>
-                <td onclick="selLevel(1)">Lv.1</td>
-                <td onclick="selLevel(2)">Lv.2</td>
-                <td onclick="selLevel(3)">Lv.3</td>
-                <td onclick="selLevel(4)">Lv.4</td>
-                <td onclick="selLevel(5)">Lv.5</td>
-                <td disabled="disabled" rowspan="2">5C</td>
+                <td onclick="selLevel(this, 1)">Lv.1</td>
+                <td onclick="selLevel(this, 2)">Lv.2</td>
+                <td onclick="selLevel(this, 3)">Lv.3</td>
+                <td onclick="selLevel(this, 4)">Lv.4</td>
+                <td onclick="selLevel(this, 5)">Lv.5</td>
+                <td onclick="selKeys(this)" rowspan="2">5C</td>
                 <td onclick="selKeys(this)" rowspan="2">7C</td>
                 <td onclick="selKeys(this)" rowspan="2">8C</td>
                 <td onclick="selKeys(this)" rowspan="2">9C</td>
             </tr>
             <tr>
-                <td onclick="selLevel(6)">Lv.6</td>
-                <td onclick="selLevel(7)">Lv.7</td>
-                <td onclick="selLevel(8)">Lv.8</td>
-                <td onclick="selLevel(9)">Lv.9</td>
-                <td onclick="selLevel(10)">Lv.10</td>
+                <td onclick="selLevel(this, 6)">Lv.6</td>
+                <td onclick="selLevel(this, 7)">Lv.7</td>
+                <td onclick="selLevel(this, 8)">Lv.8</td>
+                <td onclick="selLevel(this, 9)">Lv.9</td>
+                <td onclick="selLevel(this, 10)">Lv.10</td>
             </tr>
 
             <tr>

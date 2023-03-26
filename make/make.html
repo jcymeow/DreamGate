@@ -71,37 +71,37 @@
             $("#steal_list").empty();
             var num = 0;
             var rows = new Array();
-            $.getJSON('/js/data/steal.json', function (data) {
+            $.getJSON(DATA.EQUIP, function (data) {
                 $(data).each(function (i, s) {
-                    var include = keys.length == 0;
-
-                    //filter
-                    if(!include){
-                        $(keys).each(function(j, key){
-                            if(isNaN(key)){
-                                if(s.func.includes(key)){
-                                    include = true;
-                                    return false;
-                                }
-                            } else {
-                                if(s.lv == key){
-                                    include = true;
-                                    return false;
-                                }
-                            }
-                        });
-                    }
+                    var include = true;
+                    // var include = keys.length == 0;
+                    // //filter
+                    // if(!include){
+                    //     $(keys).each(function(j, key){
+                    //         if(isNaN(key)){
+                    //             if(s.func.includes(key)){
+                    //                 include = true;
+                    //                 return false;
+                    //             }
+                    //         } else {
+                    //             if(s.lv == key){
+                    //                 include = true;
+                    //                 return false;
+                    //             }
+                    //         }
+                    //     });
+                    // }
 
                     //fillGrid
                     if(include){
                         num++;
                         rows.push('<tr><td>');
-                        rows.push(s.id);
+                        rows.push(s.lv);
                         rows.push('</td><td>');
                         rows.push(s.name);
-                        rows.push('</td><td><img src="/DreamGate/image/steal/s');
-                        rows.push(s.id);
-                        rows.push('.gif"/></td><td>');
+                        rows.push('</td><td><img src="/DreamGate/image/item/');
+                        rows.push(s.name);
+                        rows.push('.png"/></td><td>');
                         rows.push(s.lv);
                         rows.push('</td><td style="text-align:left">');
                         rows.push(s.type);

@@ -8,8 +8,9 @@
         #steal,
         #steal table {
             font-size: 12pt;
-            table-layout:fixed;
+            table-layout: fixed;
         }
+
         #steal td {
             padding: 1px;
             color: #FF0000;
@@ -26,7 +27,7 @@
         }
     </style>
     <script type="text/javascript" src="/DreamGate/js/jquery-3.6.3.min.js"></script>
-	<script type="text/javascript" src="/DreamGate/js/function.js"></script>
+    <script type="text/javascript" src="/DreamGate/js/function.js"></script>
     <script type="text/javascript">
 
         $(function () {
@@ -35,19 +36,19 @@
 
         var keys = new Array();
 
-        function sel(cell){
+        function sel(cell) {
             var key = $(cell).text();
-            var hasKey=false;
-            if(keys){
-                for(var i=0;i<keys.length;i++){
-                    if(key == keys[i]){
+            var hasKey = false;
+            if (keys) {
+                for (var i = 0; i < keys.length; i++) {
+                    if (key == keys[i]) {
                         hasKey = true;
                         break;
-                    } 
+                    }
                 }
             }
 
-            if(hasKey){
+            if (hasKey) {
                 $(cell).removeClass("head");
                 keys.pop(key);
             } else {
@@ -60,14 +61,14 @@
             initGrid();
         }
 
-        function init(){
-            keys.length=0;
+        function init() {
+            keys.length = 0;
             $(".body").removeClass('head');
             $("#keys").html(keys.join(','));
             initGrid();
         }
 
-        function initGrid(){
+        function initGrid() {
             $("#item_list").empty();
             var num = 0;
             var rows = new Array();
@@ -93,31 +94,100 @@
                     // }
 
                     //fillGrid
-                    if(include){
+                    if (include) {
                         num++;
-                        rows.push('<tr><td>');
+
+                        rows.push('<tr><td rowspan="3">');
                         rows.push(s.lv);
-                        rows.push('</td><td>');
-                        rows.push(s.name);
                         rows.push('</td><td><img src="/DreamGate/image/item/');
                         rows.push(s.name);
                         rows.push('.png"/></td><td>');
-                        rows.push(s.lv);
-                        rows.push('</td><td style="text-align:left">');
-                        rows.push(s.type);
-                        rows.push('</td><td style="text-align:left">');
+                        if (s.items[0]) {
+                            rows.push('<img src="/DreamGate/image/item/');
+                            rows.push(s.items[0].name);
+                            rows.push('.png"/>');
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[1]) {
+                            rows.push('<img src="/DreamGate/image/item/');
+                            rows.push(s.items[1].name);
+                            rows.push('.png"/>');
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[2]) {
+                            rows.push('<img src="/DreamGate/image/item/');
+                            rows.push(s.items[2].name);
+                            rows.push('.png"/>');
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[3]) {
+                            rows.push('<img src="/DreamGate/image/item/');
+                            rows.push(s.items[3].name);
+                            rows.push('.png"/>');
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[4]) {
+                            rows.push('<img src="/DreamGate/image/item/');
+                            rows.push(s.items[4].name);
+                            rows.push('.png"/>');
+                        }
+                        rows.push('</td><td>');
                         rows.push(s.func);
+                        rows.push('</td></tr>');
+
+                        rows.push('<tr><td>');
+                        rows.push(s.name);
                         rows.push('</td><td>');
-                        rows.push(s.obj);
+                        if (s.items[0]) {
+                            rows.push(s.items[0].name);
+                        }
                         rows.push('</td><td>');
-                        rows.push(s.place);
+                        if (s.items[1]) {
+                            rows.push(s.items[1].name);
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[2]) {
+                            rows.push(s.items[2].name);
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[3]) {
+                            rows.push(s.items[3].name);
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[4]) {
+                            rows.push(s.items[4].name);
+                        }
+                        rows.push('</td></tr>');
+
+                        rows.push('<tr><td>');
+                        rows.push(s.type);
+                        rows.push('</td><td>');
+                        if (s.items[0]) {
+                            rows.push(s.items[0].count);
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[1]) {
+                            rows.push(s.items[1].count);
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[2]) {
+                            rows.push(s.items[2].count);
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[3]) {
+                            rows.push(s.items[3].count);
+                        }
+                        rows.push('</td><td>');
+                        if (s.items[4]) {
+                            rows.push(s.items[4].count);
+                        }
                         rows.push('</td></tr>');
                     }
                 });
                 $("#item_list").html(rows.join(''));
-                $("#keys").html($("#keys").html()+"   符合条件:"+num);
+                $("#keys").html($("#keys").html() + "   符合条件:" + num);
             });
-            
+
         }
     </script>
 </head>
@@ -136,7 +206,7 @@
                 <td onclick="selType(this)" style="color: #EE0000">投</td>
                 <td onclick="selType(this)" style="color: #00FF00">杖</td>
                 <td onclick="selKeys(this)" style="color: #4E92C2">血瓶</td>
-                
+
             </tr>
             <tr>
                 <td onclick="selType(this)" style="color: #5A02FF">铠</td>
@@ -155,7 +225,7 @@
                 <td onclick="selLevel(3)">Lv.3</td>
                 <td onclick="selLevel(4)">Lv.4</td>
                 <td onclick="selLevel(5)">Lv.5</td>
-                <td onclick="selKeys(this)" rowspan="2">5C</td>
+                <td disabled="disabled">5C</td>
                 <td onclick="selKeys(this)" rowspan="2">7C</td>
                 <td onclick="selKeys(this)" rowspan="2">8C</td>
                 <td onclick="selKeys(this)" rowspan="2">9C</td>
@@ -167,7 +237,7 @@
                 <td onclick="selLevel(9)">Lv.9</td>
                 <td onclick="selLevel(0)">Lv.10</td>
             </tr>
-            
+
             <tr>
                 <td onclick="selKeys(this)">生命</td>
                 <td onclick="selKeys(this)">魔力</td>
@@ -202,10 +272,10 @@
         <table class="style" style="width: 100%;height: 100px">
             <thead>
                 <tr class="head">
-                    <td width="10%">编号</td>
+                    <td width="10%">等级</td>
                     <td width="10%">名称</td>
                     <td width="10%">图</td>
-                    <td width="10%">等级</td>
+                    <td width="10%"></td>
                     <td width="10%">种类</td>
                     <td width="20%">附加能力</td>
                     <td width="15%">盗取对像</td>

@@ -59,6 +59,11 @@
             condition.level = level;
             initGrid();
         }
+        function selTag(cell){
+            $(cell).toggleClass("head");
+            condition.tag = $(cell).text();
+            initGrid();
+        }
 
 
         function init() {

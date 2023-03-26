@@ -36,11 +36,11 @@
 
         var condition = {type:null, level:null, keys:[], toString:function(){
             var array = new Array();
-            if(array) keys.push(type);
-            if(array) kesy.push(level);
+            if(array) keys.push(this.type);
+            if(array) kesy.push(this.level);
             if(array) {
-                for(var i=0;i<keys.legnth;i++){
-                    array.push(keys[i]);
+                for(var i=0;i<this.keys.legnth;i++){
+                    array.push(this.keys[i]);
                 }
             }
             return array.join(',');

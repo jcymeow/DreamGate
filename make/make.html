@@ -34,7 +34,8 @@
             initGrid();
         });
 
-        var condition = {type:null, level:null, keys:[]};
+        var condition = {type:null, level:null};
+        /**
         condition.toString = function(){
             var array = new Array();
             if(this.type) array.push(this.type);
@@ -46,6 +47,7 @@
             }
             return array.join(',');
         }
+        **/
 
         function selType(cell){
             $(cell).toggleClass("head");
@@ -57,27 +59,16 @@
             condition.level = level;
             initGrid();
         }
-        function selKeys(cell){
-            $(cell).toggleClass("head");
-            var key = $(cell).text();
-            var hasKey=condition.keys.includes(key);
-            if(hasKey){
-                condition.keys.pop(key);
-            } else {
-                condition.keys.push(key);
-            }
-            initGrid();
-        }
+
 
         function init() {
-            keys.length = 0;
+            condition.type = null;
+            condition.level = null;
             $(".body").removeClass('head');
-            $("#keys").html(keys.join(','));
             initGrid();
         }
 
         function initGrid() {
-            $("#keys").html('');
             $("#item_list").empty();
             var num = 0;
             var rows = new Array();
@@ -91,18 +82,9 @@
                     if(condition.level && condition.level == s.lv){
                         matchLevel = true;
                     }
-                    var matchKeys = condition.keys.length == 0;
-                    if(condition.keys){
-                        $(condition.keys).each(function(i, key){
-                            if(s.func.includes(key)){
-                                matchKeys = true;
-                                return false;
-                            }
-                        });
-                    }
 
                     //fillGrid
-                    if (matchType && matchLevel && matchKeys) {
+                    if (matchType && matchLevel) {
                         num++;
 
                         rows.push('<tr><td rowspan="3" style="width:10%">');
@@ -193,7 +175,6 @@
                     }
                 });
                 $("#item_list").html(rows.join(''));
-                $("#keys").html(condition.toString() + "   符合条件:" + num);
             });
 
         }
@@ -232,10 +213,9 @@
                 <td onclick="selLevel(this, 3)">Lv.3</td>
                 <td onclick="selLevel(this, 4)">Lv.4</td>
                 <td onclick="selLevel(this, 5)">Lv.5</td>
-                <td onclick="selKeys(this)" rowspan="2">5C</td>
-                <td onclick="selKeys(this)" rowspan="2">7C</td>
-                <td onclick="selKeys(this)" rowspan="2">8C</td>
-                <td onclick="selKeys(this)" rowspan="2">9C</td>
+                <td onclick="selKeys(this)">5C</td>
+                <td onclick="selKeys(this)">7C</td>
+                <td rowspan="2" colspan="2" onclick="init()" style="color:0">清空条件</td>
             </tr>
             <tr>
                 <td onclick="selLevel(this, 6)">Lv.6</td>
@@ -243,39 +223,14 @@
                 <td onclick="selLevel(this, 8)">Lv.8</td>
                 <td onclick="selLevel(this, 9)">Lv.9</td>
                 <td onclick="selLevel(this, 10)">Lv.10</td>
-            </tr>
-
-            <tr>
-                <td onclick="selKeys(this)">生命</td>
-                <td onclick="selKeys(this)">魔力</td>
-                <td onclick="selKeys(this)">必杀</td>
-                <td onclick="selKeys(this)">命中</td>
-                <td onclick="selKeys(this)">反击</td>
-                <td onclick="selKeys(this)">闪躲</td>
-                <td rowspan="3" colspan="3" onclick="init()" style="color:0">清空条件</td>
-            </tr>
-            <tr>
-                <td onclick="selKeys(this)">攻击</td>
-                <td onclick="selKeys(this)">防御</td>
-                <td onclick="selKeys(this)">敏捷</td>
-                <td onclick="selKeys(this)">精神</td>
-                <td onclick="selKeys(this)">回复</td>
-                <td onclick="selKeys(this)">魅力</td>
-            </tr>
-            <tr>
-                <td onclick="selKeys(this)">抗毒</td>
-                <td onclick="selKeys(this)">抗昏睡</td>
-                <td onclick="selKeys(this)">抗石化</td>
-                <td onclick="selKeys(this)">抗酒醉</td>
-                <td onclick="selKeys(this)">抗混乱</td>
-                <td onclick="selKeys(this)">抗遗忘</td>
+                <td onclick="selKeys(this)">8C</td>
+                <td onclick="selKeys(this)">9C</td>
             </tr>
         </tbody>
     </table>
     <hr>
 
     <div id="itemlist_div" style="text-align: center; color: #ff0000">
-        <b id="keys" style="font-size: 12pt;"></b><br>
         <table class="style" style="width: 100%;height: 100px">
             <thead>
                 <tr class="head">

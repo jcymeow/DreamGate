@@ -83,25 +83,26 @@
             var rows = new Array();
             $.getJSON(DATA.EQUIP, function (data) {
                 $(data).each(function (i, s) {
-                    var include = false;
-
+                    var matchType = false;
                     if(condition.type && condition.type == s.type){
                         include = true;
                     }
+                    var matchLevel = false;
                     if(condition.level && condition.level == s.lv){
                         include = true;
                     }
+                    var matchKeys = false;
                     if(condition.keys){
                         $(condition.keys).each(function(i, key){
                             if(s.func.includes(key)){
-                                include = true;
+                                matchKeys = true;
                                 return false;
                             }
                         });
                     }
 
                     //fillGrid
-                    if (include) {
+                    if (matchType && matchLevel && matchKeys) {
                         num++;
 
                         rows.push('<tr><td rowspan="3" style="width:10%">');

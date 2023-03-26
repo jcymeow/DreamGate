@@ -106,41 +106,41 @@
                     if (include) {
                         num++;
 
-                        rows.push('<tr><td rowspan="3">');
+                        rows.push('<tr><td rowspan="3" style="width:10%">');
                         rows.push(s.lv);
-                        rows.push('</td><td><img src="/DreamGate/image/item/');
+                        rows.push('</td><td style="width:10%"><img src="/DreamGate/image/item/');
                         rows.push(s.name);
-                        rows.push('.png"/></td><td>');
+                        rows.push('.png"/></td><td style="width:10%">');
                         if (s.items[0]) {
                             rows.push('<img src="/DreamGate/image/item/');
                             rows.push(s.items[0].name);
                             rows.push('.png"/>');
                         }
-                        rows.push('</td><td>');
+                        rows.push('</td><td style="width:10%">');
                         if (s.items[1]) {
                             rows.push('<img src="/DreamGate/image/item/');
                             rows.push(s.items[1].name);
                             rows.push('.png"/>');
                         }
-                        rows.push('</td><td>');
+                        rows.push('</td><td style="width:10%">');
                         if (s.items[2]) {
                             rows.push('<img src="/DreamGate/image/item/');
                             rows.push(s.items[2].name);
                             rows.push('.png"/>');
                         }
-                        rows.push('</td><td>');
+                        rows.push('</td><td style="width:10%">');
                         if (s.items[3]) {
                             rows.push('<img src="/DreamGate/image/item/');
                             rows.push(s.items[3].name);
                             rows.push('.png"/>');
                         }
-                        rows.push('</td><td>');
+                        rows.push('</td><td style="width:10%">');
                         if (s.items[4]) {
                             rows.push('<img src="/DreamGate/image/item/');
                             rows.push(s.items[4].name);
                             rows.push('.png"/>');
                         }
-                        rows.push('</td><td>');
+                        rows.push('</td><td style="width:10%">');
                         rows.push(s.func);
                         rows.push('</td></tr>');
 
@@ -215,7 +215,6 @@
                 <td onclick="selType(this)" style="color: #EE0000">投</td>
                 <td onclick="selType(this)" style="color: #00FF00">杖</td>
                 <td onclick="selKeys(this)" style="color: #4E92C2">血瓶</td>
-
             </tr>
             <tr>
                 <td onclick="selType(this)" style="color: #5A02FF">铠</td>
@@ -234,7 +233,7 @@
                 <td onclick="selLevel(3)">Lv.3</td>
                 <td onclick="selLevel(4)">Lv.4</td>
                 <td onclick="selLevel(5)">Lv.5</td>
-                <td disabled="disabled">5C</td>
+                <td disabled="disabled" rowspan="2">5C</td>
                 <td onclick="selKeys(this)" rowspan="2">7C</td>
                 <td onclick="selKeys(this)" rowspan="2">8C</td>
                 <td onclick="selKeys(this)" rowspan="2">9C</td>
@@ -244,7 +243,7 @@
                 <td onclick="selLevel(7)">Lv.7</td>
                 <td onclick="selLevel(8)">Lv.8</td>
                 <td onclick="selLevel(9)">Lv.9</td>
-                <td onclick="selLevel(0)">Lv.10</td>
+                <td onclick="selLevel(10)">Lv.10</td>
             </tr>
 
             <tr>

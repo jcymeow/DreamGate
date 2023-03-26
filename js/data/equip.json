@@ -19,7 +19,7 @@
     {"lv":8,"type":"剑","name":"细柄短剑","items":[{"name":"幻之钢条","count":10},{"name":"幻之银条","count":13},{"name":"枞","count":20},{"name":"赤松","count":20},{"name":"杉","count":20}],"price":0,"func":"攻擊+153~+204"},
     {"lv":8,"type":"剑","name":"长军刀+","items":[{"name":"幻之钢条", "count":18},{"name":"幻之银条", "count":18},{"name":"杉", "count":20},{"name":"永久冰石", "count":20},{"name":"蓝龙之鳞", "count":20}],"price":0,"func":"攻擊+90~+180 必殺-1~+4 耐久200~+250"},
     {"lv":9,"type":"剑","name":"细刃重剑","items":[{"name":"铁条","count":10},{"name":"白金条","count":10},{"name":"幻之钢条","count":10},{"name":"幻之银条","count":10},{"name":"丝柏","count":20}],"price":0,"func":"攻擊+182~+228"},
-    {"lv":9,"type":"剑","name":"刚硬巨剑","items":[{"name":"纯银条","count":10},{"name":"幻之银条","count":10},{"name":"勒格耐席鉧条","count":10},{"name":"琵琶木","count":20},{"name":"钢骑之矿","count":2}],"price":0,"func":"攻擊+185 連擊所需消耗魔力減少20%"},
-    {"lv":10,"type":"剑","name":"青龙刀","items":[{"name":"金条","count":10},{"name":"幻之银条","count":10},{"name":"勒格耐席鉧条","count":10},{"name":"杉","count":20},{"name":"梣","count":20}],"price":0,"func":"攻擊+204~+240"},
+    {"lv":9,"type":"剑","name":"刚硬巨剑","items":[{"name":"纯银条","count":10},{"name":"幻之银条","count":10},{"name":"勒格耐席𬭁条","count":10},{"name":"琵琶木","count":20},{"name":"钢骑之矿","count":2}],"price":0,"func":"攻擊+185 連擊所需消耗魔力減少20%"},
+    {"lv":10,"type":"剑","name":"青龙刀","items":[{"name":"金条","count":10},{"name":"幻之银条","count":10},{"name":"勒格耐席𬭁条","count":10},{"name":"杉","count":20},{"name":"梣","count":20}],"price":0,"func":"攻擊+204~+240"},
     {"lv":10,"type":"剑","name":"曲刀","items":[{"name":"幻之银条","count":10},{"name":"奥利哈钢条","count":10},{"name":"丝柏","count":20},{"name":"钢骑之矿","count":2},{"name":"魔族的水晶","count":2}],"price":0,"func":"攻擊+250 敏捷+1 命中-1~+3 閃躲-1~+3 "}
 ]

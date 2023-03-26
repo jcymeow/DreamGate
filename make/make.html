@@ -34,8 +34,17 @@
             initGrid();
         });
 
-        var keys = new Array();
-        var condition = {type:null, level:null, keys:[]};
+        var condition = {type:null, level:null, keys:[], toString:function(){
+            var array = new Array();
+            if(array) keys.push(type);
+            if(array) kesy.push(level);
+            if(array) {
+                for(var i=0;i<keys.legnth;i++){
+                    array.push(keys[i]);
+                }
+            }
+            return array.join(',');
+        }};
 
         function selType(cell){
             $(cell).toggleClass("head");
@@ -67,6 +76,7 @@
         }
 
         function initGrid() {
+            $("#keys").html('');
             $("#item_list").empty();
             var num = 0;
             var rows = new Array();
@@ -181,7 +191,7 @@
                     }
                 });
                 $("#item_list").html(rows.join(''));
-                $("#keys").html($("#keys").html() + "   符合条件:" + num);
+                $("#keys").html(condition.toString() + "   符合条件:" + num);
             });
 
         }

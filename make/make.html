@@ -85,11 +85,11 @@
                 $(data).each(function (i, s) {
                     var matchType = condition.type == null;
                     if(condition.type && condition.type == s.type){
-                        include = true;
+                        matchType = true;
                     }
                     var matchLevel = condition.matchLevel == null;
                     if(condition.level && condition.level == s.lv){
-                        include = true;
+                        matchLevel = true;
                     }
                     var matchKeys = condition.keys.length == 0;
                     if(condition.keys){

@@ -37,9 +37,9 @@
         var condition = {type:null, level:null, keys:[]};
         condition.toString = function(){
             var array = new Array();
-            if(array) keys.push(this.type);
-            if(array) kesy.push(this.level);
-            if(array) {
+            if(this.type) array.push(this.type);
+            if(this.level) array.push(this.level);
+            if(this.keys) {
                 for(var i=0;i<this.keys.legnth;i++){
                     array.push(this.keys[i]);
                 }

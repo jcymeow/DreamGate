@@ -34,7 +34,7 @@
             initGrid();
         });
 
-        var condition = {type:null, level:null};
+        var condition = {type:null, level:null, tag:null};
         /**
         condition.toString = function(){
             var array = new Array();
@@ -64,6 +64,7 @@
         function init() {
             condition.type = null;
             condition.level = null;
+            condition.tag  = null;
             $(".body").removeClass('head');
             initGrid();
         }
@@ -82,9 +83,13 @@
                     if(condition.level && condition.level == s.lv){
                         matchLevel = true;
                     }
+                    var matchTag = condition.tag == null;
+                    if(condition.tag && condition.tag == s.tag){
+                        matchTag = true;
+                    }
 
                     //fillGrid
-                    if (matchType && matchLevel) {
+                    if (matchType && matchLevel && matchTag) {
                         num++;
 
                         rows.push('<tr><td rowspan="3" style="width:10%">');
@@ -213,8 +218,8 @@
                 <td onclick="selLevel(this, 3)">Lv.3</td>
                 <td onclick="selLevel(this, 4)">Lv.4</td>
                 <td onclick="selLevel(this, 5)">Lv.5</td>
-                <td onclick="selKeys(this)">5C</td>
-                <td onclick="selKeys(this)">7C</td>
+                <td onclick="selTag(this)">5C</td>
+                <td onclick="selTag(this)">7C</td>
                 <td rowspan="2" colspan="2" onclick="init()" style="color:0">清空条件</td>
             </tr>
             <tr>
@@ -223,8 +228,8 @@
                 <td onclick="selLevel(this, 8)">Lv.8</td>
                 <td onclick="selLevel(this, 9)">Lv.9</td>
                 <td onclick="selLevel(this, 10)">Lv.10</td>
-                <td onclick="selKeys(this)">8C</td>
-                <td onclick="selKeys(this)">9C</td>
+                <td onclick="selTag(this)">8C</td>
+                <td onclick="selTag(this)">9C</td>
             </tr>
         </tbody>
     </table>

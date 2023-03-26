@@ -35,6 +35,15 @@
         });
 
         var keys = new Array();
+        var condition = {};
+
+        function selType(type){
+            condition.type = type;
+        }
+        function selLv(lv){
+            condition.lv = lv;
+        }
+
 
         function sel(cell) {
             var key = $(cell).text();
@@ -274,12 +283,8 @@
                 <tr class="head">
                     <td width="10%">等级</td>
                     <td width="10%">名称</td>
-                    <td width="10%">图</td>
-                    <td width="10%"></td>
-                    <td width="10%">种类</td>
-                    <td width="20%">附加能力</td>
-                    <td width="15%">盗取对像</td>
-                    <td width="15%">盗取地点</td>
+                    <td width="50%" colspan="5">配方图</td>
+                    <td width="30%">能力</td>
                 </tr>
             </thead>
             <tbody id="item_list">

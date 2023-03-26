@@ -34,7 +34,8 @@
             initGrid();
         });
 
-        var condition = {type:null, level:null, keys:[], toString:function(){
+        var condition = {type:null, level:null, keys:[]};
+        condition.toString = function(){
             var array = new Array();
             if(array) keys.push(this.type);
             if(array) kesy.push(this.level);
@@ -44,7 +45,7 @@
                 }
             }
             return array.join(',');
-        }};
+        }
 
         function selType(cell){
             $(cell).toggleClass("head");

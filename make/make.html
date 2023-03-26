@@ -38,17 +38,17 @@
         var condition = {type:null, level:null, keys:[]};
 
         function selType(cell){
-            $(cell).toogleClass("head");
+            $(cell).toggleClass("head");
             condition.type = $(cell).text();
             initGrid();
         }
         function selLevel(cell, level){
-            $(cell).toogleClass("head");
+            $(cell).toggleClass("head");
             condition.level = level;
             initGrid();
         }
         function selKeys(cell){
-            $(cell).toogleClass("head");
+            $(cell).toggleClass("head");
             var key = $(cell).text();
             var hasKey=condition.keys.includes(key);
             if(hasKey){

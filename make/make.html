@@ -85,10 +85,10 @@
                 $(data).each(function (i, s) {
                     var include = false;
 
-                    if(condition.type && s.type == condition.keys){
+                    if(condition.type && condition.type == s.type){
                         include = true;
                     }
-                    if(condition.level && s.lv == condition.level){
+                    if(condition.level && condition.level == s.lv){
                         include = true;
                     }
                     if(condition.keys){

@@ -37,19 +37,19 @@
         var condition = {type:null, level:null, tag:null};
 
         function selType(cell){
-            $("#condition[name=type]").removeClass('head');
+            $("#condition td[name=type]").removeClass('head');
             $(cell).toggleClass("head");
             condition.type = $(cell).text();
             initGrid();
         }
         function selLevel(cell, level){
-            $("#condition[name=level]").removeClass('head');
+            $("#condition td[name=level]").removeClass('head');
             $(cell).toggleClass("head");
             condition.level = level;
             initGrid();
         }
         function selTag(cell){
-            $("#condition[name=tag]").removeClass('head');
+            $("#condition td[name=tag]").removeClass('head');
             $(cell).toggleClass("head");
             condition.tag = $(cell).text();
             initGrid();

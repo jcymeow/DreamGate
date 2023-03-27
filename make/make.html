@@ -5,19 +5,19 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="/DreamGate/css/css.css">
     <style type="text/css">
-        #steal,
-        #steal table {
+        #condition,
+        #condition table {
             font-size: 12pt;
             table-layout: fixed;
         }
 
-        #steal td {
+        #condition td {
             padding: 1px;
             color: #FF0000;
             cursor: pointer;
         }
 
-        #steal td:hover {
+        #condition td:hover {
             background-color: #d8cca8
         }
 
@@ -37,21 +37,36 @@
         var condition = {type:null, level:null, tag:null};
 
         function selType(cell){
-            $("#condition td[name=type]").removeClass('head');
-            $(cell).toggleClass("head");
-            condition.type = $(cell).text();
+            if($(cell).text() == condition.type){
+                $(cell).toggleClass("head");
+                condition.type = null;
+            } else {
+                $("#condition td[name=type]").removeClass('head');
+                $(cell).toggleClass("head");
+                condition.type = $(cell).text();
+            }
             initGrid();
         }
         function selLevel(cell, level){
-            $("#condition td[name=level]").removeClass('head');
-            $(cell).toggleClass("head");
-            condition.level = level;
+            if(level == condition.level){
+                $(cell).toggleClass("head");
+                condition.level = null;
+            } else {
+                $("#condition td[name=level]").removeClass('head');
+                $(cell).toggleClass("head");
+                condition.level = level;
+            }
             initGrid();
         }
         function selTag(cell){
-            $("#condition td[name=tag]").removeClass('head');
-            $(cell).toggleClass("head");
-            condition.tag = $(cell).text();
+            if($(cell).text() == condition.tag){
+                $(cell).toggleClass("head");
+                condition.tag = null;
+            } else {
+                $("#condition td[name=tag]").removeClass('head');
+                $(cell).toggleClass("head");
+                condition.tag = $(cell).text();
+            }
             initGrid();
         }
 
@@ -66,7 +81,6 @@
 
         function initGrid() {
             $("#item_list").empty();
-            var num = 0;
             var rows = new Array();
 
             if(!condition.type && !condition.level && !condition.tag){
@@ -90,8 +104,6 @@
 
                     //fillGrid
                     if (matchType && matchLevel && matchTag) {
-                        num++;
-
                         rows.push('<tr><td rowspan="3" style="width:10%">');
                         rows.push(s.lv);
                         rows.push('</td><td style="width:10%"><img src="/DreamGate/image/item/');

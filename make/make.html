@@ -35,21 +35,11 @@
         });
 
         var condition = {type:null, level:null, tag:null};
-        /**
-        condition.toString = function(){
-            var array = new Array();
-            if(this.type) array.push(this.type);
-            if(this.level) array.push(this.level);
-            if(this.keys) {
-                for(var i=0;i<this.keys.legnth;i++){
-                    array.push(this.keys[i]);
-                }
-            }
-            return array.join(',');
-        }
-        **/
 
         function selType(cell){
+            if(condition.type){
+                $("#condition td:eq("+condition.type+")").toggleClass("head");
+            }
             $(cell).toggleClass("head");
             condition.type = $(cell).text();
             initGrid();
@@ -70,7 +60,7 @@
             condition.type = null;
             condition.level = null;
             condition.tag  = null;
-            $(".body").removeClass('head');
+            $("#condition").removeClass('head');
             initGrid();
         }
 
@@ -193,7 +183,7 @@
 
 <body>
     <div class="head">生产制作</div>
-    <table id="steal" class="style">
+    <table id="condition" class="style">
         <tbody>
             <tr>
                 <td onclick="selType(this)" style="color: #5A02FF">剑</td>

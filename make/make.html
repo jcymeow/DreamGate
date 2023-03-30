@@ -34,48 +34,60 @@
             initGrid();
         });
 
-        var condition = {type:null, level:null, tag:null};
+        var condition = {type:[], level:[], tag:[]};
 
         function selType(cell){
-            if($(cell).text() == condition.type){
-                $(cell).toggleClass("head");
-                condition.type = null;
+            var type = $(cell).text();
+            if(condition.type.includes(type)){
+                $(cell).removeClass("head");
+                condition.type.pop(type);
             } else {
-                $("#condition td[name=type]").removeClass('head');
-                $(cell).toggleClass("head");
-                condition.type = $(cell).text();
+                $(cell).addClass("head");
+                condition.type.push(type);
             }
             initGrid();
         }
+
         function selLevel(cell, level){
-            if(level == condition.level){
-                $(cell).toggleClass("head");
-                condition.level = null;
+            if(condition.level.includes(level)){
+                $(cell).removeClass("head");
+                condition.level.pop(level);
             } else {
-                $("#condition td[name=level]").removeClass('head');
-                $(cell).toggleClass("head");
-                condition.level = level;
+                $(cell).addClass("head");
+                condition.level.push(level);
             }
             initGrid();
         }
+
         function selTag(cell){
-            if($(cell).text() == condition.tag){
-                $(cell).toggleClass("head");
-                condition.tag = null;
+            var tag = $(cell).text();
+            if(condition.tag.includes(tag)){
+                $(cell).removeClass("head");
+                condition.tag.pop(tag);
             } else {
-                $("#condition td[name=tag]").removeClass('head');
-                $(cell).toggleClass("head");
-                condition.tag = $(cell).text();
+                $(cell).addClass("head");
+                condition.tag.push(tag);
             }
             initGrid();
+        }
+
+        function selGroup(cell){
+            var group = $(cell).text();
+            if('重' == group){
+                
+            }
+            if('轻' == group){
+
+            }
+            if('法' == group){
+
+            }
         }
 
 
         function init() {
             $("#condition td").removeClass('head');
-            condition.type = null;
-            condition.level = null;
-            condition.tag  = null;
+            condition = {type:[], level:[], tag:[]};
             initGrid();
         }
 
@@ -83,22 +95,22 @@
             $("#item_list").empty();
             var rows = new Array();
 
-            if(!condition.type && !condition.level && !condition.tag){
+            if(condition.type.length==0 && condition.level.length==0 && condition.tag.length==0){
                 return;
             }
 
             $.getJSON(DATA.EQUIP, function (data) {
                 $(data).each(function (i, s) {
-                    var matchType = condition.type == null;
-                    if(condition.type && condition.type == s.type){
+                    var matchType = condition.type.length == 0;
+                    if(condition.type && condition.type.includes(s.type)){
                         matchType = true;
                     }
-                    var matchLevel = condition.level == null;
-                    if(condition.level && condition.level == s.lv){
+                    var matchLevel = condition.level.length == 0;
+                    if(condition.level && condition.level.includes(s.level)){
                         matchLevel = true;
                     }
-                    var matchTag = condition.tag == null;
-                    if(condition.tag && condition.tag == s.tag){
+                    var matchTag = condition.tag.length == 0;
+                    if(condition.tag && condition.tag.includes(s.tag)){
                         matchTag = true;
                     }
 
@@ -203,45 +215,50 @@
     <table id="condition" class="style">
         <tbody>
             <tr>
-                <td name="type" onclick="selType(this)" style="color: #5A02FF">剑</td>
-                <td name="type" onclick="selType(this)" style="color: #5A02FF">斧</td>
-                <td name="type" onclick="selType(this)" style="color: #5A02FF">枪</td>
-                <td name="type" onclick="selType(this)" style="color: #EE0000">弓</td>
-                <td name="type" onclick="selType(this)" style="color: #EE0000">拳</td>
-                <td name="type" onclick="selType(this)" style="color: #EE0000">刀</td>
-                <td name="type" onclick="selType(this)" style="color: #EE0000">投</td>
-                <td name="type" onclick="selType(this)" style="color: #00FF00">杖</td>
-                <td name="type" onclick="selKeys(this)" style="color: #4E92C2">血瓶</td>
+                <td name="group" onClick="selGroup(this)" style="color: #5A02FF">重</td>
+                <td name="group" onClick="selGroup(this)" style="color: #EE0000">轻</td>
+                <td name="group" onClick="selGroup(this)" style="color: #00FF00">法</td>
             </tr>
             <tr>
-                <td name="type" onclick="selType(this)" style="color: #5A02FF">铠</td>
-                <td name="type" onclick="selType(this)" style="color: #5A02FF">盔</td>
-                <td name="type" onclick="selType(this)" style="color: #5A02FF">靴</td>
-                <td name="type" onclick="selType(this)" style="color: #5A02FF">盾</td>
-                <td name="type" onclick="selType(this)" style="color: #EE0000">衣</td>
-                <td name="type" onclick="selType(this)" style="color: #EE0000">帽</td>
-                <td name="type" onclick="selType(this)" style="color: #EE0000">鞋</td>
-                <td name="type" onclick="selType(this)" style="color: #00FF00">袍</td>
-                <td name="type" onclick="selKeys(this)" style="color: #4E92C2">料理</td>
+                <td name="type" onClick="selType(this)" style="color: #5A02FF">剑</td>
+                <td name="type" onClick="selType(this)" style="color: #5A02FF">斧</td>
+                <td name="type" onClick="selType(this)" style="color: #5A02FF">枪</td>
+                <td name="type" onClick="selType(this)" style="color: #EE0000">弓</td>
+                <td name="type" onClick="selType(this)" style="color: #EE0000">拳</td>
+                <td name="type" onClick="selType(this)" style="color: #EE0000">刀</td>
+                <td name="type" onClick="selType(this)" style="color: #EE0000">投</td>
+                <td name="type" onClick="selType(this)" style="color: #00FF00">杖</td>
+                <td name="type" onClick="selKeys(this)" style="color: #4E92C2">血瓶</td>
             </tr>
             <tr>
-                <td name="level" onclick="selLevel(this, 1)">Lv.1</td>
-                <td name="level" onclick="selLevel(this, 2)">Lv.2</td>
-                <td name="level" onclick="selLevel(this, 3)">Lv.3</td>
-                <td name="level" onclick="selLevel(this, 4)">Lv.4</td>
-                <td name="level" onclick="selLevel(this, 5)">Lv.5</td>
-                <td name="tag" onclick="selTag(this)">5C</td>
-                <td name="tag" onclick="selTag(this)">7C</td>
+                <td name="type" onClick="selType(this)" style="color: #5A02FF">铠</td>
+                <td name="type" onClick="selType(this)" style="color: #5A02FF">盔</td>
+                <td name="type" onClick="selType(this)" style="color: #5A02FF">靴</td>
+                <td name="type" onClick="selType(this)" style="color: #5A02FF">盾</td>
+                <td name="type" onClick="selType(this)" style="color: #EE0000">衣</td>
+                <td name="type" onClick="selType(this)" style="color: #EE0000">帽</td>
+                <td name="type" onClick="selType(this)" style="color: #EE0000">鞋</td>
+                <td name="type" onClick="selType(this)" style="color: #00FF00">袍</td>
+                <td name="type" onClick="selKeys(this)" style="color: #4E92C2">料理</td>
+            </tr>
+            <tr>
+                <td name="level" onClick="selLevel(this, 1)">Lv.1</td>
+                <td name="level" onClick="selLevel(this, 2)">Lv.2</td>
+                <td name="level" onClick="selLevel(this, 3)">Lv.3</td>
+                <td name="level" onClick="selLevel(this, 4)">Lv.4</td>
+                <td name="level" onClick="selLevel(this, 5)">Lv.5</td>
+                <td name="tag" onClick="selTag(this)">5C</td>
+                <td name="tag" onClick="selTag(this)">7C</td>
                 <td rowspan="2" colspan="2" onclick="init()" style="color:0">清空条件</td>
             </tr>
             <tr>
-                <td name="level" onclick="selLevel(this, 6)">Lv.6</td>
-                <td name="level" onclick="selLevel(this, 7)">Lv.7</td>
-                <td name="level" onclick="selLevel(this, 8)">Lv.8</td>
+                <td name="level" onClick="selLevel(this, 6)">Lv.6</td>
+                <td name="level" onClick="selLevel(this, 7)">Lv.7</td>
+                <td name="level" onClick="selLevel(this, 8)">Lv.8</td>
                 <td name="level" onclick="selLevel(this, 9)">Lv.9</td>
-                <td name="level" onclick="selLevel(this, 10)">Lv.10</td>
-                <td name="tag" onclick="selTag(this)">8C</td>
-                <td name="tag" onclick="selTag(this)">9C</td>
+                <td name="level" onClick="selLevel(this, 10)">Lv.10</td>
+                <td name="tag" onClick="selTag(this)">8C</td>
+                <td name="tag" onClick="selTag(this)">9C</td>
             </tr>
         </tbody>
     </table>
